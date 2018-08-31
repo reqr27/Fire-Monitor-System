@@ -22,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,9 +33,20 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>FIRE.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Control.Draggable, Version=1.0.5049.269, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Control.Draggable.1.0.5049.269\lib\net35-Client\Control.Draggable.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,14 +58,107 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="Formularios\ActivationForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Formularios\ActivationForm.designer.cs">
+      <DependentUpon>ActivationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\ConfigurarZonasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\ConfigurarZonasForm.Designer.cs">
+      <DependentUpon>ConfigurarZonasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\EmailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\EmailForm.Designer.cs">
+      <DependentUpon>EmailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\FacpStatusForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\FacpStatusForm.Designer.cs">
+      <DependentUpon>FacpStatusForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\HistorialForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\HistorialForm.Designer.cs">
+      <DependentUpon>HistorialForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\InfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\InfoForm.Designer.cs">
+      <DependentUpon>InfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\MonitoreoZonaForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\MonitoreoZonaForm.Designer.cs">
+      <DependentUpon>MonitoreoZonaForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\AgregarZonasForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\AgregarZonasForm.Designer.cs">
+      <DependentUpon>AgregarZonasForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\MainScreenForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\MainScreenForm.Designer.cs">
+      <DependentUpon>MainScreenForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\NameZoneForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\NameZoneForm.designer.cs">
+      <DependentUpon>NameZoneForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Formularios\SuperUserLoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Formularios\SuperUserLoginForm.designer.cs">
+      <DependentUpon>SuperUserLoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Formularios\ActivationForm.resx">
+      <DependentUpon>ActivationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\ConfigurarZonasForm.resx">
+      <DependentUpon>ConfigurarZonasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\EmailForm.resx">
+      <DependentUpon>EmailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\FacpStatusForm.resx">
+      <DependentUpon>FacpStatusForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\HistorialForm.resx">
+      <DependentUpon>HistorialForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\InfoForm.resx">
+      <DependentUpon>InfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\MonitoreoZonaForm.resx">
+      <DependentUpon>MonitoreoZonaForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\AgregarZonasForm.resx">
+      <DependentUpon>AgregarZonasForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\MainScreenForm.resx">
+      <DependentUpon>MainScreenForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\NameZoneForm.resx">
+      <DependentUpon>NameZoneForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Formularios\SuperUserLoginForm.resx">
+      <DependentUpon>SuperUserLoginForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -62,7 +167,9 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -74,7 +181,141 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancel-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimize %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimize-window-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\eye-3-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deshabilitado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit-2-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\error-2-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\electro-devices-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\autobus-vista-lateral.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plano.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo-16 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photo-24 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-file-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add-image-256.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\png-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\png-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\trash-9-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DetectorActivo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cuadroVerde.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cuadroRojo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DetectorFalta.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DetectorFuego.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DetectorWarning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DetectorOK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\email-5-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings-22-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\DetectorNoLeido.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\available-updates-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\available-updates-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Classes\Classes.csproj">
+      <Project>{b71337b0-29c5-4b86-8d2e-87e0e7fd48ee}</Project>
+      <Name>Classes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\data-backup-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search-3-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximize-window-24.png" />
+    <None Include="Resources\minimize-window-16.png" />
+    <None Include="Resources\transLetraPamarilla.png" />
+    <None Include="Resources\PullActivo.gif" />
+    <None Include="Resources\PullFalta.gif" />
+    <None Include="Resources\transLetraPverde.png" />
+    <None Include="Resources\sinchronize-24.png" />
+    <None Include="Resources\sinchronize-16.png" />
+    <None Include="Resources\forward.ico" />
+    <None Include="Resources\key1.ico" />
+    <None Include="Resources\user.ico" />
+    <None Include="Resources\app.ico" />
+    <Content Include="FIRE.ico" />
+    <None Include="Resources\checked.png" />
+    <None Include="Resources\cruzar.png" />
+    <None Include="Resources\arrow-177-48.png" />
+    <None Include="Resources\close-window-16.png" />
+    <Content Include="Resources\exit.ico" />
+    <None Include="Resources\exit1.ico" />
+    <None Include="Resources\key-2-48.png" />
+    <None Include="Resources\info-48.png" />
+    <Content Include="Resources\key.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
