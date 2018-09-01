@@ -15,6 +15,7 @@ namespace FireSystemMonitor.Formularios
 {
     public partial class MainScreenForm : Form
     {
+
         Color color = new Color();
         
         GlobalFunctions GF = new GlobalFunctions();
@@ -37,205 +38,331 @@ namespace FireSystemMonitor.Formularios
 
         public void getIfModuleOnline()
         {
-            P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
-            string msj = P.ObtenerEstadoOnlineFacp();
-            if(msj == "1")
+            try
             {
-                onlineStatus_lbl.Text = "Online";
-                onlineStatus_lbl.ForeColor = Color.White;
-                onlineStatus_lbl.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Regular);
-            }
-            else
-            {
-                onlineStatus_lbl.Text = "Offline";
-                onlineStatus_lbl.ForeColor = Color.Red;
-                onlineStatus_lbl.Font = new Font("Microsoft Sans Serif", 14, FontStyle.Bold);
-
-            }
-        }
-
-        public void paint (object sender, PaintEventArgs e)
-        {
-            ControlPaint.DrawBorder(e.Graphics,(sender as PictureBox).ClientRectangle, color, ButtonBorderStyle.Solid);
-            (sender as PictureBox).Refresh();
-        }
-
-        public void UpdateZonaEstatus()
-        {
-            DataTable dt = new DataTable();
-            List<PictureBox> listControls = flowLayoutPanel1.Controls.Cast<PictureBox>().ToList();
-
-            foreach (PictureBox control in listControls)
-            {
-                string tag = control.Tag.ToString(); // 
-
-                string[] namesArray = tag.Split('*');
-                List<string> namesList = new List<string>(namesArray.Length);
-                namesList.AddRange(namesArray);
-                int idZona = Convert.ToInt32(namesList[0].ToString());
-                P.IdZona = idZona;
-                dt = P.ObtenerEstadoZonas();
-                string msj = dt.Rows[0][0].ToString();
-                PictureBox p = new PictureBox();
-                if (msj == "ALARM")
+                this.Invoke((MethodInvoker)delegate
                 {
-                    control.Controls.Add(p);
-                    //p.SizeMode = PictureBoxSizeMode.AutoSize;
-                    p.Anchor = AnchorStyles.None;
-
-                    //CenterPictureBox(p);
-                    p.Image = Properties.Resources.DetectorFuego;
-                    p.Size = new Size(50, 50);
-                    p.Location = new Point((control.Width / 2) - 50, (control.Height / 2) - 50);
-                    p.BringToFront();
-                    p.Refresh();
-                    toolTip1.SetToolTip(p, "ALARMA");
-
-
-                }
-                else if (msj == "WARNING")
-                {
-                    control.Controls.Add(p);
-                    //p.SizeMode = PictureBoxSizeMode.AutoSize;
-                    p.Anchor = AnchorStyles.None;
-
-                    //CenterPictureBox(p);
-                    p.Image = Properties.Resources.DetectorWarning;
-                    p.Size = new Size(50, 50);
-                    p.Location = new Point((control.Width / 2) - 50, (control.Height / 2) - 50);
-                    p.BringToFront();
-                    p.Refresh();
-                    toolTip1.SetToolTip(p, "WARNING");
-
-                }
-
-                else // ok
-                {
-
-                    foreach (Control item in control.Controls.OfType<PictureBox>())
+                    P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
+                    string msj = P.ObtenerEstadoOnlineFacp();
+                    if (msj == "1")
                     {
-                        
-                            control.Controls.Remove(item);
+                        onlineStatus_lbl.Text = "Online";
+                        onlineStatus_lbl.ForeColor = Color.White;
+                        onlineStatus_lbl.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Regular);
                     }
-                }
+                    else
+                    {
+                        onlineStatus_lbl.Text = "Offline";
+                        onlineStatus_lbl.ForeColor = Color.Red;
+                        onlineStatus_lbl.Font = new Font("Microsoft Sans Serif", 14, FontStyle.Bold);
 
-
+                    }
+                });
                
             }
-        }
-        private void CenterPictureBox(PictureBox picBox)
-        {
+            catch (ArgumentNullException ex)
+            {
+
+            }
             
-            picBox.Location = new Point((picBox.Parent.ClientSize.Width / 2) - (picBox.Width / 2),
-                                        (picBox.Parent.ClientSize.Height / 2) - (picBox.Height / 2));
-            picBox.Refresh();
+           
         }
 
-        public void LLenarFacpCB()
+        
+        public void UpdateZonaEstatus()
         {
-            facp_cb.DataSource = null;
-            DataTable dt = new DataTable();
-            dt = P.ObtenerFacp();
-            facp_cb.DataSource = dt;
-            facp_cb.DisplayMember = "NOMBRE";
-            facp_cb.ValueMember = "ID";
-            if(dt.Rows.Count > 0)
+            try
             {
-                facp_cb.SelectedIndex = 0;
+                DataTable dt = new DataTable();
+                List<PictureBox> listControls = flowLayoutPanel1.Controls.Cast<PictureBox>().ToList();
+
+                foreach (PictureBox control in listControls)
+                {
+                    string tag = control.Tag.ToString(); // 
+
+                    string[] namesArray = tag.Split('*');
+                    List<string> namesList = new List<string>(namesArray.Length);
+                    namesList.AddRange(namesArray);
+                    int idZona = Convert.ToInt32(namesList[0].ToString());
+                    P.IdZona = idZona;
+                    dt = P.ObtenerEstadoZonas();
+                    string msj = dt.Rows[0][0].ToString();
+                    //PictureBox p = new PictureBox();
+                    Label lbl = new Label();
+                   
+
+                    if (msj == "ALARM")
+                    {
+                        Action action = () =>
+                        {
+                            try
+                            {
+                                foreach (Control item in control.Controls.OfType<Label>())
+                                {
+                                    if (item.Tag.ToString() == "Dyn")
+                                    {
+                                        control.Controls.Remove(item);
+                                        item.Dispose();
+                                    }
+
+                                }
+                            }catch(Exception ex) { }
+                            
+
+                            //p.Anchor = AnchorStyles.None;
+
+                            ////CenterPictureBox(p);
+                            //p.Image = Properties.Resources.DetectorFuego;
+                            //p.Size = new Size(50, 50);
+                            //p.Location = new Point((control.Width / 2) - 50, (control.Height / 2) - 50);
+                            //p.BringToFront();
+                            ////p.Refresh();
+                            //p.Show();
+                            //control.Controls.Add(p);
+
+                            lbl.ForeColor = Color.Red;
+                            lbl.Text = msj;
+                            lbl.Tag = "Dyn";
+
+                            lbl.Font = new Font("Arial", 18, FontStyle.Bold);
+
+                            lbl.BackColor = Color.Transparent;
+                            lbl.AutoSize = false;
+                            lbl.Width = control.Width;
+                            lbl.TextAlign = ContentAlignment.MiddleCenter;
+
+                            control.Controls.Add(lbl);
+
+                        };
+                        control.Invoke(action); // Or use BeginInvoke
+
+
+
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            toolTip1.SetToolTip(lbl, "ALARMA");
+                        });
+
+
+
+                    }
+                    else if (msj == "WARNING")
+                    {
+                        Action action = () =>
+                        {
+                            try
+                            {
+                                foreach (Control item in control.Controls.OfType<Label>())
+                                {
+                                    if (item.Tag.ToString() == "Dyn")
+                                    {
+                                        control.Controls.Remove(item);
+                                        item.Dispose();
+                                    }
+
+                                }
+                            }
+                            catch (Exception ex) { }
+                            lbl.ForeColor = Color.FromArgb(241, 196, 15);
+                            lbl.Text = msj;
+                            lbl.Tag = "Dyn";
+
+                            lbl.Font = new Font("Arial", 18, FontStyle.Bold);
+
+                            lbl.BackColor = Color.Transparent;
+                            lbl.AutoSize = false;
+                            lbl.Width = control.Width;
+                            lbl.TextAlign = ContentAlignment.MiddleCenter;
+
+                            control.Controls.Add(lbl);
+
+                            control.Controls.Add(lbl);
+                            //control.Controls.Add(lbl);
+
+                            //p.SizeMode = PictureBoxSizeMode.AutoSize;
+                            //p.Anchor = AnchorStyles.None;
+
+                            ////CenterPictureBox(p);
+                            //p.Image = Properties.Resources.DetectorWarning;
+                            //p.Size = new Size(50, 50);
+                            //p.Location = new Point((control.Width / 2) - 50, (control.Height / 2) - 50);
+                            //p.BringToFront();
+                            //p.Refresh();
+
+                        };
+                        control.Invoke(action);
+
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            toolTip1.SetToolTip(lbl, "WARNING");
+                        });
+
+                    }
+
+                    else // ok
+                    {
+                        Action action = () =>
+                        {
+                            try
+                            {
+                                foreach (Control item in control.Controls.OfType<Label>())
+                                {
+                                    if (item.Tag.ToString() == "Dyn")
+                                    {
+                                        control.Controls.Remove(item);
+                                        item.Dispose();
+                                    }
+
+                                }
+                            }
+                            catch (Exception ex) { }
+
+                        };
+                        control.Invoke(action);
+
+
+                    }
+
+
+
+                }
+            }
+
+            catch (ArgumentNullException ex)
+            {
+
+            }
+            
+        }
+
+        private void CenterPictureBox(PictureBox picBox)
+        {
+            try
+            {
+                picBox.Location = new Point((picBox.Parent.ClientSize.Width / 2) - (picBox.Width / 2),
+                                        (picBox.Parent.ClientSize.Height / 2) - (picBox.Height / 2));
+                picBox.Refresh();
+            }
+            catch(ArgumentNullException ex)
+            {
                 
             }
             
         }
 
+        public void LLenarFacpCB()
+        {
+            try
+            {
+                facp_cb.DataSource = null;
+                DataTable dt = new DataTable();
+                dt = P.ObtenerFacp();
+                facp_cb.DataSource = dt;
+                facp_cb.DisplayMember = "NOMBRE";
+                facp_cb.ValueMember = "ID";
+                if (dt.Rows.Count > 0)
+                {
+                    facp_cb.SelectedIndex = 0;
+
+                }
+            }
+            catch (ArgumentNullException ex) { }
+            
+            
+        }
+
         public void obtenerEstadoFacp()
         {
-            Program.GestadoFacp = "";
-            DataTable dt = new DataTable();
-            P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
-            dt = P.ObtenerEstadoFacp();
-            for (int i = 0; i < dt.Rows.Count; i++)
+            try
             {
-                string msj = dt.Rows[i][0].ToString() + Environment.NewLine;
-                Program.GestadoFacp += dt.Rows[i][0].ToString() + Environment.NewLine;
+                Program.GestadoFacp = "";
+                DataTable dt = new DataTable();
+                P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
+                dt = P.ObtenerEstadoFacp();
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    string msj = dt.Rows[i][0].ToString() + Environment.NewLine;
+                    Program.GestadoFacp += dt.Rows[i][0].ToString() + Environment.NewLine;
+                }
             }
+            catch (ArgumentNullException ex) { }
+            
            
         }
 
         public void ObtenerZonasHabilitadas()
         {
-            if(facp_cb.SelectedIndex != -1)
+            try
             {
-                int sizex = 195;
-                int sizey = 195;
-                DataTable dt = new DataTable();
-                P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
-                Program.GidFacp = Convert.ToInt32(facp_cb.SelectedValue);
-                dt = P.ObtenerZonasHabilitadas();
-                int panelHeight = flowLayoutPanel1.Height;
-                int panelWidth = flowLayoutPanel1.Width;
-                int total = dt.Rows.Count;
-
-
-
-                if (total <= 4 && total > 0)
+                this.Invoke((MethodInvoker)delegate
                 {
-                    sizey = (panelHeight / total) - 10;
-                    sizex = (panelWidth / total) - 10;
-                }
-                else
-                {
-                    sizey = (panelHeight / 4) - 10;
-                    sizex = (panelWidth / 4) - 10;
-                }
-                //if(total == 1)
-                //{
-                //    sizex = 1000;
-                //    sizey = 400;
-                //}
-                //else if(total == 2)
-                //{
-                //    sizex = 495;
-                //    sizey = 400;
-                //}
-                //else if (total == 3)
-                //{
-                //    sizex = 320;
-                //    sizey = 400;
-                //}
-
-                //else if (total == 4)
-                //{
-                //    sizex = 495;
-                //    sizey = 195;
-                //}
-                //else
-                //{
-                //    sizex = 195;
-                //    sizey = 195;
-                //}
-                for (int i = dt.Rows.Count - 1; i > -1; i--)
-                {
-                    int idZona = Convert.ToInt32(dt.Rows[i][0]);
-                    string nombre = dt.Rows[i][1].ToString();
-                    string Descripcion = dt.Rows[i][2].ToString();
-                    byte[] imgshow = (byte[])(dt.Rows[i][3]);
-                    string FACP = dt.Rows[i][4].ToString();
-                    MemoryStream Ms = new MemoryStream(imgshow);
-                    try
+                    if (facp_cb.SelectedIndex != -1)
                     {
-                        GenerarThumbnailZonas(idZona, nombre, Descripcion, Ms, FACP, sizex, sizey);
-                    }
-                    catch(ArgumentNullException ex)
-                    {
-                        Console.WriteLine("MAIN SCREEN OBTENER ZONAS HABILITADAS");
-                        RefrescarTimer.Start();
-                        EstadoZona_timer.Start();
+                        int sizex = 195;
+                        int sizey = 195;
+                        DataTable dt = new DataTable();
+                        P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
+                        Program.GidFacp = Convert.ToInt32(facp_cb.SelectedValue);
+                        dt = P.ObtenerZonasHabilitadas();
+                        int panelHeight = flowLayoutPanel1.Height;
+                        int panelWidth = flowLayoutPanel1.Width;
+                        int total = dt.Rows.Count;
 
-                    }
 
-                    
-                }
+                        if(total == 1)
+                        {
+                            sizey = (panelHeight) - 10;
+                            sizex = (panelWidth ) - 10;
+                        }
+                        else if(total == 2)
+                        {
+                            sizey = (panelHeight) - 10;
+                            sizex = (panelWidth/total) - 10;
+                        }
+                        //else if (total == 3 )
+                        //{
+                        //    sizey = (panelHeight) - 10;
+                        //    sizex = (panelWidth/3) - 10;
+                        //}
+                        else 
+                        {
+                            sizey = (panelHeight / 2) - 10;
+                            sizex = (panelWidth /2) - 10;
+                        }
+
+                        for (int i = dt.Rows.Count - 1; i > -1; i--)
+                        {
+                            int idZona = Convert.ToInt32(dt.Rows[i][0]);
+                            string nombre = dt.Rows[i][1].ToString();
+                            string Descripcion = dt.Rows[i][2].ToString();
+                            byte[] imgshow = (byte[])(dt.Rows[i][3]);
+                            string FACP = dt.Rows[i][4].ToString();
+                            MemoryStream Ms = new MemoryStream(imgshow);
+                            try
+                            {
+                                GenerarThumbnailZonas(idZona, nombre, Descripcion, Ms, FACP, sizex, sizey);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("MAIN SCREEN OBTENER ZONAS HABILITADAS");
+                                RefrescarTimer.Start();
+                                EstadoZona_timer.Start();
+
+                            }
+
+
+                        }
+                    }
+                });
+               
             }
+
+            catch (ArgumentNullException ex)
+            {
+
+            }
+
+            
 
 
             
@@ -243,131 +370,159 @@ namespace FireSystemMonitor.Formularios
 
         public void GenerarThumbnailZonas(int idZona, string nombre, string descripcion,MemoryStream Ms, string FACP, int sizex, int sizey)
         {
-            PictureBox Pb = new PictureBox();
-            flowLayoutPanel1.Controls.Add(Pb);
-            Pb.BringToFront();
-            Pb.Tag = idZona + "*" + nombre + "*" + descripcion + "*" + FACP;
-            Pb.Size = new Size(sizex, sizey);
-            //Pb.Padding = new Padding(1);
-            Pb.Cursor = Cursors.Hand;
-            
-            Label Lbl = new Label();
-            Lbl.Text = nombre;
-            Pb.Controls.Add(Lbl);
-            Lbl.Font = new Font("Arial", 14, FontStyle.Bold);
-            Lbl.BackColor = Color.Transparent;
-            Lbl.AutoSize = false;
-            Lbl.ForeColor = Color.FromArgb(47, 54, 64);
-            Lbl.Size = new Size(200, 30);
-            Lbl.TextAlign = ContentAlignment.TopCenter;
-            //Pb.Paint += new PaintEventHandler(paint);
-            //Lbl.Padding = new Padding(1);
-
-            
-
             try
             {
-               
-                Image loadedImage = Image.FromStream(Ms);
-                Pb.Image = loadedImage;
-                Pb.SizeMode = PictureBoxSizeMode.StretchImage;
+                PictureBox Pb = new PictureBox();
+                
+                Pb.BringToFront();
+                Pb.Tag = idZona + "*" + nombre + "*" + descripcion + "*" + FACP;
+                Pb.Size = new Size(sizex, sizey);
+                
+                Pb.Cursor = Cursors.Hand;
 
-                //using (Graphics G = Graphics.FromImage(Pb.Image))
-                //{
-                //    //G.DrawRectangle(Pens.Orange, new Rectangle(13, 14, 44, 44));
-                //    Pen redPen = new Pen(Color.Red, 10);
-                //    G.DrawRectangle(redPen,
-                //                new Rectangle(Pb.Location.X, Pb.Location.Y,
-                //                             Pb.Image.Width - 5, Pb.Image.Height - 5));
-                //    Pb.Refresh();
+                Label Lbl = new Label();
+                Lbl.Text = nombre;
+                Pb.Controls.Add(Lbl);
+                Lbl.Font = new Font("Arial", 14, FontStyle.Bold);
+                Lbl.BackColor = Color.Transparent;
+                Lbl.AutoSize = false;
+                Lbl.ForeColor = Color.FromArgb(47, 54, 64);
+                Lbl.Size = new Size(200, 30);
+                Lbl.TextAlign = ContentAlignment.TopCenter;
+                Lbl.Tag = "Name";
+                
+                try
+                {
 
-                //}
+                    Image loadedImage = Image.FromStream(Ms);
+                    Pb.Image = loadedImage;
+                    Pb.SizeMode = PictureBoxSizeMode.StretchImage;
 
+                    //using (Graphics G = Graphics.FromImage(Pb.Image))
+                    //{
+                    //    //G.DrawRectangle(Pens.Orange, new Rectangle(13, 14, 44, 44));
+                    //    Pen redPen = new Pen(Color.Red, 10);
+                    //    G.DrawRectangle(redPen,
+                    //                new Rectangle(Pb.Location.X, Pb.Location.Y,
+                    //                             Pb.Image.Width - 5, Pb.Image.Height - 5));
+                    //    Pb.Refresh();
+
+                    //}
+
+                }
+                catch (ArgumentNullException ex)
+                {
+                    // The user lacks appropriate permissions to read files, discover paths, etc.
+                    MessageBox.Show("Security error. Please contact your administrator for details.\n\n" +
+                        "Error message: " + ex.Message + "\n\n" +
+                        "Details (send to Support):\n\n" + ex.StackTrace
+                    );
+                }
+                flowLayoutPanel1.Controls.Add(Pb);
+                Pb.Show();
+                Pb.MouseUp += new MouseEventHandler(Picture_Click);
+                //Pb.BackColor = Color.Green;
+
+                Pb.MouseHover += new EventHandler(Panel_Hover);
+                flowLayoutPanel1.Refresh();
             }
-            catch (SecurityException ex)
+            catch (ArgumentNullException ex)
             {
-                // The user lacks appropriate permissions to read files, discover paths, etc.
-                MessageBox.Show("Security error. Please contact your administrator for details.\n\n" +
-                    "Error message: " + ex.Message + "\n\n" +
-                    "Details (send to Support):\n\n" + ex.StackTrace
-                );
+
             }
-
-            Pb.MouseUp += new MouseEventHandler(Picture_Click);
-            //Pb.BackColor = Color.Green;
-
-            Pb.MouseHover += new EventHandler(Panel_Hover);
-            flowLayoutPanel1.Refresh();
-            //if (mover)
-            //{
-            //    P.MouseUp += new MouseEventHandler(Panel_Click);
-            //    P.DoubleClick += new EventHandler(Pb_DoubleClick);
-
-            //}
+            
         }
 
         public void RemoveAllControlsFromFlowPanel()
         {
-            List<Control> listControls = flowLayoutPanel1.Controls.Cast<Control>().ToList();
-
-            foreach (Control control in listControls)
+            try
             {
-                flowLayoutPanel1.Controls.Remove(control);
-                control.Dispose();
+                List<Control> listControls = flowLayoutPanel1.Controls.Cast<Control>().ToList();
+
+                foreach (Control control in listControls)
+                {
+                    Action action = () => 
+                    {
+                        flowLayoutPanel1.Controls.Remove(control);
+                        control.Dispose();
+                        
+
+
+                    };
+                    control.Invoke(action);
+                    
+                }
             }
+            catch (ArgumentNullException ex)
+            {
+
+            }
+            
         }
 
         public void  ControlsState (bool activado)
         {
-            facp_cb.Enabled = activado;
-            historial_btn.Enabled = activado;
-            ConfigMail_btn.Enabled = activado;
-            flowLayoutPanel1.Enabled = activado;
-            Refresh_btn.Enabled = activado;
-            linkLabel1.Enabled = activado;
-            info_btn.Enabled = activado;
-           // msjActivado_lbl.Visible = !activado;
+            try
+            {
+                facp_cb.Enabled = activado;
+                historial_btn.Enabled = activado;
+                ConfigMail_btn.Enabled = activado;
+                flowLayoutPanel1.Enabled = activado;
+                Refresh_btn.Enabled = activado;
+                linkLabel1.Enabled = activado;
+                info_btn.Enabled = activado;
+            }
+            catch (ArgumentNullException ex) { }
+            
+          
         }
 
         public void CheckIfSoftwareActivated()
         {
-            P.HDD_SERIAL = GF.serial();
-            P.SOFTWARE = Program.Gsoftware ;
-            string msj = P.CheckIfSoftwareActivated();
-            //msj = "FULL";
-            
-            if(msj == "Trial")
+            try
             {
-                int dias = ObtenerDiasActivo();
-                if(dias == 0)
-                {
-                    msjActivado_lbl.Text = "VERSION DE PRUEBA HA FINALIZADO";
-                    ControlsState(false);
+                P.HDD_SERIAL = GF.serial();
+                P.SOFTWARE = Program.Gsoftware;
+                string msj = P.CheckIfSoftwareActivated();
+                //msj = "FULL";
 
+                if (msj == "Trial")
+                {
+                    int dias = ObtenerDiasActivo();
+                    if (dias == 0)
+                    {
+                        msjActivado_lbl.Text = "VERSION DE PRUEBA HA FINALIZADO";
+                        ControlsState(false);
+
+                    }
+                    else
+                    {
+                        msjActivado_lbl.Text = "VERSION DE PRUEBA - DIAS RESTANTES : " + dias;
+                        ControlsState(true);
+                        activar_btn.Text = "Upgrade";
+                        activar_btn.Image = null;
+                        activar_btn.Image = Properties.Resources.arrow_177_48;
+                    }
+
+
+                }
+
+                else if (msj == "Full")
+                {
+                    msjActivado_lbl.Visible = false;
+                    ControlsState(true);
+                    activar_btn.Visible = false;
                 }
                 else
+
                 {
-                    msjActivado_lbl.Text = "VERSION DE PRUEBA - DIAS RESTANTES : " + dias;
-                    ControlsState(true);
-                    activar_btn.Text = "Upgrade";
-                    activar_btn.Image = null;
-                    activar_btn.Image = Properties.Resources.arrow_177_48;
+                    ControlsState(false);
+                    msjActivado_lbl.Text = "SOFTWARE NO HA SIDO ACTIVADO";
                 }
-                
-
             }
+            catch (ArgumentNullException ex)
+            {
 
-            else if (msj == "Full")
-            {
-                msjActivado_lbl.Visible = false;
-                ControlsState(true);
-                activar_btn.Visible = false;
-            }
-            else
-            
-            {
-                ControlsState(false);
-                msjActivado_lbl.Text = "SOFTWARE NO HA SIDO ACTIVADO";
             }
 
         }
@@ -376,14 +531,24 @@ namespace FireSystemMonitor.Formularios
         public int ObtenerDiasActivo()
         {
             int dias = 0;
-            DataTable dt = new DataTable();
-            P.HDD_SERIAL = GF.serial();
-            P.SOFTWARE = Program.Gsoftware;
-            dt = P.ObtenerDiasActivoSoftware();
-            if(dt.Rows.Count > 0)
+            try
             {
-                dias = Convert.ToInt32(dt.Rows[0][0].ToString());
+               
+                DataTable dt = new DataTable();
+                P.HDD_SERIAL = GF.serial();
+                P.SOFTWARE = Program.Gsoftware;
+                dt = P.ObtenerDiasActivoSoftware();
+                if (dt.Rows.Count > 0)
+                {
+                    dias = Convert.ToInt32(dt.Rows[0][0].ToString());
+                }
             }
+
+            catch (ArgumentNullException ex)
+            {
+
+            }
+            
 
             return dias;
         }
@@ -391,51 +556,46 @@ namespace FireSystemMonitor.Formularios
 
         #region Eventos Manuales
 
-        //public void paintBorder(object sender, PaintEventArgs e)
-        //{
-        //    Graphics g = e.Graphics;
-
-        //    // Draw a string on the PictureBox.
-        //    //g.DrawString("This is a diagonal line drawn on the control",
-        //    //    new Font("Arial", 10), System.Drawing.Brushes.Blue, new Point(30, 30));
-        //    // Draw a line in the PictureBox.
-        //    //g.DrawRectangle(System.Drawing.Pens.Red, (sender as PictureBox).Left, (sender as PictureBox).Top,
-        //    //    (sender as PictureBox).Right, (sender as PictureBox).Bottom);
-        //    Pen redPen = new Pen(Color.Red, 5);
-        //    e.Graphics.DrawRectangle(redPen,
-        //                new Rectangle((sender as PictureBox).Location.X, (sender as PictureBox).Location.Y,
-        //                              (sender as PictureBox).Size.Width - 5, (sender as PictureBox).Size.Height - 5));
-        //}
-
         private void Panel_Hover(object sender, EventArgs e)
         {
-            //Cursor.Current = Cursors.Cross;
+            try
+            {
+                string tag = (sender as PictureBox).Tag.ToString(); // format --> tipo*id*identificador*tamaño*nombre
 
-            string tag = (sender as PictureBox).Tag.ToString(); // format --> tipo*id*identificador*tamaño*nombre
+                string[] namesArray = tag.Split('*');
+                List<string> namesList = new List<string>(namesArray.Length);
+                namesList.AddRange(namesArray);
+                toolTip1.SetToolTip((sender as PictureBox), "FACP: " + namesList[3] + "\nZona: " + namesList[1] + "\nDescripción: " + namesList[2]);
+                toolTip1.InitialDelay = 100;
+            }
+            catch (ArgumentNullException ex)
+            {
 
-            string[] namesArray = tag.Split('*');
-            List<string> namesList = new List<string>(namesArray.Length);
-            namesList.AddRange(namesArray);
-            toolTip1.SetToolTip((sender as PictureBox), "FACP: " + namesList[3] + "\nZona: " + namesList[1] + "\nDescripción: " + namesList[2]);
-            toolTip1.InitialDelay = 100;
+            }
+
+            
             
         }
 
         private void Picture_Click(object sender, MouseEventArgs e)
         {
-            
+            try
+            {
+                string tag = (sender as PictureBox).Tag.ToString();
+                string[] namesArray = tag.Split('*');
+                List<string> namesList = new List<string>(namesArray.Length);
+                namesList.AddRange(namesArray);
+                Program.GidZonaMonitorear = Convert.ToInt32(namesList[0]);
+                Program.FormName = namesList[1];
+                MonitoreoZonaForm form = new MonitoreoZonaForm();
+                form.Show();
+            }
+            catch (Exception) { }
 
-            string tag = (sender as PictureBox).Tag.ToString();
-            string[] namesArray = tag.Split('*');
-            List<string> namesList = new List<string>(namesArray.Length);
-            namesList.AddRange(namesArray);
-            Program.GidZonaMonitorear = Convert.ToInt32(namesList[0]);
-            Program.FormName = namesList[1];
-            MonitoreoZonaForm form = new MonitoreoZonaForm();
-            form.Show();
             
             
-            //MessageBox.Show( ((sender as PictureBox).Tag).ToString());
+            
+            
 
 
         }
@@ -446,15 +606,20 @@ namespace FireSystemMonitor.Formularios
 
         private void MainScreenForm_Load(object sender, EventArgs e)
         {
-            color = Color.Transparent;
-            RefrescarTimer.Start();
-            LLenarFacpCB();
-            ObtenerZonasHabilitadas();
-            //UpdateZonaEstatus();
-            EstadoZona_timer.Start();
-            //obtenerEstadoFacp();
-            getIfModuleOnline();
-            CheckIfSoftwareActivated();
+            try
+            {
+                color = Color.Transparent;
+                RefrescarTimer.Start();
+                LLenarFacpCB();
+                ObtenerZonasHabilitadas();
+                UpdateZonaEstatus();
+                EstadoZona_timer.Start();
+                //obtenerEstadoFacp();
+                getIfModuleOnline();
+                CheckIfSoftwareActivated();
+            }
+            catch (ArgumentNullException) { }
+           
 
 
         }
@@ -466,71 +631,102 @@ namespace FireSystemMonitor.Formularios
 
         private void button3_Click(object sender, EventArgs e)
         {
+
             this.WindowState = FormWindowState.Minimized;
 
         }
 
         private void Settings_btn_Click(object sender, EventArgs e)
         {
-            Program.Gventana = "Settings";
-            //SuperUserLoginForm form = new SuperUserLoginForm();
-            //form.ShowDialog();
-
-            if (Program.Gventana == "Settings")
+            try
             {
-                //AgregarZonasForm form1 = new AgregarZonasForm();
-                //form1.ShowDialog();
+                Program.Gventana = "Settings";
+                SuperUserLoginForm form = new SuperUserLoginForm();
+                form.ShowDialog();
 
-                ConfigurarZonasForm form1 = new ConfigurarZonasForm();
-                form1.ShowDialog();
+                if (Program.Gventana == "Settings")
+                {
+                    //AgregarZonasForm form1 = new AgregarZonasForm();
+                    //form1.ShowDialog();
+
+                    ConfigurarZonasForm form1 = new ConfigurarZonasForm();
+                    form1.ShowDialog();
+                }
             }
+            catch (ArgumentNullException) { }
+            
 
         }
 
         private void Refresh_btn_Click(object sender, EventArgs e)
         {
-            RefrescarTimer.Stop();
+            try
+            {
+                RefrescarTimer.Stop();
 
-            RemoveAllControlsFromFlowPanel();
-            ObtenerZonasHabilitadas();
-            UpdateZonaEstatus();
-            //obtenerEstadoFacp();
-            getIfModuleOnline();
-            CheckIfSoftwareActivated();
-            RefrescarTimer.Start();
+                RemoveAllControlsFromFlowPanel();
+                ObtenerZonasHabilitadas();
+                UpdateZonaEstatus();
+                getIfModuleOnline();
+                CheckIfSoftwareActivated();
+                RefrescarTimer.Start();
+            }
+            catch (ArgumentNullException) { }
+         
         }
 
         private void panel3_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            try
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                if (e.Button == MouseButtons.Left)
+                {
+                    ReleaseCapture();
+                    SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                }
             }
+            catch (ArgumentNullException) { }
+            
         }
 
         private void RefrescarTimer_Tick(object sender, EventArgs e)
         {
-            RefrescarTimer.Stop();
-            RemoveAllControlsFromFlowPanel();
-            ObtenerZonasHabilitadas();
+            try
+            {
+                RefrescarTimer.Stop();
+                if (!RefrescarWorker.IsBusy)
+                {
+                    RefrescarWorker.RunWorkerAsync();
+                }
+            }
+            catch (ArgumentNullException) { }
+          
+           
             
-            CheckIfSoftwareActivated();
-            RefrescarTimer.Start();
         }
 
         private void facp_cb_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            RemoveAllControlsFromFlowPanel();
-            ObtenerZonasHabilitadas();
-            Program.GidFacp = Convert.ToInt32(facp_cb.SelectedValue);
-            //obtenerEstadoFacp();
-            getIfModuleOnline();
+            try
+            {
+                RemoveAllControlsFromFlowPanel();
+                ObtenerZonasHabilitadas();
+                Program.GidFacp = Convert.ToInt32(facp_cb.SelectedValue);
+                //obtenerEstadoFacp();
+                getIfModuleOnline();
+            }
+            catch (ArgumentNullException) { }
+           
         }
 
         private void facp_cb_DropDown(object sender, EventArgs e)
         {
-            LLenarFacpCB();
+            try
+            {
+                LLenarFacpCB();
+            }
+            catch (ArgumentNullException) { }
+            
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -568,36 +764,85 @@ namespace FireSystemMonitor.Formularios
 
         private void EstadoZona_timer_Tick(object sender, EventArgs e)
         {
-            EstadoZona_timer.Stop();
-            UpdateZonaEstatus();
-            getIfModuleOnline();
-            EstadoZona_timer.Start();
+            try
+            {
+                EstadoZona_timer.Stop();
+                if (!EstadoZonaWorker.IsBusy)
+                {
+                    EstadoZonaWorker.RunWorkerAsync();
+                }
+            }
+            catch (ArgumentNullException) { }
+            
+            
         }
 
         #endregion
 
         private void MainScreenForm_Resize(object sender, EventArgs e)
         {
+
             try
             {
-                if (WindowState == FormWindowState.Maximized)
-                {
-                    RefrescarTimer.Stop();
+                RefrescarTimer.Stop();
 
-                    RemoveAllControlsFromFlowPanel();
-                    ObtenerZonasHabilitadas();
-                    UpdateZonaEstatus();
-                    //obtenerEstadoFacp();
-                    getIfModuleOnline();
-                    CheckIfSoftwareActivated();
-                    RefrescarTimer.Start();
-                }
+                RemoveAllControlsFromFlowPanel();
+                ObtenerZonasHabilitadas();
+                UpdateZonaEstatus();
+                getIfModuleOnline();
+                CheckIfSoftwareActivated();
+                RefrescarTimer.Start();
             }
-            catch
+            catch (ArgumentNullException) { }
+        }
+
+        private void RefrescarWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
             {
+                RemoveAllControlsFromFlowPanel();
+                ObtenerZonasHabilitadas();
 
+                CheckIfSoftwareActivated();
             }
+            catch (ArgumentNullException) { }
             
+        }
+
+        private void RefrescarWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                RefrescarTimer.Start();
+            }
+            catch (ArgumentNullException) { }
+           
+        }
+
+        private void EstadoZonaWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                UpdateZonaEstatus();
+                getIfModuleOnline();
+            }
+            catch (ArgumentNullException) { }
+            
+        }
+
+        private void EstadoZonaWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                EstadoZona_timer.Start();
+            }
+            catch (ArgumentNullException){}
+            
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }

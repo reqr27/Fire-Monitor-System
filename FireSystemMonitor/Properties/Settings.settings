@@ -9,5 +9,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=localhost;Initial Catalog=FireSystemDB;User ID=sa;Password=12345678;Encrypt=False;Column Encryption Setting=Disabled</Value>
     </Setting>
+    <Setting Name="SlideShowTime" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -294,6 +294,11 @@
     <None Include="Resources\search-3-48.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\pause-24.png" />
+    <None Include="Resources\maximize-window-16.png" />
+    <None Include="Resources\next-24.png" />
+    <None Include="Resources\play-3-24.png" />
+    <None Include="Resources\previous-24.png" />
     <None Include="Resources\maximize-window-24.png" />
     <None Include="Resources\minimize-window-16.png" />
     <None Include="Resources\transLetraPamarilla.png" />

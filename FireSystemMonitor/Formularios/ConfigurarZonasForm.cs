@@ -20,6 +20,15 @@ namespace FireSystemMonitor.Formularios
         int idEvento;
         Procedimientos P = new Procedimientos();
         int IdDetectorAeditar = 0;
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
         public ConfigurarZonasForm()
         {
             InitializeComponent();
@@ -976,6 +985,24 @@ namespace FireSystemMonitor.Formularios
                 //LlenarDtgZonas();
             }
             LlenarDtgFacp();
+        }
+
+        private void panel3_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    ReleaseCapture();
+                    SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                }
+            }
+            catch (ArgumentNullException) { }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Maximized;
         }
     }
 }

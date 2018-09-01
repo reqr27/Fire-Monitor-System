@@ -33,5 +33,17 @@ namespace FireSystemMonitor.Properties {
                 return ((string)(this["Conexion"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int SlideShowTime {
+            get {
+                return ((int)(this["SlideShowTime"]));
+            }
+            set {
+                this["SlideShowTime"] = value;
+            }
+        }
     }
 }

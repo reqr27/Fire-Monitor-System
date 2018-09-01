@@ -29,16 +29,29 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigurarZonasForm));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.NombreZona_lbl = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.leftAreaPanel = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.facp_cb = new System.Windows.Forms.ComboBox();
+            this.Cancelar_btn = new System.Windows.Forms.Button();
+            this.agregarImg_btn = new System.Windows.Forms.Button();
+            this.estadoZona_chbox = new System.Windows.Forms.CheckBox();
+            this.AgregarDetector_btn = new System.Windows.Forms.Button();
+            this.descripcion_txt = new System.Windows.Forms.TextBox();
+            this.nombre_txt = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.agregarZonas_btn = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.AgregarZona_lbl = new System.Windows.Forms.Label();
             this.EliminarFacp_btn = new System.Windows.Forms.Button();
             this.facp_lbl = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -51,24 +64,12 @@
             this.zonas_dtg = new System.Windows.Forms.DataGridView();
             this.verZona_btn = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.facp_cb = new System.Windows.Forms.ComboBox();
-            this.Cancelar_btn = new System.Windows.Forms.Button();
-            this.agregarImg_btn = new System.Windows.Forms.Button();
-            this.estadoZona_chbox = new System.Windows.Forms.CheckBox();
-            this.AgregarDetector_btn = new System.Windows.Forms.Button();
-            this.descripcion_txt = new System.Windows.Forms.TextBox();
-            this.nombre_txt = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.agregarZonas_btn = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.AgregarZona_lbl = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.shapeContainer1 = new Microsoft.VisualBasic.PowerPacks.ShapeContainer();
-            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.lineShape2 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.workArea_panel = new System.Windows.Forms.Panel();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -81,27 +82,29 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.panel3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.leftAreaPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facp_dtg)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.zonas_dtg)).BeginInit();
+            this.tabPage2.SuspendLayout();
             this.workArea_panel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(54)))), ((int)(((byte)(22)))));
+            this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.button3);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.NombreZona_lbl);
@@ -110,6 +113,49 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1007, 24);
             this.panel3.TabIndex = 52;
+            this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::FireSystemMonitor.Properties.Resources.maximize_window_16;
+            this.button1.Location = new System.Drawing.Point(943, -1);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(26, 26);
+            this.button1.TabIndex = 34;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Image = global::FireSystemMonitor.Properties.Resources.minimize_window_16;
+            this.button3.Location = new System.Drawing.Point(911, -2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(26, 26);
+            this.button3.TabIndex = 33;
+            this.button3.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = global::FireSystemMonitor.Properties.Resources.close_window_16;
+            this.button2.Location = new System.Drawing.Point(973, -2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(26, 26);
+            this.button2.TabIndex = 32;
+            this.button2.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // NombreZona_lbl
             // 
@@ -143,45 +189,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "DETALLES";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.workArea_panel);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(999, 716);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "PLANO";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = global::FireSystemMonitor.Properties.Resources.minimize_window_16;
-            this.button3.Location = new System.Drawing.Point(949, -2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(26, 26);
-            this.button3.TabIndex = 33;
-            this.button3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // button2
-            // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = global::FireSystemMonitor.Properties.Resources.close_window_16;
-            this.button2.Location = new System.Drawing.Point(973, -2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(26, 26);
-            this.button2.TabIndex = 32;
-            this.button2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // leftAreaPanel
             // 
@@ -217,177 +224,15 @@
             this.leftAreaPanel.Size = new System.Drawing.Size(848, 676);
             this.leftAreaPanel.TabIndex = 51;
             // 
-            // EliminarFacp_btn
+            // label3
             // 
-            this.EliminarFacp_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(65)))), ((int)(((byte)(24)))));
-            this.EliminarFacp_btn.FlatAppearance.BorderSize = 0;
-            this.EliminarFacp_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.EliminarFacp_btn.Font = new System.Drawing.Font("Bookman Old Style", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EliminarFacp_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.EliminarFacp_btn.Image = global::FireSystemMonitor.Properties.Resources.trash_9_32;
-            this.EliminarFacp_btn.Location = new System.Drawing.Point(185, 279);
-            this.EliminarFacp_btn.Name = "EliminarFacp_btn";
-            this.EliminarFacp_btn.Size = new System.Drawing.Size(130, 61);
-            this.EliminarFacp_btn.TabIndex = 76;
-            this.EliminarFacp_btn.Text = "Eliminar FACP";
-            this.EliminarFacp_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.EliminarFacp_btn.UseVisualStyleBackColor = false;
-            // 
-            // facp_lbl
-            // 
-            this.facp_lbl.AutoSize = true;
-            this.facp_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.facp_lbl.Location = new System.Drawing.Point(541, 25);
-            this.facp_lbl.Name = "facp_lbl";
-            this.facp_lbl.Size = new System.Drawing.Size(0, 12);
-            this.facp_lbl.TabIndex = 75;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(216, 208);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(99, 12);
-            this.label6.TabIndex = 74;
-            this.label6.Text = "Doble Click Para Editar";
-            // 
-            // AgregarFacp_btn
-            // 
-            this.AgregarFacp_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
-            this.AgregarFacp_btn.FlatAppearance.BorderSize = 0;
-            this.AgregarFacp_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AgregarFacp_btn.Font = new System.Drawing.Font("Bookman Old Style", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AgregarFacp_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.AgregarFacp_btn.Image = global::FireSystemMonitor.Properties.Resources.save_32;
-            this.AgregarFacp_btn.Location = new System.Drawing.Point(49, 279);
-            this.AgregarFacp_btn.Name = "AgregarFacp_btn";
-            this.AgregarFacp_btn.Size = new System.Drawing.Size(130, 61);
-            this.AgregarFacp_btn.TabIndex = 73;
-            this.AgregarFacp_btn.Text = "Agregar FACP";
-            this.AgregarFacp_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.AgregarFacp_btn.UseVisualStyleBackColor = false;
-            this.AgregarFacp_btn.Click += new System.EventHandler(this.AgregarFacp_btn_Click);
-            // 
-            // NombreFacp_txt
-            // 
-            this.NombreFacp_txt.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NombreFacp_txt.Location = new System.Drawing.Point(49, 236);
-            this.NombreFacp_txt.Name = "NombreFacp_txt";
-            this.NombreFacp_txt.Size = new System.Drawing.Size(266, 22);
-            this.NombreFacp_txt.TabIndex = 71;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(49, 219);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 14);
-            this.label5.TabIndex = 72;
-            this.label5.Text = "Nombre:";
-            // 
-            // facp_dtg
-            // 
-            this.facp_dtg.AllowUserToAddRows = false;
-            this.facp_dtg.AllowUserToDeleteRows = false;
-            this.facp_dtg.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.facp_dtg.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.facp_dtg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
-            this.facp_dtg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.facp_dtg.Location = new System.Drawing.Point(49, 39);
-            this.facp_dtg.MultiSelect = false;
-            this.facp_dtg.Name = "facp_dtg";
-            this.facp_dtg.ReadOnly = true;
-            this.facp_dtg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.facp_dtg.Size = new System.Drawing.Size(266, 166);
-            this.facp_dtg.TabIndex = 67;
-            this.facp_dtg.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.facp_dtg_CellDoubleClick);
-            this.facp_dtg.SelectionChanged += new System.EventHandler(this.facp_dtg_SelectionChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Britannic Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(44, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 27);
-            this.label1.TabIndex = 66;
-            this.label1.Text = "FACP";
-            // 
-            // editarZona_btn
-            // 
-            this.editarZona_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
-            this.editarZona_btn.FlatAppearance.BorderSize = 0;
-            this.editarZona_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editarZona_btn.Font = new System.Drawing.Font("Bookman Old Style", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editarZona_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.editarZona_btn.Image = global::FireSystemMonitor.Properties.Resources.edit_2_32;
-            this.editarZona_btn.Location = new System.Drawing.Point(666, 279);
-            this.editarZona_btn.Name = "editarZona_btn";
-            this.editarZona_btn.Size = new System.Drawing.Size(130, 61);
-            this.editarZona_btn.TabIndex = 65;
-            this.editarZona_btn.Text = "Editar";
-            this.editarZona_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.editarZona_btn.UseVisualStyleBackColor = false;
-            this.editarZona_btn.Click += new System.EventHandler(this.editarZona_btn_Click);
-            // 
-            // zonas_dtg
-            // 
-            this.zonas_dtg.AllowUserToAddRows = false;
-            this.zonas_dtg.AllowUserToDeleteRows = false;
-            this.zonas_dtg.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
-            this.zonas_dtg.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.zonas_dtg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
-            this.zonas_dtg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.zonas_dtg.Location = new System.Drawing.Point(464, 39);
-            this.zonas_dtg.MultiSelect = false;
-            this.zonas_dtg.Name = "zonas_dtg";
-            this.zonas_dtg.ReadOnly = true;
-            this.zonas_dtg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.zonas_dtg.Size = new System.Drawing.Size(332, 219);
-            this.zonas_dtg.TabIndex = 63;
-            // 
-            // verZona_btn
-            // 
-            this.verZona_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
-            this.verZona_btn.FlatAppearance.BorderSize = 0;
-            this.verZona_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.verZona_btn.Font = new System.Drawing.Font("Bookman Old Style", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.verZona_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.verZona_btn.Image = global::FireSystemMonitor.Properties.Resources.eye_3_32;
-            this.verZona_btn.Location = new System.Drawing.Point(464, 279);
-            this.verZona_btn.Name = "verZona_btn";
-            this.verZona_btn.Size = new System.Drawing.Size(130, 61);
-            this.verZona_btn.TabIndex = 62;
-            this.verZona_btn.Text = "Ver";
-            this.verZona_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.verZona_btn.UseVisualStyleBackColor = false;
-            this.verZona_btn.Click += new System.EventHandler(this.verZona_btn_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Britannic Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(459, 3);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(81, 27);
-            this.label9.TabIndex = 61;
-            this.label9.Text = "ZONAS";
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(50, 438);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 14);
+            this.label3.TabIndex = 88;
+            this.label3.Text = "FACP:";
             // 
             // facp_cb
             // 
@@ -527,15 +372,177 @@
             this.AgregarZona_lbl.TabIndex = 78;
             this.AgregarZona_lbl.Text = "AGREGAR ZONAS";
             // 
-            // label3
+            // EliminarFacp_btn
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(50, 438);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(45, 14);
-            this.label3.TabIndex = 88;
-            this.label3.Text = "FACP:";
+            this.EliminarFacp_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(65)))), ((int)(((byte)(24)))));
+            this.EliminarFacp_btn.FlatAppearance.BorderSize = 0;
+            this.EliminarFacp_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.EliminarFacp_btn.Font = new System.Drawing.Font("Bookman Old Style", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EliminarFacp_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.EliminarFacp_btn.Image = global::FireSystemMonitor.Properties.Resources.trash_9_32;
+            this.EliminarFacp_btn.Location = new System.Drawing.Point(185, 279);
+            this.EliminarFacp_btn.Name = "EliminarFacp_btn";
+            this.EliminarFacp_btn.Size = new System.Drawing.Size(130, 61);
+            this.EliminarFacp_btn.TabIndex = 76;
+            this.EliminarFacp_btn.Text = "Eliminar FACP";
+            this.EliminarFacp_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.EliminarFacp_btn.UseVisualStyleBackColor = false;
+            // 
+            // facp_lbl
+            // 
+            this.facp_lbl.AutoSize = true;
+            this.facp_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.facp_lbl.Location = new System.Drawing.Point(541, 25);
+            this.facp_lbl.Name = "facp_lbl";
+            this.facp_lbl.Size = new System.Drawing.Size(0, 12);
+            this.facp_lbl.TabIndex = 75;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(216, 208);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(99, 12);
+            this.label6.TabIndex = 74;
+            this.label6.Text = "Doble Click Para Editar";
+            // 
+            // AgregarFacp_btn
+            // 
+            this.AgregarFacp_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.AgregarFacp_btn.FlatAppearance.BorderSize = 0;
+            this.AgregarFacp_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AgregarFacp_btn.Font = new System.Drawing.Font("Bookman Old Style", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AgregarFacp_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.AgregarFacp_btn.Image = global::FireSystemMonitor.Properties.Resources.save_32;
+            this.AgregarFacp_btn.Location = new System.Drawing.Point(49, 279);
+            this.AgregarFacp_btn.Name = "AgregarFacp_btn";
+            this.AgregarFacp_btn.Size = new System.Drawing.Size(130, 61);
+            this.AgregarFacp_btn.TabIndex = 73;
+            this.AgregarFacp_btn.Text = "Agregar FACP";
+            this.AgregarFacp_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.AgregarFacp_btn.UseVisualStyleBackColor = false;
+            this.AgregarFacp_btn.Click += new System.EventHandler(this.AgregarFacp_btn_Click);
+            // 
+            // NombreFacp_txt
+            // 
+            this.NombreFacp_txt.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NombreFacp_txt.Location = new System.Drawing.Point(49, 236);
+            this.NombreFacp_txt.Name = "NombreFacp_txt";
+            this.NombreFacp_txt.Size = new System.Drawing.Size(266, 22);
+            this.NombreFacp_txt.TabIndex = 71;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(49, 219);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(60, 14);
+            this.label5.TabIndex = 72;
+            this.label5.Text = "Nombre:";
+            // 
+            // facp_dtg
+            // 
+            this.facp_dtg.AllowUserToAddRows = false;
+            this.facp_dtg.AllowUserToDeleteRows = false;
+            this.facp_dtg.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.facp_dtg.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.facp_dtg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.facp_dtg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.facp_dtg.Location = new System.Drawing.Point(49, 39);
+            this.facp_dtg.MultiSelect = false;
+            this.facp_dtg.Name = "facp_dtg";
+            this.facp_dtg.ReadOnly = true;
+            this.facp_dtg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.facp_dtg.Size = new System.Drawing.Size(266, 166);
+            this.facp_dtg.TabIndex = 67;
+            this.facp_dtg.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.facp_dtg_CellDoubleClick);
+            this.facp_dtg.SelectionChanged += new System.EventHandler(this.facp_dtg_SelectionChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Britannic Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(44, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 27);
+            this.label1.TabIndex = 66;
+            this.label1.Text = "FACP";
+            // 
+            // editarZona_btn
+            // 
+            this.editarZona_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.editarZona_btn.FlatAppearance.BorderSize = 0;
+            this.editarZona_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.editarZona_btn.Font = new System.Drawing.Font("Bookman Old Style", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.editarZona_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.editarZona_btn.Image = global::FireSystemMonitor.Properties.Resources.edit_2_32;
+            this.editarZona_btn.Location = new System.Drawing.Point(666, 279);
+            this.editarZona_btn.Name = "editarZona_btn";
+            this.editarZona_btn.Size = new System.Drawing.Size(130, 61);
+            this.editarZona_btn.TabIndex = 65;
+            this.editarZona_btn.Text = "Editar";
+            this.editarZona_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.editarZona_btn.UseVisualStyleBackColor = false;
+            this.editarZona_btn.Click += new System.EventHandler(this.editarZona_btn_Click);
+            // 
+            // zonas_dtg
+            // 
+            this.zonas_dtg.AllowUserToAddRows = false;
+            this.zonas_dtg.AllowUserToDeleteRows = false;
+            this.zonas_dtg.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            this.zonas_dtg.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.zonas_dtg.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.zonas_dtg.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.zonas_dtg.Location = new System.Drawing.Point(464, 39);
+            this.zonas_dtg.MultiSelect = false;
+            this.zonas_dtg.Name = "zonas_dtg";
+            this.zonas_dtg.ReadOnly = true;
+            this.zonas_dtg.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.zonas_dtg.Size = new System.Drawing.Size(332, 219);
+            this.zonas_dtg.TabIndex = 63;
+            // 
+            // verZona_btn
+            // 
+            this.verZona_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.verZona_btn.FlatAppearance.BorderSize = 0;
+            this.verZona_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.verZona_btn.Font = new System.Drawing.Font("Bookman Old Style", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.verZona_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.verZona_btn.Image = global::FireSystemMonitor.Properties.Resources.eye_3_32;
+            this.verZona_btn.Location = new System.Drawing.Point(464, 279);
+            this.verZona_btn.Name = "verZona_btn";
+            this.verZona_btn.Size = new System.Drawing.Size(130, 61);
+            this.verZona_btn.TabIndex = 62;
+            this.verZona_btn.Text = "Ver";
+            this.verZona_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.verZona_btn.UseVisualStyleBackColor = false;
+            this.verZona_btn.Click += new System.EventHandler(this.verZona_btn_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Britannic Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(459, 3);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(81, 27);
+            this.label9.TabIndex = 61;
+            this.label9.Text = "ZONAS";
             // 
             // shapeContainer1
             // 
@@ -549,6 +556,15 @@
             this.shapeContainer1.TabIndex = 89;
             this.shapeContainer1.TabStop = false;
             // 
+            // lineShape2
+            // 
+            this.lineShape2.BorderColor = System.Drawing.Color.LightGray;
+            this.lineShape2.Name = "lineShape2";
+            this.lineShape2.X1 = 33;
+            this.lineShape2.X2 = 807;
+            this.lineShape2.Y1 = 363;
+            this.lineShape2.Y2 = 363;
+            // 
             // lineShape1
             // 
             this.lineShape1.BorderColor = System.Drawing.Color.LightGray;
@@ -558,14 +574,16 @@
             this.lineShape1.Y1 = 39;
             this.lineShape1.Y2 = 347;
             // 
-            // lineShape2
+            // tabPage2
             // 
-            this.lineShape2.BorderColor = System.Drawing.Color.LightGray;
-            this.lineShape2.Name = "lineShape2";
-            this.lineShape2.X1 = 33;
-            this.lineShape2.X2 = 807;
-            this.lineShape2.Y1 = 363;
-            this.lineShape2.Y2 = 363;
+            this.tabPage2.Controls.Add(this.workArea_panel);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(999, 716);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "PLANO";
+            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // workArea_panel
             // 
@@ -577,9 +595,18 @@
             this.workArea_panel.Size = new System.Drawing.Size(993, 710);
             this.workArea_panel.TabIndex = 52;
             // 
-            // openFileDialog1
+            // pictureBox1
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = global::FireSystemMonitor.Properties.Resources.add_image_256;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(993, 668);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 78;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Tag = "\"Pic\"";
             // 
             // panel2
             // 
@@ -610,6 +637,7 @@
             this.label7.Size = new System.Drawing.Size(140, 13);
             this.label7.TabIndex = 9;
             this.label7.Text = "ERROR AL LEER ESTADO";
+            this.label7.Visible = false;
             // 
             // label8
             // 
@@ -631,6 +659,7 @@
             this.pictureBox6.Size = new System.Drawing.Size(27, 25);
             this.pictureBox6.TabIndex = 8;
             this.pictureBox6.TabStop = false;
+            this.pictureBox6.Visible = false;
             // 
             // pictureBox2
             // 
@@ -641,6 +670,7 @@
             this.pictureBox2.Size = new System.Drawing.Size(27, 25);
             this.pictureBox2.TabIndex = 0;
             this.pictureBox2.TabStop = false;
+            this.pictureBox2.Visible = false;
             // 
             // label10
             // 
@@ -651,6 +681,7 @@
             this.label10.Size = new System.Drawing.Size(40, 13);
             this.label10.TabIndex = 7;
             this.label10.Text = "FALTA";
+            this.label10.Visible = false;
             // 
             // label11
             // 
@@ -661,6 +692,7 @@
             this.label11.Size = new System.Drawing.Size(22, 13);
             this.label11.TabIndex = 4;
             this.label11.Text = "OK";
+            this.label11.Visible = false;
             // 
             // pictureBox5
             // 
@@ -671,6 +703,7 @@
             this.pictureBox5.Size = new System.Drawing.Size(27, 25);
             this.pictureBox5.TabIndex = 3;
             this.pictureBox5.TabStop = false;
+            this.pictureBox5.Visible = false;
             // 
             // label12
             // 
@@ -681,6 +714,7 @@
             this.label12.Size = new System.Drawing.Size(60, 13);
             this.label12.TabIndex = 6;
             this.label12.Text = "WARNING";
+            this.label12.Visible = false;
             // 
             // pictureBox3
             // 
@@ -691,6 +725,7 @@
             this.pictureBox3.Size = new System.Drawing.Size(27, 25);
             this.pictureBox3.TabIndex = 1;
             this.pictureBox3.TabStop = false;
+            this.pictureBox3.Visible = false;
             // 
             // label13
             // 
@@ -701,6 +736,7 @@
             this.label13.Size = new System.Drawing.Size(51, 13);
             this.label13.TabIndex = 5;
             this.label13.Text = "ALARMA";
+            this.label13.Visible = false;
             // 
             // pictureBox4
             // 
@@ -711,19 +747,11 @@
             this.pictureBox4.Size = new System.Drawing.Size(27, 25);
             this.pictureBox4.TabIndex = 2;
             this.pictureBox4.TabStop = false;
+            this.pictureBox4.Visible = false;
             // 
-            // pictureBox1
+            // openFileDialog1
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = global::FireSystemMonitor.Properties.Resources.add_image_256;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(993, 668);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 78;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Tag = "\"Pic\"";
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // ConfigurarZonasForm
             // 
@@ -733,6 +761,7 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.panel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfigurarZonasForm";
             this.Text = "CONFIGURAR ZONAS";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -741,12 +770,13 @@
             this.panel3.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
-            this.tabPage2.ResumeLayout(false);
             this.leftAreaPanel.ResumeLayout(false);
             this.leftAreaPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.facp_dtg)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.zonas_dtg)).EndInit();
+            this.tabPage2.ResumeLayout(false);
             this.workArea_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
@@ -754,7 +784,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -811,5 +840,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button1;
     }
 }

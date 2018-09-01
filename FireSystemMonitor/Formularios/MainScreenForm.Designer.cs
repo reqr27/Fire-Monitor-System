@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainScreenForm));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.msjActivado_lbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.info_btn = new System.Windows.Forms.Button();
@@ -51,6 +52,8 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.RefrescarTimer = new System.Windows.Forms.Timer(this.components);
             this.EstadoZona_timer = new System.Windows.Forms.Timer(this.components);
+            this.RefrescarWorker = new System.ComponentModel.BackgroundWorker();
+            this.EstadoZonaWorker = new System.ComponentModel.BackgroundWorker();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -58,6 +61,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(54)))), ((int)(((byte)(64)))));
+            this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.msjActivado_lbl);
             this.panel3.Controls.Add(this.panel1);
             this.panel3.Controls.Add(this.button3);
@@ -69,6 +73,20 @@
             this.panel3.Size = new System.Drawing.Size(1012, 126);
             this.panel3.TabIndex = 50;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::FireSystemMonitor.Properties.Resources.maximize_window_24;
+            this.button1.Location = new System.Drawing.Point(946, 7);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(26, 26);
+            this.button1.TabIndex = 36;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // msjActivado_lbl
             // 
@@ -289,12 +307,13 @@
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Image = global::FireSystemMonitor.Properties.Resources.minimize_window_24;
-            this.button3.Location = new System.Drawing.Point(946, 6);
+            this.button3.Location = new System.Drawing.Point(910, 7);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(26, 26);
             this.button3.TabIndex = 33;
             this.button3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
@@ -343,6 +362,16 @@
             this.EstadoZona_timer.Interval = 3000;
             this.EstadoZona_timer.Tick += new System.EventHandler(this.EstadoZona_timer_Tick);
             // 
+            // RefrescarWorker
+            // 
+            this.RefrescarWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.RefrescarWorker_DoWork);
+            this.RefrescarWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.RefrescarWorker_RunWorkerCompleted);
+            // 
+            // EstadoZonaWorker
+            // 
+            this.EstadoZonaWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.EstadoZonaWorker_DoWork);
+            this.EstadoZonaWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.EstadoZonaWorker_RunWorkerCompleted);
+            // 
             // MainScreenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -389,5 +418,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button info_btn;
         private System.Windows.Forms.Timer EstadoZona_timer;
+        private System.ComponentModel.BackgroundWorker RefrescarWorker;
+        private System.ComponentModel.BackgroundWorker EstadoZonaWorker;
+        private System.Windows.Forms.Button button1;
     }
 }

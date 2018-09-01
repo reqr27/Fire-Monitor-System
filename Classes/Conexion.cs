@@ -60,12 +60,14 @@ namespace Classes
                     }
                 }
                 da.Fill(dt);
+                Desconectar();
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                throw ex;
+               Desconectar();
+                //throw ex;
             }
-            Desconectar();
+            
             return dt;
         }
 

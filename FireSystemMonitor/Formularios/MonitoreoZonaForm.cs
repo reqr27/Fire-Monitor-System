@@ -15,12 +15,17 @@ namespace FireSystemMonitor.Classes
 {
     public partial class MonitoreoZonaForm : Form
     {
+        bool Play = true;
+        int indexSlideShow = 0;
+        
+        int IdFacpToShow = Program.GidFacp;
         string formname = Program.FormName;
         string estadoDevice = "OK";
         bool changeColor = false;
         public bool fillCombo = false;
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
+        List<PictureBox> PanelesAEliminar = new List<PictureBox>();
 
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -28,112 +33,164 @@ namespace FireSystemMonitor.Classes
         public static extern bool ReleaseCapture();
 
         int idZonaMonitorear = Program.GidZonaMonitorear;
+        
+        List<Int32> zonasIdList = new List<int>();
+        List<String> zonasNombresList = new List<string>();    
         Procedimientos P = new Procedimientos();
         List<PictureBox> ListaDetectores = new List<PictureBox>();
+
+
         public MonitoreoZonaForm()
         {
             InitializeComponent();
+
+            numericUpDown1.Value = Properties.Settings.Default.SlideShowTime;
+            SlideShowTimer.Interval = Convert.ToInt32(Properties.Settings.Default.SlideShowTime) * 1000;
+            P.ID_FACP = IdFacpToShow;
+            DataTable dt = new DataTable();
+            dt = P.ObtenerZonasHabilitadas();
+            for (int i = 0; i < dt.Rows.Count; i++)
+            {
+                if(Convert.ToInt32(dt.Rows[i][0].ToString()) == idZonaMonitorear)
+                {
+                    indexSlideShow = i;
+                }
+                zonasIdList.Add(Convert.ToInt32(dt.Rows[i][0].ToString()));
+                zonasNombresList.Add(dt.Rows[i][1].ToString());
+
+            }
+
+            
         }
 
         #region Funciones
 
         public void CargarZona()
         {
-            CargarImagenDesdeBd(idZonaMonitorear);
-            ObtenerDetectoresZona(idZonaMonitorear, false);
+            try
+            {
+                CargarImagenDesdeBd(zonasIdList[indexSlideShow]);
+                
+
+            }
+
+            catch (ArgumentNullException ex) { }
+            
+        }
+
+        public void CargarDetectores(int idZonaSlide)
+        {
+            EliminarTodosDetectores();
+            ObtenerDetectoresZona(idZonaSlide, false);
+            LeerEstadoDetectores(idZonaSlide);
         }
 
         public void CargarImagenDesdeBd(int idZona)
         {
-            if(pictureBox1.Image != null)
+            try
             {
-                pictureBox1.Image = null;
+                //if (pictureBox1.Image != null)
+                //{
+                //    pictureBox1.Image = null;
+                //}
+                PictureBox pic = new PictureBox();
+                pic.Tag = "ZONA PIC";
+                pic.SizeMode = PictureBoxSizeMode.StretchImage;
+                pic.Dock = DockStyle.Fill;
+                pic.BringToFront();
+                this.Controls.Add(pic);
+                
+                DataTable dt = new DataTable();
+                P.Id = idZona;
+                dt = P.ObtenerImagenesZonas();
+
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    byte[] imgshow = (byte[])(dt.Rows[i][1]);
+                    MemoryStream Ms = new MemoryStream(imgshow);
+
+                    try
+                    {
+                        Image loadedImage = Image.FromStream(Ms);
+                        pic.Image = loadedImage;
+                        pic.SizeMode = PictureBoxSizeMode.StretchImage;
+                        pic.Refresh();
+
+
+
+                    }
+                    catch (ArgumentNullException ex)
+                    {
+                        Console.WriteLine("MONITOREO CARGAR IMAGEN DESDE BD");
+                        TimerLeerStatusDetector.Start();
+                        border_timer.Start();
+                        // The user lacks appropriate permissions to read files, discover paths, etc.
+                        MessageBox.Show("Security error. Please contact your administrator for details.\n\n" +
+                            "Error message: " + ex.Message + "\n\n" +
+                            "Details (send to Support):\n\n" + ex.StackTrace
+                        );
+                    }
+
+                }
             }
+            catch (ArgumentNullException ex) { }
             
-            DataTable dt = new DataTable();
-            P.Id = idZona;
-            dt = P.ObtenerImagenesZonas();
-
-            for (int i = 0; i < dt.Rows.Count; i++)
-            {
-                byte[] imgshow = (byte[])(dt.Rows[i][1]);
-                MemoryStream Ms = new MemoryStream(imgshow);
-
-                try
-                {
-                    Image loadedImage = Image.FromStream(Ms);
-                    pictureBox1.Image = loadedImage;
-                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-
-
-
-
-                }
-                catch (ArgumentNullException ex)
-                {
-                    Console.WriteLine("MONITOREO CARGAR IMAGEN DESDE BD");
-                    TimerLeerStatusDetector.Start();
-                    border_timer.Start();
-                    // The user lacks appropriate permissions to read files, discover paths, etc.
-                    MessageBox.Show("Security error. Please contact your administrator for details.\n\n" +
-                        "Error message: " + ex.Message + "\n\n" +
-                        "Details (send to Support):\n\n" + ex.StackTrace
-                    );
-                }
-
-            }
 
         }
 
         public void ObtenerDetectoresZona(int idZona, bool MoverDetector)
         {
-            P.IdZona = idZona;
-            DataTable dt = new DataTable();
-            dt = P.ObtenerDetectoresZonas();
-
-            for (int i = 0; i < dt.Rows.Count; i++)
+            try
             {
+                P.IdZona = idZona;
+                DataTable dt = new DataTable();
+                dt = P.ObtenerDetectoresZonas();
 
-                int addToX = 0;//pictureBox1.Width - 948;
-                int addToY = 0;//pictureBox1.Height - 545;
-
-                int posx = Convert.ToInt32(dt.Rows[i][3].ToString()) + addToX;
-                int posy = Convert.ToInt32(dt.Rows[i][4].ToString()) + addToY;
-
-               
-
-                int sizepx = Convert.ToInt32(dt.Rows[i][2].ToString());
-                string name = dt.Rows[i][1].ToString();
-                string identificador = dt.Rows[i][5].ToString();
-                int idDetector = Convert.ToInt32(dt.Rows[i][0].ToString());
-                string dispositivo = dt.Rows[i][8].ToString();
-                string tipoDispositivo = dt.Rows[i][9].ToString();
-                string figura = dt.Rows[i][10].ToString();
-                if (figura == "Letra P")
+                for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    GenerarDetectorZona(posx, posy, "OLD", sizepx, name, MoverDetector, idDetector, Properties.Resources.transLetraPverde,
-                    identificador, dispositivo, tipoDispositivo, figura);
-                }
-                else
-                {
-                    GenerarDetectorZona(posx, posy, "OLD", sizepx, name, MoverDetector, idDetector, Properties.Resources.cuadroVerde,
-                    identificador, dispositivo, tipoDispositivo, figura);
-                }
 
-                
+                    int addToX = 0;//pictureBox1.Width - 948;
+                    int addToY = 0;//pictureBox1.Height - 545;
+
+                    int posx = Convert.ToInt32(dt.Rows[i][3].ToString()) + addToX;
+                    int posy = Convert.ToInt32(dt.Rows[i][4].ToString()) + addToY;
+
+
+
+                    int sizepx = Convert.ToInt32(dt.Rows[i][2].ToString());
+                    string name = dt.Rows[i][1].ToString();
+                    string identificador = dt.Rows[i][5].ToString();
+                    int idDetector = Convert.ToInt32(dt.Rows[i][0].ToString());
+                    string dispositivo = dt.Rows[i][8].ToString();
+                    string tipoDispositivo = dt.Rows[i][9].ToString();
+                    string figura = dt.Rows[i][10].ToString();
+                    if (figura == "Letra P")
+                    {
+                        GenerarDetectorZona(posx, posy, "OLD", sizepx, name, MoverDetector, idDetector, Properties.Resources.transLetraPverde,
+                        identificador, dispositivo, tipoDispositivo, figura);
+                    }
+                    else
+                    {
+                        GenerarDetectorZona(posx, posy, "OLD", sizepx, name, MoverDetector, idDetector, Properties.Resources.cuadroVerde,
+                        identificador, dispositivo, tipoDispositivo, figura);
+                    }
+
+
+                }
             }
+            catch (ArgumentNullException ex) { }
+            
         }
 
         public void GenerarDetectorZona(int posx, int posy, string tipo, int sizepx, string name, bool mover, int idDetector, Image img, string identificador, string dispositivo, string tipoDispositivo, string figura)
 
         {
-            //NameZoneForm form = new NameZoneForm();
-            //form.ShowDialog();
+            
             try
             {
                 PictureBox p = new PictureBox();
                 p.Location = new Point(posx, posy);
-                pictureBox1.Controls.Add(p);
+                
                 p.BringToFront();
                 if (figura == "Círculo")
                 {
@@ -148,13 +205,28 @@ namespace FireSystemMonitor.Classes
                 }
 
                 p.Tag = tipo + "*" + idDetector.ToString() + "*" + identificador + "*" + sizepx.ToString() + "*" + name.Trim() + "*" + dispositivo + "*" + tipoDispositivo + "*" + figura;
-                p.Image = img;
+                p.Image = null;
                 p.SizeMode = PictureBoxSizeMode.StretchImage;
                 p.BackColor = Color.Transparent;
                 p.Draggable(mover);
                 p.MouseHover += new EventHandler(Panel_Hover);
                 p.MouseLeave += new EventHandler(Panel_Leave);
-                pictureBox1.Refresh();
+
+                PictureBox pic = FindPictureBox();
+
+                
+                   
+                Action action = () =>
+                {
+
+                    pic.Controls.Add(p);
+                };
+                pic.Invoke(action);
+                    
+                
+               
+                
+                
             }
 
             catch (ArgumentNullException ex)
@@ -168,7 +240,21 @@ namespace FireSystemMonitor.Classes
 
         }
 
-        public void LeerEstadoDetectores()
+        public PictureBox FindPictureBox()
+        {
+            PictureBox pic = new PictureBox();
+            foreach (PictureBox control in this.Controls.OfType<PictureBox>())
+            {
+                if (control.Tag.ToString() == "ZONA PIC")
+                {
+                    pic = control;
+                    return  pic;
+                }
+            }
+            return pic;
+        }
+
+        public void LeerEstadoDetectores(int idZonaSlide)
         {
             try
             {
@@ -184,7 +270,7 @@ namespace FireSystemMonitor.Classes
                     string[] namesArray = tag.Split('*');
                     List<string> namesList = new List<string>(namesArray.Length);
                     namesList.AddRange(namesArray);
-                    P.IdZona = idZonaMonitorear;
+                    P.IdZona = idZonaSlide;
                     P.IdDetector = Convert.ToInt32(namesList[1]);
                     P.Identificador = namesList[2];
                     P.Nombre = namesList[4];
@@ -194,7 +280,7 @@ namespace FireSystemMonitor.Classes
                     if (dt.Rows.Count > 0)
                     {
                         Estado = dt.Rows[0][0].ToString();
-
+                        
                     }
                     if (!check)
                     {
@@ -202,17 +288,22 @@ namespace FireSystemMonitor.Classes
                         {
                             estadoDevice = "ALARM";
                             check = true;
-                            border_timer.Start();
+                            //border_timer.Start();
 
                         }
                         else if (Estado != "OK")
                         {
                             estadoDevice = "WARNING";
-                            border_timer.Start();
+                            //border_timer.Start();
                         }
 
                     }
+                    var watch = System.Diagnostics.Stopwatch.StartNew();
                     CambiarEstadoDetector(pb, Estado, namesList[7]);
+                    watch.Stop();
+                    var elapsedMs = watch.ElapsedMilliseconds;
+                    //Console.WriteLine( "TIME: "  + elapsedMs);
+                    Console.WriteLine(estadoDevice);
 
                 }
             }
@@ -226,14 +317,21 @@ namespace FireSystemMonitor.Classes
 
         public void EncontrarDetectores()
         {
-            foreach (var pb in pictureBox1.Controls.OfType<PictureBox>())
+            try
             {
-                if ((pb.Tag.ToString()).StartsWith("OLD") || (pb.Tag.ToString()).StartsWith("NEW"))
+                ListaDetectores.Clear();
+                PictureBox pic = FindPictureBox();
+                foreach (var pb in pic.Controls.OfType<PictureBox>())
                 {
-                    ListaDetectores.Add(pb);
-                }
+                    if ((pb.Tag.ToString()).StartsWith("OLD") || (pb.Tag.ToString()).StartsWith("NEW"))
+                    {
+                        ListaDetectores.Add(pb);
+                    }
 
+                }
             }
+            catch (ArgumentNullException ex) { }
+            
         }
 
         public void CambiarEstadoDetector (PictureBox pb, string estado, string figura)
@@ -243,6 +341,7 @@ namespace FireSystemMonitor.Classes
                 if (pb.Image != null)
                 {
                     pb.Image = null;
+                    //pb.Refresh();
                 }
                     
                 if (figura == "Círculo" || figura == "Cuadro")
@@ -251,15 +350,21 @@ namespace FireSystemMonitor.Classes
                     if (estado == "OK")
                     {
                         pb.Image = Properties.Resources.DetectorOK;
+                        
+                       
                     }
                     else if (estado == "HEAT" || estado == "SMOKE" || estado == "PULL STATION")
                     {
                         pb.Image = Properties.Resources.DetectorFuego;
+                       
+                       
                     }
 
                     else if (estado == "INVREP")
                     {
+                       
                         pb.Image = Properties.Resources.DetectorFalta;
+                        
                     }
 
                     else if (estado == "OPEN" || estado == "SHORT" || estado == "DIRTY1" || estado == "DIRTY2" || estado == "INV ID")
@@ -295,7 +400,8 @@ namespace FireSystemMonitor.Classes
                     {
                         pb.Image = Properties.Resources.PullFalta;
                     }
-
+                   // pb.Show();
+                    //pb.Load();
 
                 }
 
@@ -317,56 +423,174 @@ namespace FireSystemMonitor.Classes
 
         public void CambiarColorBorde()
         {
-            if(estadoDevice == "ALARM")
+            try
             {
-                if (!changeColor)
+                if (estadoDevice == "ALARM")
                 {
-                    changeColor = !changeColor;
-                    
-                   
-                    panel3.BackColor = Color.FromArgb(194, 54, 22); //rojo
-                    NombreZona_lbl.ForeColor = Color.LightGray;
+                    if (!changeColor)
+                    {
+                        changeColor = !changeColor;
 
-                    panel2.BackColor = Color.FromArgb(194, 54, 22); //rojo
+
+                        panel3.BackColor = Color.FromArgb(194, 54, 22); //rojo
+                        NombreZona_lbl.ForeColor = Color.LightGray;
+
+                        panel2.BackColor = Color.FromArgb(194, 54, 22); //rojo
+                    }
+                    else
+                    {
+                        changeColor = !changeColor;
+                        panel3.BackColor = Color.LightGray;
+                        NombreZona_lbl.ForeColor = Color.FromArgb(194, 54, 22); //rojo
+
+                        panel2.BackColor = Color.LightGray;
+                    }
+                }
+                else if (estadoDevice == "WARNING")
+                {
+                    if (!changeColor)
+                    {
+                        changeColor = !changeColor;
+
+
+                        panel3.BackColor = Color.FromArgb(241, 196, 15); //amarillo
+                        NombreZona_lbl.ForeColor = Color.DarkGray;
+
+                        panel2.BackColor = Color.FromArgb(241, 196, 15);//amarillo
+                    }
+                    else
+                    {
+                        changeColor = !changeColor;
+                        panel3.BackColor = Color.DarkGray;
+                        NombreZona_lbl.ForeColor = Color.FromArgb(241, 196, 15); //amarillo
+
+                        panel2.BackColor = Color.DarkGray;
+                    }
                 }
                 else
                 {
-                    changeColor = !changeColor;
-                    panel3.BackColor = Color.LightGray;
-                    NombreZona_lbl.ForeColor = Color.FromArgb(194, 54, 22); //rojo
+                    panel3.BackColor = Color.FromArgb(194, 54, 22); //rojo;
+                    NombreZona_lbl.ForeColor = Color.White;
 
-                    panel2.BackColor = Color.LightGray; 
+                    panel2.BackColor = Color.LightGray;
+                    //border_timer.Stop();
                 }
             }
-            else if (estadoDevice == "WARNING")
+            catch (ArgumentNullException ex)
             {
-                if (!changeColor)
+
+            }
+            
+        }
+
+
+        public void EncontrarDetectores(List<PictureBox> panels)
+        {
+            this.Invoke((MethodInvoker)delegate
+            {
+                foreach (var p in panels)
                 {
-                    changeColor = !changeColor;
+
+                    p.Dispose();
 
 
-                    panel3.BackColor = Color.FromArgb(241, 196, 15); //amarillo
-                    NombreZona_lbl.ForeColor = Color.DarkGray;
-
-                    panel2.BackColor = Color.FromArgb(241, 196, 15);//amarillo
                 }
-                else
+                PanelesAEliminar.Clear();
+
+            });
+           
+        }
+
+
+        public void EliminarTodosDetectores()
+        {
+            ListaDetectores.Clear();
+            this.Invoke((MethodInvoker)delegate
+            {
+                PictureBox pic = FindPictureBox();
+                foreach (var pb in pic.Controls.OfType<PictureBox>())
                 {
-                    changeColor = !changeColor;
-                    panel3.BackColor = Color.DarkGray;
-                    NombreZona_lbl.ForeColor = Color.FromArgb(241, 196, 15); //amarillo
 
-                    panel2.BackColor = Color.DarkGray;
+                    PanelesAEliminar.Add(pb);
                 }
+
+                EncontrarDetectores(PanelesAEliminar);
+            });
+
+            
+
+        }
+
+        public void EliminarPlanoPrincipal()
+        {
+            try
+            {
+                foreach (PictureBox control in this.Controls.OfType<PictureBox>())
+                {
+                    if (control.Tag.ToString() == "ZONA PIC")
+                    {
+                        this.Controls.Remove(control);
+                        control.Dispose();
+                    }
+                }
+            }
+            catch (Exception ex) { }
+            
+        }
+        
+        public void LoadSlideShows(int idZonaSlide)
+        {
+            estadoDevice = "OK";
+            panel3.BackColor = Color.FromArgb(194, 54, 22); //rojo;
+            NombreZona_lbl.ForeColor = Color.White;
+
+            panel2.BackColor = Color.LightGray;
+
+            TimerLeerStatusDetector.Stop();
+            border_timer.Stop();
+            
+            EliminarTodosDetectores();
+            EliminarPlanoPrincipal();
+            
+
+            NombreZona_lbl.Text = zonasNombresList[indexSlideShow];
+            this.Text = zonasNombresList[indexSlideShow];
+            CargarZona();
+            CargarDetectores(idZonaSlide);
+            
+            CambiarColorBorde();
+            TimerLeerStatusDetector.Start();
+            border_timer.Start();
+        }
+        
+        public void NextSlideShow()
+        {
+            int totalZonas = zonasIdList.Count - 1;
+            if (indexSlideShow == totalZonas)
+            {
+                indexSlideShow = 0;
             }
             else
             {
-                panel3.BackColor = Color.FromArgb(194, 54, 22); //rojo;
-                NombreZona_lbl.ForeColor = Color.White;
-
-                panel2.BackColor = Color.LightGray;
-                border_timer.Stop();
+                indexSlideShow++;
             }
+
+            LoadSlideShows(zonasIdList[indexSlideShow]);
+        }
+
+        public void PreviousSlideShow()
+        {
+            int totalZonas = zonasIdList.Count - 1;
+            if (indexSlideShow == 0)
+            {
+                indexSlideShow = totalZonas;
+            }
+            else
+            {
+                indexSlideShow--;
+            }
+
+            LoadSlideShows(zonasIdList[indexSlideShow]);
         }
 
         #endregion
@@ -376,21 +600,21 @@ namespace FireSystemMonitor.Classes
 
         private void Panel_Leave(object sender, EventArgs e)
         {
-            Point locationOnForm = (sender as PictureBox).Location;
+            //Point locationOnForm = (sender as PictureBox).Location;
         }
 
         private void Panel_Hover(object sender, EventArgs e)
         {
-            string Estado = "No se pudo obtener estado";
-            string tag = (sender as PictureBox).Tag.ToString(); // format --> tipo*id*identificador*tamaño*nombre
-            string Descripcion = "";
-            string[] namesArray = tag.Split('*');
-            List<string> namesList = new List<string>(namesArray.Length);
-            namesList.AddRange(namesArray);
 
             try
             {
-                P.IdZona = idZonaMonitorear;
+                string Estado = "No se pudo obtener estado";
+                string tag = (sender as PictureBox).Tag.ToString(); // format --> tipo*id*identificador*tamaño*nombre
+                string Descripcion = "";
+                string[] namesArray = tag.Split('*');
+                List<string> namesList = new List<string>(namesArray.Length);
+                namesList.AddRange(namesArray);
+                P.IdZona = zonasIdList[indexSlideShow];
                 P.IdDetector = Convert.ToInt32(namesList[1]);
                 P.Identificador = namesList[2];
                 P.Nombre = namesList[4];
@@ -405,7 +629,7 @@ namespace FireSystemMonitor.Classes
                 toolTip1.SetToolTip((sender as PictureBox), "Nombre: " + namesList[4] + "\nIdentificador: " + namesList[2] + "\nTipo: " + namesList[5] + "\nCategoría: " + namesList[6] + "\nEstado: " + Estado);// + "\nDescripción Estado: " + Descripcion);
 
             }
-            catch
+            catch(ArgumentNullException ex)
             {
 
             }
@@ -423,34 +647,53 @@ namespace FireSystemMonitor.Classes
 
         private void MonitoreoZonaForm_Load(object sender, EventArgs e)
         {
+            try
+            {
 
-            NombreZona_lbl.Text = formname ;
-            this.Text = formname;
+                LoadSlideShows(zonasIdList[indexSlideShow]);
+                SlideShowTimer.Start();
+            }
+            catch (ArgumentNullException ex)
+            {
 
-            CargarZona();
-            LeerEstadoDetectores();
-            TimerLeerStatusDetector.Start();
+            }
+            
         }
 
         private void TimerLeerStatusDetector_Tick(object sender, EventArgs e)
         {
-            TimerLeerStatusDetector.Stop();
+            try
+            {
+                TimerLeerStatusDetector.Stop();
+                if (!LeerStatusWorker.IsBusy)
+                {
+                    LeerStatusWorker.RunWorkerAsync();
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+               
+            }
             
-            new Task(LeerEstadoDetectores).Start();
-            //LeerEstadoDetectores();
-            TimerLeerStatusDetector.Start();
-
-            //backgroundWorker1.RunWorkerAsync();
+            
 
         }
 
         private void panel3_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
+            try
             {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                if (e.Button == MouseButtons.Left)
+                {
+                    ReleaseCapture();
+                    SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+                }
             }
+            catch (ArgumentNullException ex)
+            {
+
+            }
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -465,32 +708,114 @@ namespace FireSystemMonitor.Classes
 
         private void border_timer_Tick(object sender, EventArgs e)
         {
-            CambiarColorBorde();
+            try
+            {
+                border_timer.Stop();
+                if (!BorderColorWorker.IsBusy)
+                {
+                    BorderColorWorker.RunWorkerAsync();
+                }
+            }
+            catch (ArgumentNullException ex)
+            {
+                
+            }
+           
+            
         }
 
         private void MonitoreoZonaForm_Resize(object sender, EventArgs e)
         {
-            try
+            
+        }
+
+        private void LeerStatusWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+           try
             {
-                if (WindowState == FormWindowState.Maximized)
-                {
-                    TimerLeerStatusDetector.Stop();
-                    border_timer.Stop();
-                    NombreZona_lbl.Text = formname;
-                    this.Text = formname;
-                    pictureBox1.Image = null;
-                    pictureBox1.Controls.Clear();
-                    this.Refresh();
-                    CargarZona();
-                    LeerEstadoDetectores();
-                    TimerLeerStatusDetector.Start();
-                }
+                CargarDetectores(zonasIdList[indexSlideShow]);
             }
-            catch
+            catch (ArgumentNullException ex)
             {
-                
+
             }
             
+            
+                 
+        }
+
+        private void BorderColorWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            try
+            {
+                CambiarColorBorde();
+            }
+            catch (ArgumentNullException ex) { }
+            
+            
+        }
+
+        private void LeerStatusWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try { TimerLeerStatusDetector.Start(); }
+            catch (ArgumentNullException ex) { }
+            
+        }
+
+        private void BorderColorWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            try
+            {
+                border_timer.Start();
+            }
+            catch (ArgumentNullException ex)
+            {
+               
+            }
+            
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.SlideShowTime = Convert.ToInt32(numericUpDown1.Value);
+            Properties.Settings.Default.Save();
+            SlideShowTimer.Interval = Convert.ToInt32(numericUpDown1.Value) * 1000;
+        }
+
+        private void SlideShowTimer_Tick(object sender, EventArgs e)
+        {
+            NextSlideShow();
+        }
+
+        private void pausePlay_btn_Click(object sender, EventArgs e)
+        {
+            if (Play)
+            {
+                pausePlay_btn.Image = Properties.Resources.play_3_24;
+                SlideShowTimer.Stop();
+                next_btn.Enabled = true;
+                previous_btn.Enabled = true;
+            }
+            else
+            {
+                pausePlay_btn.Image = Properties.Resources.pause_24;
+                SlideShowTimer.Start();
+                next_btn.Enabled = false;
+                previous_btn.Enabled = false ;
+            }
+
+            Play = !Play;
+            
+        }
+
+        private void next_btn_Click(object sender, EventArgs e)
+        {
+            NextSlideShow();
+        }
+
+        private void previous_btn_Click(object sender, EventArgs e)
+        {
+            PreviousSlideShow();
         }
     }
 }

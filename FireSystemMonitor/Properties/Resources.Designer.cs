@@ -383,6 +383,16 @@ namespace FireSystemMonitor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap maximize_window_16 {
+            get {
+                object obj = ResourceManager.GetObject("maximize-window-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap maximize_window_24 {
             get {
                 object obj = ResourceManager.GetObject("maximize-window-24", resourceCulture);
@@ -416,6 +426,26 @@ namespace FireSystemMonitor.Properties {
         internal static System.Drawing.Bitmap minimize_window_24 {
             get {
                 object obj = ResourceManager.GetObject("minimize-window-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap next_24 {
+            get {
+                object obj = ResourceManager.GetObject("next-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pause_24 {
+            get {
+                object obj = ResourceManager.GetObject("pause-24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -463,6 +493,16 @@ namespace FireSystemMonitor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap play_3_24 {
+            get {
+                object obj = ResourceManager.GetObject("play-3-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap png_32 {
             get {
                 object obj = ResourceManager.GetObject("png-32", resourceCulture);
@@ -476,6 +516,16 @@ namespace FireSystemMonitor.Properties {
         internal static System.Drawing.Bitmap png_64 {
             get {
                 object obj = ResourceManager.GetObject("png-64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap previous_24 {
+            get {
+                object obj = ResourceManager.GetObject("previous-24", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
