@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using FireSystemMonitor.Formularios;
+using System.Threading;
+
 namespace FireSystemMonitor
 {
     static class Program
@@ -22,6 +24,7 @@ namespace FireSystemMonitor
         public static string GestadoFacp;
         public static string Gventana;
         public static string Gsoftware = "Monitoreo";
+        private static Mutex mutex = null;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -30,6 +33,18 @@ namespace FireSystemMonitor
         {
             try
             {
+
+                const string appName = "Fire System Monitor";
+                bool createdNew;
+
+                mutex = new Mutex(true, appName, out createdNew);
+
+                if (!createdNew)
+                {
+                    //app is already running! Exiting the application  
+                    return;
+                }
+
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new MainScreenForm());

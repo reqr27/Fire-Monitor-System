@@ -892,6 +892,37 @@ namespace Classes
             return dt = C.Listado("OBTENER_ESTADO_ZONA", lst);
         }
 
+        public DataTable ObtenerUltimoEstadoFacp()
+        {
+            DataTable dt = new DataTable();
+            List<clsParametros> lst = new List<clsParametros>();
+            lst.Add(new clsParametros("@idFacp", MidFacp));
+
+            return dt = C.Listado("OBTENER_ULTIMO_ESTADO_FACP", lst);
+        }
+
+
+        public string ActualizarEstatusEvacuacion()
+        {
+            string mensaje = "";
+            List<clsParametros> lst = new List<clsParametros>();
+            lst.Add(new clsParametros("@mensaje", "", SqlDbType.VarChar, ParameterDirection.Output, 50));
+            lst.Add(new clsParametros("@idFacp", MidFacp));
+           
+            C.EjecutarSP("UPDATE_EVACUACION_FIELD_FACP", ref lst);
+            mensaje = lst[0].Valor.ToString();
+            return mensaje;
+        }
+
+        public DataTable ObtenerEstadoEvacuacionFacp()
+        {
+            DataTable dt = new DataTable();
+            List<clsParametros> lst = new List<clsParametros>();
+            lst.Add(new clsParametros("@idFacp", MidFacp));
+
+            return dt = C.Listado("OBTENER_ESTADO_EVACUACION_FACP", lst);
+        }
+
         #endregion
 
 

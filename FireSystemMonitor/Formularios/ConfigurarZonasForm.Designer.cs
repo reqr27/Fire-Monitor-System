@@ -45,7 +45,6 @@
             this.Cancelar_btn = new System.Windows.Forms.Button();
             this.agregarImg_btn = new System.Windows.Forms.Button();
             this.estadoZona_chbox = new System.Windows.Forms.CheckBox();
-            this.AgregarDetector_btn = new System.Windows.Forms.Button();
             this.descripcion_txt = new System.Windows.Forms.TextBox();
             this.nombre_txt = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -84,6 +83,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.AgregarDetector_btn = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -198,7 +198,6 @@
             this.leftAreaPanel.Controls.Add(this.Cancelar_btn);
             this.leftAreaPanel.Controls.Add(this.agregarImg_btn);
             this.leftAreaPanel.Controls.Add(this.estadoZona_chbox);
-            this.leftAreaPanel.Controls.Add(this.AgregarDetector_btn);
             this.leftAreaPanel.Controls.Add(this.descripcion_txt);
             this.leftAreaPanel.Controls.Add(this.nombre_txt);
             this.leftAreaPanel.Controls.Add(this.label2);
@@ -288,25 +287,6 @@
             this.estadoZona_chbox.TabIndex = 84;
             this.estadoZona_chbox.Text = "Habilitar";
             this.estadoZona_chbox.UseVisualStyleBackColor = true;
-            // 
-            // AgregarDetector_btn
-            // 
-            this.AgregarDetector_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
-            this.AgregarDetector_btn.FlatAppearance.BorderSize = 0;
-            this.AgregarDetector_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.AgregarDetector_btn.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AgregarDetector_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.AgregarDetector_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.AgregarDetector_btn.Location = new System.Drawing.Point(477, 468);
-            this.AgregarDetector_btn.Name = "AgregarDetector_btn";
-            this.AgregarDetector_btn.Size = new System.Drawing.Size(117, 42);
-            this.AgregarDetector_btn.TabIndex = 77;
-            this.AgregarDetector_btn.Text = "Añadir Detector";
-            this.AgregarDetector_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.AgregarDetector_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.AgregarDetector_btn.UseVisualStyleBackColor = false;
-            this.AgregarDetector_btn.Visible = false;
-            this.AgregarDetector_btn.Click += new System.EventHandler(this.AgregarDetector_btn_Click);
             // 
             // descripcion_txt
             // 
@@ -611,6 +591,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.Controls.Add(this.AgregarDetector_btn);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.pictureBox6);
@@ -753,6 +734,25 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // AgregarDetector_btn
+            // 
+            this.AgregarDetector_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
+            this.AgregarDetector_btn.FlatAppearance.BorderSize = 0;
+            this.AgregarDetector_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AgregarDetector_btn.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AgregarDetector_btn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.AgregarDetector_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.AgregarDetector_btn.Location = new System.Drawing.Point(871, 3);
+            this.AgregarDetector_btn.Name = "AgregarDetector_btn";
+            this.AgregarDetector_btn.Size = new System.Drawing.Size(117, 36);
+            this.AgregarDetector_btn.TabIndex = 78;
+            this.AgregarDetector_btn.Text = "Añadir Detector";
+            this.AgregarDetector_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.AgregarDetector_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.AgregarDetector_btn.UseVisualStyleBackColor = false;
+            this.AgregarDetector_btn.Visible = false;
+            this.AgregarDetector_btn.Click += new System.EventHandler(this.AgregarDetector_btn_Click);
+            // 
             // ConfigurarZonasForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -813,7 +813,6 @@
         private System.Windows.Forms.Button Cancelar_btn;
         private System.Windows.Forms.Button agregarImg_btn;
         private System.Windows.Forms.CheckBox estadoZona_chbox;
-        private System.Windows.Forms.Button AgregarDetector_btn;
         private System.Windows.Forms.TextBox descripcion_txt;
         private System.Windows.Forms.TextBox nombre_txt;
         private System.Windows.Forms.Label label2;
@@ -841,5 +840,6 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button AgregarDetector_btn;
     }
 }

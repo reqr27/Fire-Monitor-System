@@ -11,18 +11,26 @@ using FireSystemMonitor.Classes;
 using System.IO;
 using System.Security;
 using Classes;
+using System.Text.RegularExpressions;
+
 namespace FireSystemMonitor.Classes
 {
     public partial class MonitoreoZonaForm : Form
     {
         bool Play = true;
         int indexSlideShow = 0;
-        
+        Color Rojo = Color.FromArgb(192, 57, 43);
+        Color Amarillo = Color.FromArgb(251, 197, 49);
+        Color Gray = Color.LightGray;
+        Color Blanco = Color.FromArgb(236, 240, 241);
+        Color Negro = Color.Black;
+        Color Verde = Color.FromArgb(0, 148, 50);
         int IdFacpToShow = Program.GidFacp;
         string formname = Program.FormName;
         string estadoDevice = "OK";
         bool changeColor = false;
         public bool fillCombo = false;
+        public bool Evac = false;
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
         List<PictureBox> PanelesAEliminar = new List<PictureBox>();
@@ -43,8 +51,12 @@ namespace FireSystemMonitor.Classes
         public MonitoreoZonaForm()
         {
             InitializeComponent();
-
-            numericUpDown1.Value = Properties.Settings.Default.SlideShowTime;
+            try
+            {
+                numericUpDown1.Value = Properties.Settings.Default.SlideShowTime;
+                
+            }
+            catch { numericUpDown1.Value = numericUpDown1.Minimum; Properties.Settings.Default.SlideShowTime = Convert.ToInt32(numericUpDown1.Value); Properties.Settings.Default.Save(); }
             SlideShowTimer.Interval = Convert.ToInt32(Properties.Settings.Default.SlideShowTime) * 1000;
             P.ID_FACP = IdFacpToShow;
             DataTable dt = new DataTable();
@@ -83,6 +95,8 @@ namespace FireSystemMonitor.Classes
             EliminarTodosDetectores();
             ObtenerDetectoresZona(idZonaSlide, false);
             LeerEstadoDetectores(idZonaSlide);
+            ObtenerUltimoEstadoFacp();
+            ObtenerEstadoEvacuacionFacp();
         }
 
         public void CargarImagenDesdeBd(int idZona)
@@ -206,6 +220,7 @@ namespace FireSystemMonitor.Classes
 
                 p.Tag = tipo + "*" + idDetector.ToString() + "*" + identificador + "*" + sizepx.ToString() + "*" + name.Trim() + "*" + dispositivo + "*" + tipoDispositivo + "*" + figura;
                 p.Image = null;
+                p.BackColor = Color.Transparent;
                 p.SizeMode = PictureBoxSizeMode.StretchImage;
                 p.BackColor = Color.Transparent;
                 p.Draggable(mover);
@@ -284,7 +299,7 @@ namespace FireSystemMonitor.Classes
                     }
                     if (!check)
                     {
-                        if (Estado == "HEAT" || Estado == "SMOKE" || Estado == "PULL STATION")
+                        if (Estado == "HEAT" || Estado == "SMOKE" || Estado == "PULL STATION" || Estado == "MONITOR")
                         {
                             estadoDevice = "ALARM";
                             check = true;
@@ -353,7 +368,7 @@ namespace FireSystemMonitor.Classes
                         
                        
                     }
-                    else if (estado == "HEAT" || estado == "SMOKE" || estado == "PULL STATION")
+                    else if (estado == "HEAT" || estado == "SMOKE" || estado == "PULL STATION" || estado == "MONITOR")
                     {
                         pb.Image = Properties.Resources.DetectorFuego;
                        
@@ -367,7 +382,7 @@ namespace FireSystemMonitor.Classes
                         
                     }
 
-                    else if (estado == "OPEN" || estado == "SHORT" || estado == "DIRTY1" || estado == "DIRTY2" || estado == "INV ID")
+                    else if (estado == "OPEN" || estado == "SHORT" || estado == "DIRTY1" || estado == "DIRTY2" || estado == "INV ID" || estado == "TEST F")
                     {
                         pb.Image = Properties.Resources.DetectorWarning;
                     }
@@ -382,7 +397,7 @@ namespace FireSystemMonitor.Classes
                     {
                         pb.Image = Properties.Resources.transLetraPverde;
                     }
-                    else if (estado == "HEAT" || estado == "SMOKE" || estado == "PULL STATION")
+                    else if (estado == "HEAT" || estado == "SMOKE" || estado == "PULL STATION" || estado == "MONITOR")
                     {
                         pb.Image = Properties.Resources.PullActivo;
                     }
@@ -392,7 +407,7 @@ namespace FireSystemMonitor.Classes
                         pb.Image = Properties.Resources.DetectorFalta;
                     }
 
-                    else if (estado == "OPEN" || estado == "SHORT" || estado == "DIRTY1" || estado == "DIRTY2" || estado == "INV ID")
+                    else if (estado == "OPEN" || estado == "SHORT" || estado == "DIRTY1" || estado == "DIRTY2" || estado == "INV ID" || estado== "TEST F")
                     {
                         pb.Image = Properties.Resources.transLetraPamarilla;
                     }
@@ -432,18 +447,18 @@ namespace FireSystemMonitor.Classes
                         changeColor = !changeColor;
 
 
-                        panel3.BackColor = Color.FromArgb(194, 54, 22); //rojo
-                        NombreZona_lbl.ForeColor = Color.LightGray;
+                        panel3.BackColor = Rojo; //rojo
+                        NombreZona_lbl.ForeColor = Gray;
 
-                        panel2.BackColor = Color.FromArgb(194, 54, 22); //rojo
+                        panel2.BackColor = Rojo; //rojo
                     }
                     else
                     {
                         changeColor = !changeColor;
-                        panel3.BackColor = Color.LightGray;
-                        NombreZona_lbl.ForeColor = Color.FromArgb(194, 54, 22); //rojo
+                        panel3.BackColor = Gray;
+                        NombreZona_lbl.ForeColor = Rojo; //rojo
 
-                        panel2.BackColor = Color.LightGray;
+                        panel2.BackColor = Gray;
                     }
                 }
                 else if (estadoDevice == "WARNING")
@@ -453,26 +468,26 @@ namespace FireSystemMonitor.Classes
                         changeColor = !changeColor;
 
 
-                        panel3.BackColor = Color.FromArgb(241, 196, 15); //amarillo
-                        NombreZona_lbl.ForeColor = Color.DarkGray;
+                        panel3.BackColor = Amarillo; //amarillo
+                        NombreZona_lbl.ForeColor = Gray;
 
-                        panel2.BackColor = Color.FromArgb(241, 196, 15);//amarillo
+                        panel2.BackColor = Amarillo;//amarillo
                     }
                     else
                     {
                         changeColor = !changeColor;
-                        panel3.BackColor = Color.DarkGray;
-                        NombreZona_lbl.ForeColor = Color.FromArgb(241, 196, 15); //amarillo
+                        panel3.BackColor = Gray;
+                        NombreZona_lbl.ForeColor = Amarillo; //amarillo
 
-                        panel2.BackColor = Color.DarkGray;
+                        panel2.BackColor = Gray;
                     }
                 }
                 else
                 {
-                    panel3.BackColor = Color.FromArgb(194, 54, 22); //rojo;
-                    NombreZona_lbl.ForeColor = Color.White;
+                    panel3.BackColor = Verde; ;
+                    NombreZona_lbl.ForeColor = Blanco;
 
-                    panel2.BackColor = Color.LightGray;
+                    panel2.BackColor = Gray;
                     //border_timer.Stop();
                 }
             }
@@ -541,18 +556,18 @@ namespace FireSystemMonitor.Classes
         public void LoadSlideShows(int idZonaSlide)
         {
             estadoDevice = "OK";
-            panel3.BackColor = Color.FromArgb(194, 54, 22); //rojo;
-            NombreZona_lbl.ForeColor = Color.White;
+            panel3.BackColor = Verde; //rojo;
+            NombreZona_lbl.ForeColor = Blanco;
 
-            panel2.BackColor = Color.LightGray;
+            panel2.BackColor = Gray;
 
             TimerLeerStatusDetector.Stop();
             border_timer.Stop();
             
             EliminarTodosDetectores();
             EliminarPlanoPrincipal();
-            
-
+            ObtenerUltimoEstadoFacp();
+            ObtenerEstadoEvacuacionFacp();
             NombreZona_lbl.Text = zonasNombresList[indexSlideShow];
             this.Text = zonasNombresList[indexSlideShow];
             CargarZona();
@@ -591,6 +606,75 @@ namespace FireSystemMonitor.Classes
             }
 
             LoadSlideShows(zonasIdList[indexSlideShow]);
+        }
+
+        public void ObtenerUltimoEstadoFacp()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                P.ID_FACP = IdFacpToShow;
+                dt = P.ObtenerUltimoEstadoFacp();
+                if(dt.Rows.Count > 0)
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                       
+                        RegexOptions options = RegexOptions.None;
+                        Regex regex = new Regex("[ ]{2,}", options);
+                        lastFacpStatus_lbl.Text = regex.Replace(dt.Rows[0][0].ToString().Trim(), " ");
+
+                    });
+                    
+                }
+                else
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        lastFacpStatus_lbl.Text = "No se pudo obtener último estado Facp";
+
+                    });
+                }
+            }
+            catch (Exception ex) { }
+        }
+
+        public void ObtenerEstadoEvacuacionFacp()
+        {
+            try
+            {
+
+                this.Invoke((MethodInvoker)delegate
+                {
+
+                    DataTable dt = new DataTable();
+                    P.ID_FACP = IdFacpToShow;
+                    dt = P.ObtenerEstadoEvacuacionFacp();
+                    if (dt.Rows.Count > 0)
+                    {
+                        if (Convert.ToBoolean(dt.Rows[0][0].ToString()))
+                        {
+                            evac_lbl.Visible = true;
+                            if (!Evac)
+                            {
+                                Evac_timer.Start();
+                            }
+                            Evac = true;
+                        }
+                        else
+                        {
+                            evac_lbl.Visible = false;
+                            Evac = false;
+                            Evac_timer.Stop();
+                        }
+
+                    }
+
+                });
+
+
+            }
+            catch (Exception ex) { }
         }
 
         #endregion
@@ -779,7 +863,9 @@ namespace FireSystemMonitor.Classes
         {
             Properties.Settings.Default.SlideShowTime = Convert.ToInt32(numericUpDown1.Value);
             Properties.Settings.Default.Save();
+            SlideShowTimer.Stop();
             SlideShowTimer.Interval = Convert.ToInt32(numericUpDown1.Value) * 1000;
+            SlideShowTimer.Start();
         }
 
         private void SlideShowTimer_Tick(object sender, EventArgs e)
@@ -816,6 +902,13 @@ namespace FireSystemMonitor.Classes
         private void previous_btn_Click(object sender, EventArgs e)
         {
             PreviousSlideShow();
+        }
+
+        private void Evac_timer_Tick(object sender, EventArgs e)
+        {
+            Evac_timer.Stop();
+            evac_lbl.Visible = !evac_lbl.Visible;
+            Evac_timer.Start();
         }
     }
 }

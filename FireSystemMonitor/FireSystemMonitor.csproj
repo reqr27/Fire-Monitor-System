@@ -34,7 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>FIRE.ico</ApplicationIcon>
+    <ApplicationIcon>fire %281%29.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Control.Draggable, Version=1.0.5049.269, Culture=neutral, processorArchitecture=MSIL">
@@ -311,11 +311,13 @@
     <None Include="Resources\key1.ico" />
     <None Include="Resources\user.ico" />
     <None Include="Resources\app.ico" />
-    <Content Include="FIRE.ico" />
     <None Include="Resources\checked.png" />
     <None Include="Resources\cruzar.png" />
     <None Include="Resources\arrow-177-48.png" />
     <None Include="Resources\close-window-16.png" />
+    <Content Include="fire %281%29.ico" />
+    <Content Include="fire.ico" />
+    <Content Include="flame.ico" />
     <Content Include="Resources\exit.ico" />
     <None Include="Resources\exit1.ico" />
     <None Include="Resources\key-2-48.png" />

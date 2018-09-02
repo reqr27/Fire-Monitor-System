@@ -34,6 +34,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.msjActivado_lbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lastFacpStatus_lbl = new System.Windows.Forms.Label();
             this.info_btn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.activar_btn = new System.Windows.Forms.Button();
@@ -54,6 +56,8 @@
             this.EstadoZona_timer = new System.Windows.Forms.Timer(this.components);
             this.RefrescarWorker = new System.ComponentModel.BackgroundWorker();
             this.EstadoZonaWorker = new System.ComponentModel.BackgroundWorker();
+            this.evac_lbl = new System.Windows.Forms.Label();
+            this.Evac_Timer = new System.Windows.Forms.Timer(this.components);
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -102,6 +106,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(59)))), ((int)(((byte)(72)))));
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.lastFacpStatus_lbl);
             this.panel1.Controls.Add(this.info_btn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.activar_btn);
@@ -118,6 +124,30 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1012, 84);
             this.panel1.TabIndex = 34;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Bookman Old Style", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.Control;
+            this.label6.Location = new System.Drawing.Point(3, 52);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(113, 14);
+            this.label6.TabIndex = 87;
+            this.label6.Text = "ULTIMO ESTADO:";
+            // 
+            // lastFacpStatus_lbl
+            // 
+            this.lastFacpStatus_lbl.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lastFacpStatus_lbl.AutoSize = true;
+            this.lastFacpStatus_lbl.Font = new System.Drawing.Font("Bookman Old Style", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lastFacpStatus_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.lastFacpStatus_lbl.Location = new System.Drawing.Point(3, 67);
+            this.lastFacpStatus_lbl.Name = "lastFacpStatus_lbl";
+            this.lastFacpStatus_lbl.Size = new System.Drawing.Size(56, 15);
+            this.lastFacpStatus_lbl.TabIndex = 86;
+            this.lastFacpStatus_lbl.Text = "ESTADO";
             // 
             // info_btn
             // 
@@ -145,7 +175,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bookman Old Style", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(3, 23);
+            this.label1.Location = new System.Drawing.Point(3, 4);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 16);
             this.label1.TabIndex = 84;
@@ -163,7 +193,7 @@
             this.activar_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.activar_btn.Image = global::FireSystemMonitor.Properties.Resources.key_2_48;
             this.activar_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.activar_btn.Location = new System.Drawing.Point(374, 3);
+            this.activar_btn.Location = new System.Drawing.Point(374, 5);
             this.activar_btn.Name = "activar_btn";
             this.activar_btn.Size = new System.Drawing.Size(102, 79);
             this.activar_btn.TabIndex = 83;
@@ -198,7 +228,7 @@
             this.onlineStatus_lbl.AutoSize = true;
             this.onlineStatus_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.onlineStatus_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.onlineStatus_lbl.Location = new System.Drawing.Point(83, 23);
+            this.onlineStatus_lbl.Location = new System.Drawing.Point(83, 2);
             this.onlineStatus_lbl.Name = "onlineStatus_lbl";
             this.onlineStatus_lbl.Size = new System.Drawing.Size(45, 16);
             this.onlineStatus_lbl.TabIndex = 81;
@@ -208,12 +238,12 @@
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
-            this.linkLabel1.Location = new System.Drawing.Point(271, 64);
+            this.linkLabel1.Location = new System.Drawing.Point(271, 34);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(89, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(94, 13);
             this.linkLabel1.TabIndex = 80;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Ver Estado FACP";
+            this.linkLabel1.Text = "Ver Estados FACP";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label3
@@ -221,7 +251,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(3, 64);
+            this.label3.Location = new System.Drawing.Point(3, 33);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(45, 14);
             this.label3.TabIndex = 79;
@@ -231,7 +261,7 @@
             // 
             this.facp_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.facp_cb.FormattingEnabled = true;
-            this.facp_cb.Location = new System.Drawing.Point(86, 57);
+            this.facp_cb.Location = new System.Drawing.Point(86, 30);
             this.facp_cb.Name = "facp_cb";
             this.facp_cb.Size = new System.Drawing.Size(181, 21);
             this.facp_cb.TabIndex = 78;
@@ -359,7 +389,7 @@
             // 
             // EstadoZona_timer
             // 
-            this.EstadoZona_timer.Interval = 3000;
+            this.EstadoZona_timer.Interval = 10000;
             this.EstadoZona_timer.Tick += new System.EventHandler(this.EstadoZona_timer_Tick);
             // 
             // RefrescarWorker
@@ -372,11 +402,30 @@
             this.EstadoZonaWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.EstadoZonaWorker_DoWork);
             this.EstadoZonaWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.EstadoZonaWorker_RunWorkerCompleted);
             // 
+            // evac_lbl
+            // 
+            this.evac_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.evac_lbl.BackColor = System.Drawing.Color.Transparent;
+            this.evac_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.evac_lbl.ForeColor = System.Drawing.Color.Red;
+            this.evac_lbl.Location = new System.Drawing.Point(3, 255);
+            this.evac_lbl.Name = "evac_lbl";
+            this.evac_lbl.Size = new System.Drawing.Size(1009, 134);
+            this.evac_lbl.TabIndex = 78;
+            this.evac_lbl.Text = "EVACUACION";
+            this.evac_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Evac_Timer
+            // 
+            this.Evac_Timer.Interval = 600;
+            this.Evac_Timer.Tick += new System.EventHandler(this.Evac_Timer_Tick);
+            // 
             // MainScreenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1012, 547);
+            this.Controls.Add(this.evac_lbl);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.panel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -421,5 +470,9 @@
         private System.ComponentModel.BackgroundWorker RefrescarWorker;
         private System.ComponentModel.BackgroundWorker EstadoZonaWorker;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lastFacpStatus_lbl;
+        private System.Windows.Forms.Label evac_lbl;
+        private System.Windows.Forms.Timer Evac_Timer;
     }
 }

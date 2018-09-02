@@ -31,8 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonitoreoZonaForm));
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.NombreZona_lbl = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,27 +43,26 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.TimerLeerStatusDetector = new System.Windows.Forms.Timer(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lastFacpStatus_lbl = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.border_timer = new System.Windows.Forms.Timer(this.components);
-            this.LeerStatusWorker = new System.ComponentModel.BackgroundWorker();
-            this.BorderColorWorker = new System.ComponentModel.BackgroundWorker();
-            this.SlideShowTimer = new System.Windows.Forms.Timer(this.components);
             this.next_btn = new System.Windows.Forms.Button();
             this.pausePlay_btn = new System.Windows.Forms.Button();
             this.previous_btn = new System.Windows.Forms.Button();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.border_timer = new System.Windows.Forms.Timer(this.components);
+            this.LeerStatusWorker = new System.ComponentModel.BackgroundWorker();
+            this.BorderColorWorker = new System.ComponentModel.BackgroundWorker();
+            this.SlideShowTimer = new System.Windows.Forms.Timer(this.components);
+            this.evac_lbl = new System.Windows.Forms.Label();
+            this.Evac_timer = new System.Windows.Forms.Timer(this.components);
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -70,7 +71,7 @@
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(194)))), ((int)(((byte)(54)))), ((int)(((byte)(22)))));
+            this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(148)))), ((int)(((byte)(50)))));
             this.panel3.Controls.Add(this.button1);
             this.panel3.Controls.Add(this.button3);
             this.panel3.Controls.Add(this.button2);
@@ -81,6 +82,49 @@
             this.panel3.Size = new System.Drawing.Size(1146, 47);
             this.panel3.TabIndex = 51;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Image = global::FireSystemMonitor.Properties.Resources.maximize_window_24;
+            this.button1.Location = new System.Drawing.Point(1076, 7);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(26, 26);
+            this.button1.TabIndex = 34;
+            this.button1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Image = global::FireSystemMonitor.Properties.Resources.minimize_window_24;
+            this.button3.Location = new System.Drawing.Point(1040, 7);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(26, 26);
+            this.button3.TabIndex = 33;
+            this.button3.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Visible = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.button2.FlatAppearance.BorderSize = 0;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Image = global::FireSystemMonitor.Properties.Resources.cancel_24;
+            this.button2.Location = new System.Drawing.Point(1108, 7);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(26, 26);
+            this.button2.TabIndex = 32;
+            this.button2.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // NombreZona_lbl
             // 
@@ -93,66 +137,60 @@
             this.NombreZona_lbl.TabIndex = 26;
             this.NombreZona_lbl.Text = "Fire System Monitor";
             // 
-            // label6
-            // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(663, 15);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(140, 13);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "ERROR AL LEER ESTADO";
-            // 
             // label5
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(525, 15);
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(399, 15);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
+            this.label5.Size = new System.Drawing.Size(45, 13);
             this.label5.TabIndex = 7;
             this.label5.Text = "FALTA";
             // 
             // label4
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(382, 15);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(266, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 13);
+            this.label4.Size = new System.Drawing.Size(94, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "WARNING";
+            this.label4.Text = "ADVERTENCIA";
             // 
             // label3
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(234, 15);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(170, 15);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 13);
+            this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "ALARMA";
             // 
             // label2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(132, 15);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(107, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(22, 13);
+            this.label2.Size = new System.Drawing.Size(24, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "OK";
             // 
             // label1
             // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 12);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(3, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 16);
+            this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 75;
-            this.label1.Text = "Leyenda:";
+            this.label1.Text = "LEYENDA:";
             // 
             // toolTip1
             // 
@@ -168,14 +206,14 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.lastFacpStatus_lbl);
             this.panel2.Controls.Add(this.label7);
             this.panel2.Controls.Add(this.numericUpDown1);
             this.panel2.Controls.Add(this.next_btn);
             this.panel2.Controls.Add(this.pausePlay_btn);
             this.panel2.Controls.Add(this.previous_btn);
-            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.pictureBox6);
             this.panel2.Controls.Add(this.pictureBox2);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label2);
@@ -190,12 +228,34 @@
             this.panel2.Size = new System.Drawing.Size(1146, 42);
             this.panel2.TabIndex = 76;
             // 
+            // label6
+            // 
+            this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(479, 9);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(112, 13);
+            this.label6.TabIndex = 83;
+            this.label6.Text = "ULTIMO ESTADO:";
+            // 
+            // lastFacpStatus_lbl
+            // 
+            this.lastFacpStatus_lbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lastFacpStatus_lbl.AutoSize = true;
+            this.lastFacpStatus_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lastFacpStatus_lbl.Location = new System.Drawing.Point(479, 24);
+            this.lastFacpStatus_lbl.Name = "lastFacpStatus_lbl";
+            this.lastFacpStatus_lbl.Size = new System.Drawing.Size(51, 13);
+            this.lastFacpStatus_lbl.TabIndex = 82;
+            this.lastFacpStatus_lbl.Text = "ESTADO";
+            // 
             // label7
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.label7.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label7.Location = new System.Drawing.Point(846, 15);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(118, 16);
@@ -212,7 +272,7 @@
             0,
             0});
             this.numericUpDown1.Minimum = new decimal(new int[] {
-            5,
+            10,
             0,
             0,
             0});
@@ -220,30 +280,11 @@
             this.numericUpDown1.Size = new System.Drawing.Size(64, 20);
             this.numericUpDown1.TabIndex = 80;
             this.numericUpDown1.Value = new decimal(new int[] {
-            5,
+            25,
             0,
             0,
             0});
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
-            // 
-            // border_timer
-            // 
-            this.border_timer.Interval = 1100;
-            this.border_timer.Tick += new System.EventHandler(this.border_timer_Tick);
-            // 
-            // LeerStatusWorker
-            // 
-            this.LeerStatusWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.LeerStatusWorker_DoWork);
-            this.LeerStatusWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.LeerStatusWorker_RunWorkerCompleted);
-            // 
-            // BorderColorWorker
-            // 
-            this.BorderColorWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BorderColorWorker_DoWork);
-            this.BorderColorWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BorderColorWorker_RunWorkerCompleted);
-            // 
-            // SlideShowTimer
-            // 
-            this.SlideShowTimer.Tick += new System.EventHandler(this.SlideShowTimer_Tick);
             // 
             // next_btn
             // 
@@ -289,21 +330,11 @@
             this.previous_btn.UseVisualStyleBackColor = true;
             this.previous_btn.Click += new System.EventHandler(this.previous_btn_Click);
             // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox6.Image = global::FireSystemMonitor.Properties.Resources.DetectorNoLeido;
-            this.pictureBox6.Location = new System.Drawing.Point(630, 9);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(27, 25);
-            this.pictureBox6.TabIndex = 8;
-            this.pictureBox6.TabStop = false;
-            // 
             // pictureBox2
             // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox2.Image = global::FireSystemMonitor.Properties.Resources.DetectorOK;
-            this.pictureBox2.Location = new System.Drawing.Point(99, 9);
+            this.pictureBox2.Location = new System.Drawing.Point(77, 9);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(27, 25);
             this.pictureBox2.TabIndex = 0;
@@ -311,9 +342,9 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox5.Image = global::FireSystemMonitor.Properties.Resources.DetectorFalta;
-            this.pictureBox5.Location = new System.Drawing.Point(492, 9);
+            this.pictureBox5.Location = new System.Drawing.Point(366, 9);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(27, 25);
             this.pictureBox5.TabIndex = 3;
@@ -321,9 +352,9 @@
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox3.Image = global::FireSystemMonitor.Properties.Resources.DetectorFuego;
-            this.pictureBox3.Location = new System.Drawing.Point(201, 9);
+            this.pictureBox3.Location = new System.Drawing.Point(140, 9);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(27, 25);
             this.pictureBox3.TabIndex = 1;
@@ -331,62 +362,57 @@
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox4.Image = global::FireSystemMonitor.Properties.Resources.DetectorWarning;
-            this.pictureBox4.Location = new System.Drawing.Point(349, 9);
+            this.pictureBox4.Location = new System.Drawing.Point(236, 9);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(27, 25);
             this.pictureBox4.TabIndex = 2;
             this.pictureBox4.TabStop = false;
             // 
-            // button1
+            // border_timer
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Image = global::FireSystemMonitor.Properties.Resources.maximize_window_24;
-            this.button1.Location = new System.Drawing.Point(1076, 7);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(26, 26);
-            this.button1.TabIndex = 34;
-            this.button1.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.border_timer.Interval = 1100;
+            this.border_timer.Tick += new System.EventHandler(this.border_timer_Tick);
             // 
-            // button3
+            // LeerStatusWorker
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.FlatAppearance.BorderSize = 0;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Image = global::FireSystemMonitor.Properties.Resources.minimize_window_24;
-            this.button3.Location = new System.Drawing.Point(1040, 7);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(26, 26);
-            this.button3.TabIndex = 33;
-            this.button3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Visible = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.LeerStatusWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.LeerStatusWorker_DoWork);
+            this.LeerStatusWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.LeerStatusWorker_RunWorkerCompleted);
             // 
-            // button2
+            // BorderColorWorker
             // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Image = global::FireSystemMonitor.Properties.Resources.cancel_24;
-            this.button2.Location = new System.Drawing.Point(1108, 7);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(26, 26);
-            this.button2.TabIndex = 32;
-            this.button2.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.BorderColorWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BorderColorWorker_DoWork);
+            this.BorderColorWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BorderColorWorker_RunWorkerCompleted);
+            // 
+            // SlideShowTimer
+            // 
+            this.SlideShowTimer.Tick += new System.EventHandler(this.SlideShowTimer_Tick);
+            // 
+            // evac_lbl
+            // 
+            this.evac_lbl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.evac_lbl.BackColor = System.Drawing.Color.Transparent;
+            this.evac_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 72F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.evac_lbl.ForeColor = System.Drawing.Color.Red;
+            this.evac_lbl.Location = new System.Drawing.Point(0, 215);
+            this.evac_lbl.Name = "evac_lbl";
+            this.evac_lbl.Size = new System.Drawing.Size(1146, 134);
+            this.evac_lbl.TabIndex = 77;
+            this.evac_lbl.Text = "EVACUACION";
+            this.evac_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Evac_timer
+            // 
+            this.Evac_timer.Interval = 600;
+            this.Evac_timer.Tick += new System.EventHandler(this.Evac_timer_Tick);
             // 
             // MonitoreoZonaForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1146, 646);
+            this.Controls.Add(this.evac_lbl);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -402,7 +428,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -428,8 +453,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Timer TimerLeerStatusDetector;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer border_timer;
@@ -441,5 +464,9 @@
         private System.ComponentModel.BackgroundWorker LeerStatusWorker;
         private System.ComponentModel.BackgroundWorker BorderColorWorker;
         private System.Windows.Forms.Timer SlideShowTimer;
+        private System.Windows.Forms.Label lastFacpStatus_lbl;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label evac_lbl;
+        private System.Windows.Forms.Timer Evac_timer;
     }
 }

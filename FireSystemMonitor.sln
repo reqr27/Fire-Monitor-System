@@ -11,9 +11,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes", "Classes\Classes.
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FacpDataReceiverInstaller", "FacpDataReceiver\FacpDataReceiver.vdproj", "{D06ECBE1-8055-49DE-86B3-5598DB211CEA}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FireSystemMonitorInstaller", "FireSystemMonitorInstaller\FireSystemMonitorInstaller.vdproj", "{4042667B-54B4-46DC-B31D-82BD59CDC2E4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialKeyGenerator", "SerialKeyGenerator\SerialKeyGenerator.csproj", "{F927529D-B5BB-4206-B7E1-5648309C4A23}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupFireSystemMonitor", "SetupFireSystemMonitor\SetupFireSystemMonitor.vdproj", "{59C7F0EB-CBBA-4DB1-911E-FB3A4FF41341}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,12 +53,6 @@ Global
 		{D06ECBE1-8055-49DE-86B3-5598DB211CEA}.Release|Any CPU.ActiveCfg = Release
 		{D06ECBE1-8055-49DE-86B3-5598DB211CEA}.Release|x86.ActiveCfg = Release
 		{D06ECBE1-8055-49DE-86B3-5598DB211CEA}.Release|x86.Build.0 = Release
-		{4042667B-54B4-46DC-B31D-82BD59CDC2E4}.Debug|Any CPU.ActiveCfg = Debug
-		{4042667B-54B4-46DC-B31D-82BD59CDC2E4}.Debug|x86.ActiveCfg = Debug
-		{4042667B-54B4-46DC-B31D-82BD59CDC2E4}.Debug|x86.Build.0 = Debug
-		{4042667B-54B4-46DC-B31D-82BD59CDC2E4}.Release|Any CPU.ActiveCfg = Release
-		{4042667B-54B4-46DC-B31D-82BD59CDC2E4}.Release|x86.ActiveCfg = Release
-		{4042667B-54B4-46DC-B31D-82BD59CDC2E4}.Release|x86.Build.0 = Release
 		{F927529D-B5BB-4206-B7E1-5648309C4A23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F927529D-B5BB-4206-B7E1-5648309C4A23}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F927529D-B5BB-4206-B7E1-5648309C4A23}.Debug|x86.ActiveCfg = Debug|x86
@@ -67,6 +61,10 @@ Global
 		{F927529D-B5BB-4206-B7E1-5648309C4A23}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F927529D-B5BB-4206-B7E1-5648309C4A23}.Release|x86.ActiveCfg = Release|x86
 		{F927529D-B5BB-4206-B7E1-5648309C4A23}.Release|x86.Build.0 = Release|x86
+		{59C7F0EB-CBBA-4DB1-911E-FB3A4FF41341}.Debug|Any CPU.ActiveCfg = Debug
+		{59C7F0EB-CBBA-4DB1-911E-FB3A4FF41341}.Debug|x86.ActiveCfg = Debug
+		{59C7F0EB-CBBA-4DB1-911E-FB3A4FF41341}.Release|Any CPU.ActiveCfg = Release
+		{59C7F0EB-CBBA-4DB1-911E-FB3A4FF41341}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -11,6 +11,8 @@ using FireSystemMonitor.Classes;
 using System.IO;
 using System.Security;
 using Classes;
+using System.Text.RegularExpressions;
+
 namespace FireSystemMonitor.Formularios
 {
     public partial class MainScreenForm : Form
@@ -22,7 +24,7 @@ namespace FireSystemMonitor.Formularios
         public bool fillCombo = false;
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
-
+        public bool Evac = false;
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
@@ -91,7 +93,7 @@ namespace FireSystemMonitor.Formularios
                     Label lbl = new Label();
                    
 
-                    if (msj == "ALARM")
+                    if (msj == "ALARMA")
                     {
                         Action action = () =>
                         {
@@ -129,6 +131,7 @@ namespace FireSystemMonitor.Formularios
                             lbl.BackColor = Color.Transparent;
                             lbl.AutoSize = false;
                             lbl.Width = control.Width;
+                            //lbl.Height = control.Height;
                             lbl.TextAlign = ContentAlignment.MiddleCenter;
 
                             control.Controls.Add(lbl);
@@ -146,7 +149,7 @@ namespace FireSystemMonitor.Formularios
 
 
                     }
-                    else if (msj == "WARNING")
+                    else if (msj == "ADVERTENCIA")
                     {
                         Action action = () =>
                         {
@@ -172,6 +175,7 @@ namespace FireSystemMonitor.Formularios
                             lbl.BackColor = Color.Transparent;
                             lbl.AutoSize = false;
                             lbl.Width = control.Width;
+                            //lbl.Height = control.Height;
                             lbl.TextAlign = ContentAlignment.MiddleCenter;
 
                             control.Controls.Add(lbl);
@@ -460,6 +464,75 @@ namespace FireSystemMonitor.Formularios
             
         }
 
+        public void ObtenerUltimoEstadoFacp()
+        {
+            try
+            {
+                DataTable dt = new DataTable();
+                P.ID_FACP =  Convert.ToInt32(facp_cb.SelectedValue);
+                dt = P.ObtenerUltimoEstadoFacp();
+                if (dt.Rows.Count > 0)
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+
+                        RegexOptions options = RegexOptions.None;
+                        Regex regex = new Regex("[ ]{2,}", options);
+                        lastFacpStatus_lbl.Text = regex.Replace(dt.Rows[0][0].ToString().Trim(), " ");
+
+                    });
+
+                }
+                else
+                {
+                    this.Invoke((MethodInvoker)delegate
+                    {
+                        lastFacpStatus_lbl.Text = "No se pudo obtener último estado Facp";
+
+                    });
+                }
+            }
+            catch (Exception ex) { }
+        }
+
+        public void ObtenerEstadoEvacuacionFacp()
+        {
+            try
+            {
+
+                this.Invoke((MethodInvoker)delegate
+                {
+
+                    DataTable dt = new DataTable();
+                    P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
+                    dt = P.ObtenerEstadoEvacuacionFacp();
+                    if (dt.Rows.Count > 0)
+                    {
+                        if (Convert.ToBoolean(dt.Rows[0][0].ToString()))
+                        {
+                            evac_lbl.Visible = true;
+                            if (!Evac)
+                            {
+                                Evac_Timer.Start();
+                            }
+                            Evac = true;
+                        }
+                        else
+                        {
+                            evac_lbl.Visible = false;
+                            Evac = false;
+                            Evac_Timer.Stop();
+                        }
+
+                    }
+
+                });
+                      
+
+            }
+            catch (Exception ex) { }
+        }
+
         public void  ControlsState (bool activado)
         {
             try
@@ -493,6 +566,7 @@ namespace FireSystemMonitor.Formularios
                     {
                         msjActivado_lbl.Text = "VERSION DE PRUEBA HA FINALIZADO";
                         ControlsState(false);
+                        CerrarForms();
 
                     }
                     else
@@ -527,7 +601,6 @@ namespace FireSystemMonitor.Formularios
 
         }
 
-
         public int ObtenerDiasActivo()
         {
             int dias = 0;
@@ -552,6 +625,22 @@ namespace FireSystemMonitor.Formularios
 
             return dias;
         }
+
+        public void CerrarForms()
+        {
+            List<Form> openForms = new List<Form>();
+
+            foreach (Form f in Application.OpenForms)
+                openForms.Add(f);
+
+            foreach (Form f in openForms)
+            {
+
+                if (f.Name != "MainScreenForm" && f.Name != "ActivationForm")
+                    f.Close();
+            }
+        }
+
         #endregion
 
         #region Eventos Manuales
@@ -590,7 +679,7 @@ namespace FireSystemMonitor.Formularios
                 MonitoreoZonaForm form = new MonitoreoZonaForm();
                 form.Show();
             }
-            catch (Exception) { }
+            catch (Exception eX) { MessageBox.Show(eX.Message); }
 
             
             
@@ -599,6 +688,8 @@ namespace FireSystemMonitor.Formularios
 
 
         }
+
+
 
         #endregion
 
@@ -613,6 +704,8 @@ namespace FireSystemMonitor.Formularios
                 LLenarFacpCB();
                 ObtenerZonasHabilitadas();
                 UpdateZonaEstatus();
+                ObtenerUltimoEstadoFacp();
+                ObtenerEstadoEvacuacionFacp();
                 EstadoZona_timer.Start();
                 //obtenerEstadoFacp();
                 getIfModuleOnline();
@@ -669,6 +762,8 @@ namespace FireSystemMonitor.Formularios
                 UpdateZonaEstatus();
                 getIfModuleOnline();
                 CheckIfSoftwareActivated();
+                ObtenerUltimoEstadoFacp();
+                ObtenerEstadoEvacuacionFacp();
                 RefrescarTimer.Start();
             }
             catch (ArgumentNullException) { }
@@ -714,6 +809,8 @@ namespace FireSystemMonitor.Formularios
                 Program.GidFacp = Convert.ToInt32(facp_cb.SelectedValue);
                 //obtenerEstadoFacp();
                 getIfModuleOnline();
+                ObtenerUltimoEstadoFacp();
+                ObtenerEstadoEvacuacionFacp();
             }
             catch (ArgumentNullException) { }
            
@@ -802,7 +899,7 @@ namespace FireSystemMonitor.Formularios
             {
                 RemoveAllControlsFromFlowPanel();
                 ObtenerZonasHabilitadas();
-
+                ObtenerUltimoEstadoFacp();
                 CheckIfSoftwareActivated();
             }
             catch (ArgumentNullException) { }
@@ -824,6 +921,8 @@ namespace FireSystemMonitor.Formularios
             try
             {
                 UpdateZonaEstatus();
+                ObtenerUltimoEstadoFacp();
+                ObtenerEstadoEvacuacionFacp();
                 getIfModuleOnline();
             }
             catch (ArgumentNullException) { }
@@ -843,6 +942,13 @@ namespace FireSystemMonitor.Formularios
         private void button1_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void Evac_Timer_Tick(object sender, EventArgs e)
+        {
+            Evac_Timer.Stop();
+            evac_lbl.Visible = !evac_lbl.Visible;
+            Evac_Timer.Start();
         }
     }
 }

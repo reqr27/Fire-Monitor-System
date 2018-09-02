@@ -169,8 +169,6 @@ namespace DataReceiver
             
         }
 
-
-
         public void ObtenerConfiguracionEspecifica()
         {
             DataTable dt = new DataTable();
@@ -231,7 +229,14 @@ namespace DataReceiver
                 
             }
 
-            else if (text.Contains("CLEARt"))
+            else if (text.Contains("EVAC   IN SYSTEM")) // evacuar 
+            {
+                
+                P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
+                string msj = P.ActualizarEstatusEvacuacion();
+            }
+
+            else if (text.Contains("CLEARt") || text.Contains("CLEARa"))
             {
                 string[] namesArray = text.Trim().Split(' ');
                 int index = namesArray.Length - 1;
@@ -262,6 +267,18 @@ namespace DataReceiver
                 P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
                 P.EstadoDetector = "SMOKE";
                 P.Descripcion = "Sistema detectó humo";
+                string msj = P.ActualizarEstadoDetector();
+
+            }
+
+            else if (text.StartsWith("ALARM") && text.Contains("MONITOR"))
+            {
+                string[] namesArray = text.Trim().Split(' ');
+                int index = namesArray.Length - 1;
+                P.Identificador = namesArray[index];
+                P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
+                P.EstadoDetector = "MONITOR";
+                P.Descripcion = "PULL ACTIVO";
                 string msj = P.ActualizarEstadoDetector();
 
             }
@@ -432,7 +449,11 @@ namespace DataReceiver
             {
                 Email_timer.Start();
             }
-            InsertarLogFacp(text);
+            RegexOptions options = RegexOptions.None;
+            Regex regex = new Regex("[ ]{2,}", options);
+            string status = regex.Replace(text, " "); // eliminar espacios en blanco
+
+            InsertarLogFacp(status);
             
 
         }
