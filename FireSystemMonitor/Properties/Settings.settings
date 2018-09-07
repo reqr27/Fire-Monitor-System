@@ -12,5 +12,8 @@
     <Setting Name="SlideShowTime" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">5</Value>
     </Setting>
+    <Setting Name="SelectedFacp" Type="System.String" Scope="User">
+      <Value Profile="(Default)">""</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

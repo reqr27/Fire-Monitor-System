@@ -34,8 +34,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.msjActivado_lbl = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lastFacpStatus_lbl = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.lastFacpStatus_lbl = new System.Windows.Forms.Label();
             this.info_btn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.activar_btn = new System.Windows.Forms.Button();
@@ -58,6 +58,7 @@
             this.EstadoZonaWorker = new System.ComponentModel.BackgroundWorker();
             this.evac_lbl = new System.Windows.Forms.Label();
             this.Evac_Timer = new System.Windows.Forms.Timer(this.components);
+            this.Evac_Worker = new System.ComponentModel.BackgroundWorker();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -74,7 +75,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1012, 126);
+            this.panel3.Size = new System.Drawing.Size(1012, 138);
             this.panel3.TabIndex = 50;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             // 
@@ -106,8 +107,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(53)))), ((int)(((byte)(59)))), ((int)(((byte)(72)))));
-            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.lastFacpStatus_lbl);
+            this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.info_btn);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.activar_btn);
@@ -120,10 +121,19 @@
             this.panel1.Controls.Add(this.Settings_btn);
             this.panel1.Controls.Add(this.ConfigMail_btn);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 42);
+            this.panel1.Location = new System.Drawing.Point(0, 39);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1012, 84);
+            this.panel1.Size = new System.Drawing.Size(1012, 99);
             this.panel1.TabIndex = 34;
+            // 
+            // lastFacpStatus_lbl
+            // 
+            this.lastFacpStatus_lbl.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.lastFacpStatus_lbl.Location = new System.Drawing.Point(6, 76);
+            this.lastFacpStatus_lbl.Name = "lastFacpStatus_lbl";
+            this.lastFacpStatus_lbl.ReadOnly = true;
+            this.lastFacpStatus_lbl.Size = new System.Drawing.Size(372, 20);
+            this.lastFacpStatus_lbl.TabIndex = 88;
             // 
             // label6
             // 
@@ -131,23 +141,11 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Bookman Old Style", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(3, 52);
+            this.label6.Location = new System.Drawing.Point(3, 59);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(113, 14);
             this.label6.TabIndex = 87;
             this.label6.Text = "ULTIMO ESTADO:";
-            // 
-            // lastFacpStatus_lbl
-            // 
-            this.lastFacpStatus_lbl.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lastFacpStatus_lbl.AutoSize = true;
-            this.lastFacpStatus_lbl.Font = new System.Drawing.Font("Bookman Old Style", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastFacpStatus_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.lastFacpStatus_lbl.Location = new System.Drawing.Point(3, 67);
-            this.lastFacpStatus_lbl.Name = "lastFacpStatus_lbl";
-            this.lastFacpStatus_lbl.Size = new System.Drawing.Size(56, 15);
-            this.lastFacpStatus_lbl.TabIndex = 86;
-            this.lastFacpStatus_lbl.Text = "ESTADO";
             // 
             // info_btn
             // 
@@ -161,7 +159,7 @@
             this.info_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.info_btn.Image = global::FireSystemMonitor.Properties.Resources.info_48;
             this.info_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.info_btn.Location = new System.Drawing.Point(910, 4);
+            this.info_btn.Location = new System.Drawing.Point(905, 12);
             this.info_btn.Name = "info_btn";
             this.info_btn.Size = new System.Drawing.Size(102, 79);
             this.info_btn.TabIndex = 85;
@@ -193,7 +191,7 @@
             this.activar_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.activar_btn.Image = global::FireSystemMonitor.Properties.Resources.key_2_48;
             this.activar_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.activar_btn.Location = new System.Drawing.Point(374, 5);
+            this.activar_btn.Location = new System.Drawing.Point(369, 13);
             this.activar_btn.Name = "activar_btn";
             this.activar_btn.Size = new System.Drawing.Size(102, 79);
             this.activar_btn.TabIndex = 83;
@@ -214,7 +212,7 @@
             this.historial_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.historial_btn.Image = global::FireSystemMonitor.Properties.Resources.data_backup_48;
             this.historial_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.historial_btn.Location = new System.Drawing.Point(482, 3);
+            this.historial_btn.Location = new System.Drawing.Point(477, 11);
             this.historial_btn.Name = "historial_btn";
             this.historial_btn.Size = new System.Drawing.Size(102, 79);
             this.historial_btn.TabIndex = 82;
@@ -280,7 +278,7 @@
             this.Refresh_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.Refresh_btn.Image = global::FireSystemMonitor.Properties.Resources.available_updates_48;
             this.Refresh_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.Refresh_btn.Location = new System.Drawing.Point(590, 3);
+            this.Refresh_btn.Location = new System.Drawing.Point(585, 11);
             this.Refresh_btn.Name = "Refresh_btn";
             this.Refresh_btn.Size = new System.Drawing.Size(102, 79);
             this.Refresh_btn.TabIndex = 2;
@@ -301,7 +299,7 @@
             this.Settings_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.Settings_btn.Image = global::FireSystemMonitor.Properties.Resources.settings_22_48;
             this.Settings_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.Settings_btn.Location = new System.Drawing.Point(806, 3);
+            this.Settings_btn.Location = new System.Drawing.Point(801, 11);
             this.Settings_btn.Name = "Settings_btn";
             this.Settings_btn.Size = new System.Drawing.Size(102, 79);
             this.Settings_btn.TabIndex = 1;
@@ -322,7 +320,7 @@
             this.ConfigMail_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.ConfigMail_btn.Image = global::FireSystemMonitor.Properties.Resources.email_5_48;
             this.ConfigMail_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.ConfigMail_btn.Location = new System.Drawing.Point(698, 3);
+            this.ConfigMail_btn.Location = new System.Drawing.Point(693, 11);
             this.ConfigMail_btn.Name = "ConfigMail_btn";
             this.ConfigMail_btn.Size = new System.Drawing.Size(102, 79);
             this.ConfigMail_btn.TabIndex = 0;
@@ -367,9 +365,9 @@
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
             this.label11.Location = new System.Drawing.Point(11, 9);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(235, 24);
+            this.label11.Size = new System.Drawing.Size(242, 24);
             this.label11.TabIndex = 26;
-            this.label11.Text = "Fire System Monitor";
+            this.label11.Text = "Fire Monitor System ";
             // 
             // flowLayoutPanel1
             // 
@@ -377,9 +375,9 @@
             this.flowLayoutPanel1.AutoScrollMargin = new System.Drawing.Size(5, 5);
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(140)))));
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 126);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 138);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1012, 421);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1012, 409);
             this.flowLayoutPanel1.TabIndex = 51;
             // 
             // RefrescarTimer
@@ -420,6 +418,11 @@
             this.Evac_Timer.Interval = 600;
             this.Evac_Timer.Tick += new System.EventHandler(this.Evac_Timer_Tick);
             // 
+            // Evac_Worker
+            // 
+            this.Evac_Worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Evac_Worker_DoWork);
+            this.Evac_Worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.Evac_Worker_RunWorkerCompleted);
+            // 
             // MainScreenForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -432,7 +435,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainScreenForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FIRE SYSTEM MONITOR";
+            this.Text = "FIRE MONITOR  SYSTEM ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MainScreenForm_Load);
             this.Resize += new System.EventHandler(this.MainScreenForm_Resize);
@@ -471,8 +474,9 @@
         private System.ComponentModel.BackgroundWorker EstadoZonaWorker;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lastFacpStatus_lbl;
         private System.Windows.Forms.Label evac_lbl;
         private System.Windows.Forms.Timer Evac_Timer;
+        private System.ComponentModel.BackgroundWorker Evac_Worker;
+        private System.Windows.Forms.TextBox lastFacpStatus_lbl;
     }
 }

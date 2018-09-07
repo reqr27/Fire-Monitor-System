@@ -294,6 +294,10 @@
     <None Include="Resources\search-3-48.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\transLetraMamarilla.png" />
+    <None Include="Resources\ModuloActivo.gif" />
+    <None Include="Resources\ModuloFalta.gif" />
+    <None Include="Resources\transLetraMverde.png" />
     <None Include="Resources\pause-24.png" />
     <None Include="Resources\maximize-window-16.png" />
     <None Include="Resources\next-24.png" />

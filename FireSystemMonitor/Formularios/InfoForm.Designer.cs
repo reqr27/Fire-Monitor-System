@@ -107,38 +107,38 @@
             // 
             // linkLabel1
             // 
-            this.linkLabel1.AutoSize = true;
             this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
-            this.linkLabel1.Location = new System.Drawing.Point(89, 64);
+            this.linkLabel1.Location = new System.Drawing.Point(3, 64);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(192, 16);
+            this.linkLabel1.Size = new System.Drawing.Size(373, 16);
             this.linkLabel1.TabIndex = 110;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "www.multiservicioslea.com";
+            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(116, 39);
+            this.label6.Location = new System.Drawing.Point(0, 39);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 16);
+            this.label6.Size = new System.Drawing.Size(376, 16);
             this.label6.TabIndex = 108;
             this.label6.Text = "Tel.: 809-888-8888";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(56, 14);
+            this.label3.Location = new System.Drawing.Point(0, 14);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(257, 16);
+            this.label3.Size = new System.Drawing.Size(376, 16);
             this.label3.TabIndex = 107;
             this.label3.Text = "Desarrollado por Multiservicios LEA";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // software_lbl
             // 
@@ -229,7 +229,6 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

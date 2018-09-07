@@ -45,5 +45,17 @@ namespace FireSystemMonitor.Properties {
                 this["SlideShowTime"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\"\"")]
+        public string SelectedFacp {
+            get {
+                return ((string)(this["SelectedFacp"]));
+            }
+            set {
+                this["SelectedFacp"] = value;
+            }
+        }
     }
 }

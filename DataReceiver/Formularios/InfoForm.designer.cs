@@ -33,9 +33,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.software_lbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.licencia_lbl = new System.Windows.Forms.Label();
@@ -43,6 +40,9 @@
             this.fActivado_txt = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.fVencimiento_txt = new System.Windows.Forms.Label();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -104,41 +104,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(376, 89);
             this.panel1.TabIndex = 101;
-            // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.LinkColor = System.Drawing.Color.White;
-            this.linkLabel1.Location = new System.Drawing.Point(89, 64);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(192, 16);
-            this.linkLabel1.TabIndex = 110;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "www.multiservicioslea.com";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(116, 39);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 16);
-            this.label6.TabIndex = 108;
-            this.label6.Text = "Tel.: 809-888-8888";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(56, 14);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(257, 16);
-            this.label3.TabIndex = 107;
-            this.label3.Text = "Desarrollado por Multiservicios LEA";
             // 
             // software_lbl
             // 
@@ -206,6 +171,40 @@
             this.fVencimiento_txt.TabIndex = 108;
             this.fVencimiento_txt.Text = "label1";
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.LinkColor = System.Drawing.Color.White;
+            this.linkLabel1.Location = new System.Drawing.Point(3, 61);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(373, 16);
+            this.linkLabel1.TabIndex = 113;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "www.multiservicioslea.com";
+            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.Control;
+            this.label6.Location = new System.Drawing.Point(0, 36);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(376, 16);
+            this.label6.TabIndex = 112;
+            this.label6.Text = "Tel.: 809-888-8888";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.Control;
+            this.label3.Location = new System.Drawing.Point(0, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(376, 16);
+            this.label3.TabIndex = 111;
+            this.label3.Text = "Desarrollado por Multiservicios LEA";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // InfoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,7 +228,6 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,8 +247,8 @@
         private System.Windows.Forms.Label fActivado_txt;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label fVencimiento_txt;
+        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

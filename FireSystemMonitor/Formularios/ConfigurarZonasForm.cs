@@ -194,6 +194,11 @@ namespace FireSystemMonitor.Formularios
                     GenerarDetectorZona(posx, posy, "OLD", sizepx, name, MoverDetector, idDetector, Properties.Resources.transLetraPverde,
                     identificador, dispositivo, tipoDispositivo, figura);
                 }
+                else if (figura == "Letra M")
+                {
+                    GenerarDetectorZona(posx, posy, "OLD", sizepx, name, MoverDetector, idDetector, Properties.Resources.transLetraMverde,
+                    identificador, dispositivo, tipoDispositivo, figura);
+                }
                 else
                 {
                     GenerarDetectorZona(posx, posy, "OLD", sizepx, name, MoverDetector, idDetector, Properties.Resources.cuadroVerde,
@@ -264,7 +269,7 @@ namespace FireSystemMonitor.Formularios
             EliminarTodosDetectores("TODOS");
             editarZona_btn.BackColor = Color.FromArgb(72, 84, 96);
             editarZona_btn.Text = "Editar";
-
+            
             verZona_btn.BackColor = Color.FromArgb(72, 84, 96);
             verZona_btn.Text = "Ver";
             AgregarZona_lbl.Text = "AGREGAR ZONAS";
@@ -273,6 +278,10 @@ namespace FireSystemMonitor.Formularios
             agregarZonas_btn.BackColor = Color.FromArgb(11, 232, 129);
 
             AgregarDetector_btn.Visible = false;
+
+            facp_dtg.Enabled = true;
+            NombreFacp_txt.Enabled = true;
+            AgregarFacp_btn.Enabled = true;
 
             idEvento = 0;
             nombre_txt.Text = "";
@@ -684,6 +693,11 @@ namespace FireSystemMonitor.Formularios
                         (sender as PictureBox).Image = null;
                         (sender as PictureBox).Image = Properties.Resources.transLetraPverde;
                     }
+                    else if (Program.Gfigura == "Letra M")
+                    {
+                        (sender as PictureBox).Image = null;
+                        (sender as PictureBox).Image = Properties.Resources.transLetraMverde;
+                    }
                     else
                     {
                         (sender as PictureBox).Image = null;
@@ -769,8 +783,8 @@ namespace FireSystemMonitor.Formularios
                     file = openFileDialog1.FileName;
                     Image loadedImage = Image.FromFile(file);
                     pictureBox1.Image = loadedImage;
-                    pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-                    pictureBox1.SendToBack();
+                    //pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                    //pictureBox1.SendToBack();
 
                     if (agregarZonas_btn.Text == "Guardar")
                     {
@@ -797,11 +811,16 @@ namespace FireSystemMonitor.Formularios
             form.ShowDialog();
             if (Program.TagName != "")
             {
-                if (Program.Gfigura == "Letra P")
+                if (Program.Gfigura == "Letra P") 
                 {
                     GenerarDetectorZona(200, 5, "NEW", Program.SizeInPX, Program.TagName, true, 0, Properties.Resources.transLetraPverde,
                         Program.Identificador, Program.Gdispositivo, Program.Gdispositivo, Program.Gfigura);
 
+                }
+                else if (Program.Gfigura == "Letra M")
+                {
+                    GenerarDetectorZona(200, 5, "NEW", Program.SizeInPX, Program.TagName, true, 0, Properties.Resources.transLetraMverde,
+                       Program.Identificador, Program.Gdispositivo, Program.Gdispositivo, Program.Gfigura);
                 }
                 else
                 {

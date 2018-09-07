@@ -62,7 +62,7 @@ namespace FireSystemMonitor.Formularios
                 });
                
             }
-            catch (ArgumentNullException ex)
+            catch (Exception ex)
             {
 
             }
@@ -702,6 +702,7 @@ namespace FireSystemMonitor.Formularios
                 color = Color.Transparent;
                 RefrescarTimer.Start();
                 LLenarFacpCB();
+                facp_cb.Text = Properties.Settings.Default.SelectedFacp;
                 ObtenerZonasHabilitadas();
                 UpdateZonaEstatus();
                 ObtenerUltimoEstadoFacp();
@@ -734,8 +735,8 @@ namespace FireSystemMonitor.Formularios
             try
             {
                 Program.Gventana = "Settings";
-                SuperUserLoginForm form = new SuperUserLoginForm();
-                form.ShowDialog();
+                //SuperUserLoginForm form = new SuperUserLoginForm();
+                //form.ShowDialog();
 
                 if (Program.Gventana == "Settings")
                 {
@@ -811,6 +812,8 @@ namespace FireSystemMonitor.Formularios
                 getIfModuleOnline();
                 ObtenerUltimoEstadoFacp();
                 ObtenerEstadoEvacuacionFacp();
+                Properties.Settings.Default.SelectedFacp = facp_cb.Text;
+                Properties.Settings.Default.Save();
             }
             catch (ArgumentNullException) { }
            
@@ -946,8 +949,25 @@ namespace FireSystemMonitor.Formularios
 
         private void Evac_Timer_Tick(object sender, EventArgs e)
         {
+
+            if (!Evac_Worker.IsBusy)
+            {
+                Evac_Worker.RunWorkerAsync();
+            }
+        }
+
+        private void Evac_Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
             Evac_Timer.Stop();
-            evac_lbl.Visible = !evac_lbl.Visible;
+            this.Invoke((MethodInvoker)delegate
+            {
+                evac_lbl.Visible = !evac_lbl.Visible;
+            });
+                
+        }
+
+        private void Evac_Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
             Evac_Timer.Start();
         }
     }

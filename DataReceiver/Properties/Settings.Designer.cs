@@ -26,24 +26,84 @@ namespace DataReceiver.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ConfiguracionSerial {
+        public string ConfiguracionSerial1 {
             get {
-                return ((string)(this["ConfiguracionSerial"]));
+                return ((string)(this["ConfiguracionSerial1"]));
             }
             set {
-                this["ConfiguracionSerial"] = value;
+                this["ConfiguracionSerial1"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int ID_FAPC {
+        public int ID_FAPC1 {
             get {
-                return ((int)(this["ID_FAPC"]));
+                return ((int)(this["ID_FAPC1"]));
             }
             set {
-                this["ID_FAPC"] = value;
+                this["ID_FAPC1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ID_FAPC2 {
+            get {
+                return ((int)(this["ID_FAPC2"]));
+            }
+            set {
+                this["ID_FAPC2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ID_FAPC3 {
+            get {
+                return ((int)(this["ID_FAPC3"]));
+            }
+            set {
+                this["ID_FAPC3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ConfiguracionSerial2 {
+            get {
+                return ((string)(this["ConfiguracionSerial2"]));
+            }
+            set {
+                this["ConfiguracionSerial2"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ConfiguracionSerial3 {
+            get {
+                return ((string)(this["ConfiguracionSerial3"]));
+            }
+            set {
+                this["ConfiguracionSerial3"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("MSSQLSERVER")]
+        public string SQLService {
+            get {
+                return ((string)(this["SQLService"]));
+            }
+            set {
+                this["SQLService"] = value;
             }
         }
     }

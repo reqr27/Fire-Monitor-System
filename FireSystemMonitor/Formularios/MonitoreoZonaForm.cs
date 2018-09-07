@@ -112,7 +112,7 @@ namespace FireSystemMonitor.Classes
                 pic.SizeMode = PictureBoxSizeMode.StretchImage;
                 pic.Dock = DockStyle.Fill;
                 pic.BringToFront();
-                this.Controls.Add(pic);
+                panel1.Controls.Add(pic);
                 
                 DataTable dt = new DataTable();
                 P.Id = idZona;
@@ -181,6 +181,12 @@ namespace FireSystemMonitor.Classes
                     if (figura == "Letra P")
                     {
                         GenerarDetectorZona(posx, posy, "OLD", sizepx, name, MoverDetector, idDetector, Properties.Resources.transLetraPverde,
+                        identificador, dispositivo, tipoDispositivo, figura);
+                    }
+
+                    else if (figura == "Letra M")
+                    {
+                        GenerarDetectorZona(posx, posy, "OLD", sizepx, name, MoverDetector, idDetector, Properties.Resources.transLetraMverde,
                         identificador, dispositivo, tipoDispositivo, figura);
                     }
                     else
@@ -258,7 +264,7 @@ namespace FireSystemMonitor.Classes
         public PictureBox FindPictureBox()
         {
             PictureBox pic = new PictureBox();
-            foreach (PictureBox control in this.Controls.OfType<PictureBox>())
+            foreach (PictureBox control in panel1.Controls.OfType<PictureBox>())
             {
                 if (control.Tag.ToString() == "ZONA PIC")
                 {
@@ -358,28 +364,28 @@ namespace FireSystemMonitor.Classes
                     pb.Image = null;
                     //pb.Refresh();
                 }
-                    
+
                 if (figura == "Círculo" || figura == "Cuadro")
                 {
 
                     if (estado == "OK")
                     {
                         pb.Image = Properties.Resources.DetectorOK;
-                        
-                       
+
+
                     }
                     else if (estado == "HEAT" || estado == "SMOKE" || estado == "PULL STATION" || estado == "MONITOR")
                     {
                         pb.Image = Properties.Resources.DetectorFuego;
-                       
-                       
+
+
                     }
 
                     else if (estado == "INVREP")
                     {
-                       
+
                         pb.Image = Properties.Resources.DetectorFalta;
-                        
+
                     }
 
                     else if (estado == "OPEN" || estado == "SHORT" || estado == "DIRTY1" || estado == "DIRTY2" || estado == "INV ID" || estado == "TEST F")
@@ -391,7 +397,34 @@ namespace FireSystemMonitor.Classes
                         pb.Image = Properties.Resources.DetectorNoLeido;
                     }
                 }
-                else
+
+                else if (figura == "Letra M")
+                {
+                    if (estado == "OK")
+                    {
+                        pb.Image = Properties.Resources.transLetraMverde;
+                    }
+                    else if (estado == "HEAT" || estado == "SMOKE" || estado == "PULL STATION" || estado == "MONITOR")
+                    {
+                        pb.Image = Properties.Resources.ModuloActivo;
+                    }
+
+                    else if (estado == "INVREP")
+                    {
+                        pb.Image = Properties.Resources.ModuloFalta;
+                    }
+
+                    else if (estado == "OPEN" || estado == "SHORT" || estado == "DIRTY1" || estado == "DIRTY2" || estado == "INV ID" || estado == "TEST F")
+                    {
+                        pb.Image = Properties.Resources.transLetraMamarilla;
+                    }
+                    else //no pudo ser leido
+                    {
+                        pb.Image = Properties.Resources.ModuloFalta;
+                    }
+                }
+
+                else // Letra P
                 {
                     if (estado == "OK")
                     {
@@ -407,7 +440,7 @@ namespace FireSystemMonitor.Classes
                         pb.Image = Properties.Resources.DetectorFalta;
                     }
 
-                    else if (estado == "OPEN" || estado == "SHORT" || estado == "DIRTY1" || estado == "DIRTY2" || estado == "INV ID" || estado== "TEST F")
+                    else if (estado == "OPEN" || estado == "SHORT" || estado == "DIRTY1" || estado == "DIRTY2" || estado == "INV ID" || estado == "TEST F")
                     {
                         pb.Image = Properties.Resources.transLetraPamarilla;
                     }
@@ -415,7 +448,7 @@ namespace FireSystemMonitor.Classes
                     {
                         pb.Image = Properties.Resources.PullFalta;
                     }
-                   // pb.Show();
+                    // pb.Show();
                     //pb.Load();
 
                 }
@@ -438,66 +471,70 @@ namespace FireSystemMonitor.Classes
 
         public void CambiarColorBorde()
         {
-            try
+            this.Invoke((MethodInvoker)delegate
             {
-                if (estadoDevice == "ALARM")
+                try
                 {
-                    if (!changeColor)
+                    if (estadoDevice == "ALARM")
                     {
-                        changeColor = !changeColor;
+                        if (!changeColor)
+                        {
+                            changeColor = !changeColor;
 
 
-                        panel3.BackColor = Rojo; //rojo
-                        NombreZona_lbl.ForeColor = Gray;
+                            panel3.BackColor = Rojo; //rojo
+                            NombreZona_lbl.ForeColor = Gray;
 
-                        panel2.BackColor = Rojo; //rojo
+                            panel2.BackColor = Rojo; //rojo
+                        }
+                        else
+                        {
+                            changeColor = !changeColor;
+                            panel3.BackColor = Gray;
+                            NombreZona_lbl.ForeColor = Rojo; //rojo
+
+                            panel2.BackColor = Gray;
+                        }
+                    }
+                    else if (estadoDevice == "WARNING")
+                    {
+                        if (!changeColor)
+                        {
+                            changeColor = !changeColor;
+
+
+                            panel3.BackColor = Amarillo; //amarillo
+                            NombreZona_lbl.ForeColor = Gray;
+
+                            panel2.BackColor = Amarillo;//amarillo
+                        }
+                        else
+                        {
+                            changeColor = !changeColor;
+                            panel3.BackColor = Gray;
+                            NombreZona_lbl.ForeColor = Amarillo; //amarillo
+
+                            panel2.BackColor = Gray;
+                        }
                     }
                     else
                     {
-                        changeColor = !changeColor;
-                        panel3.BackColor = Gray;
-                        NombreZona_lbl.ForeColor = Rojo; //rojo
+                        panel3.BackColor = Verde; ;
+                        NombreZona_lbl.ForeColor = Blanco;
 
                         panel2.BackColor = Gray;
+                        //border_timer.Stop();
                     }
                 }
-                else if (estadoDevice == "WARNING")
+                catch (ArgumentNullException ex)
                 {
-                    if (!changeColor)
-                    {
-                        changeColor = !changeColor;
 
-
-                        panel3.BackColor = Amarillo; //amarillo
-                        NombreZona_lbl.ForeColor = Gray;
-
-                        panel2.BackColor = Amarillo;//amarillo
-                    }
-                    else
-                    {
-                        changeColor = !changeColor;
-                        panel3.BackColor = Gray;
-                        NombreZona_lbl.ForeColor = Amarillo; //amarillo
-
-                        panel2.BackColor = Gray;
-                    }
                 }
-                else
-                {
-                    panel3.BackColor = Verde; ;
-                    NombreZona_lbl.ForeColor = Blanco;
+            });
 
-                    panel2.BackColor = Gray;
-                    //border_timer.Stop();
-                }
-            }
-            catch (ArgumentNullException ex)
-            {
-
-            }
+            
             
         }
-
 
         public void EncontrarDetectores(List<PictureBox> panels)
         {
@@ -515,7 +552,6 @@ namespace FireSystemMonitor.Classes
             });
            
         }
-
 
         public void EliminarTodosDetectores()
         {
@@ -540,11 +576,11 @@ namespace FireSystemMonitor.Classes
         {
             try
             {
-                foreach (PictureBox control in this.Controls.OfType<PictureBox>())
+                foreach (PictureBox control in panel1.Controls.OfType<PictureBox>())
                 {
                     if (control.Tag.ToString() == "ZONA PIC")
                     {
-                        this.Controls.Remove(control);
+                        panel1.Controls.Remove(control);
                         control.Dispose();
                     }
                 }
@@ -906,8 +942,23 @@ namespace FireSystemMonitor.Classes
 
         private void Evac_timer_Tick(object sender, EventArgs e)
         {
+            if (!Evac_Worker.IsBusy)
+            {
+                Evac_Worker.RunWorkerAsync();
+            }
+        }
+
+        private void Evac_Worker_DoWork(object sender, DoWorkEventArgs e)
+        {
             Evac_timer.Stop();
-            evac_lbl.Visible = !evac_lbl.Visible;
+            this.Invoke((MethodInvoker)delegate
+            {
+                evac_lbl.Visible = !evac_lbl.Visible;
+            });
+        }
+
+        private void Evac_Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
             Evac_timer.Start();
         }
     }

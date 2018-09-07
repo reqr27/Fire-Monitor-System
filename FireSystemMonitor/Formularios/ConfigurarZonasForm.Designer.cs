@@ -68,22 +68,11 @@
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.workArea_panel = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.AgregarDetector_btn = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -94,11 +83,6 @@
             this.workArea_panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -575,9 +559,13 @@
             this.workArea_panel.Size = new System.Drawing.Size(993, 710);
             this.workArea_panel.TabIndex = 52;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pictureBox1.BackColor = System.Drawing.Color.Gray;
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Image = global::FireSystemMonitor.Properties.Resources.add_image_256;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
@@ -586,156 +574,10 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 78;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Tag = "\"Pic\"";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.LightGray;
-            this.panel2.Controls.Add(this.AgregarDetector_btn);
-            this.panel2.Controls.Add(this.label7);
-            this.panel2.Controls.Add(this.label8);
-            this.panel2.Controls.Add(this.pictureBox6);
-            this.panel2.Controls.Add(this.pictureBox2);
-            this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.label11);
-            this.panel2.Controls.Add(this.pictureBox5);
-            this.panel2.Controls.Add(this.label12);
-            this.panel2.Controls.Add(this.pictureBox3);
-            this.panel2.Controls.Add(this.label13);
-            this.panel2.Controls.Add(this.pictureBox4);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 668);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(993, 42);
-            this.panel2.TabIndex = 77;
-            // 
-            // label7
-            // 
-            this.label7.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(586, 14);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(140, 13);
-            this.label7.TabIndex = 9;
-            this.label7.Text = "ERROR AL LEER ESTADO";
-            this.label7.Visible = false;
-            // 
-            // label8
-            // 
-            this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(-65, 11);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(64, 16);
-            this.label8.TabIndex = 75;
-            this.label8.Text = "Leyenda:";
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox6.Image = global::FireSystemMonitor.Properties.Resources.DetectorNoLeido;
-            this.pictureBox6.Location = new System.Drawing.Point(553, 8);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(27, 25);
-            this.pictureBox6.TabIndex = 8;
-            this.pictureBox6.TabStop = false;
-            this.pictureBox6.Visible = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox2.Image = global::FireSystemMonitor.Properties.Resources.DetectorOK;
-            this.pictureBox2.Location = new System.Drawing.Point(22, 8);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(27, 25);
-            this.pictureBox2.TabIndex = 0;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.Visible = false;
-            // 
-            // label10
-            // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(448, 14);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(40, 13);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "FALTA";
-            this.label10.Visible = false;
-            // 
-            // label11
-            // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(55, 14);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(22, 13);
-            this.label11.TabIndex = 4;
-            this.label11.Text = "OK";
-            this.label11.Visible = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox5.Image = global::FireSystemMonitor.Properties.Resources.DetectorFalta;
-            this.pictureBox5.Location = new System.Drawing.Point(415, 8);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(27, 25);
-            this.pictureBox5.TabIndex = 3;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Visible = false;
-            // 
-            // label12
-            // 
-            this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(305, 14);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(60, 13);
-            this.label12.TabIndex = 6;
-            this.label12.Text = "WARNING";
-            this.label12.Visible = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox3.Image = global::FireSystemMonitor.Properties.Resources.DetectorFuego;
-            this.pictureBox3.Location = new System.Drawing.Point(124, 8);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(27, 25);
-            this.pictureBox3.TabIndex = 1;
-            this.pictureBox3.TabStop = false;
-            this.pictureBox3.Visible = false;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(157, 14);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(51, 13);
-            this.label13.TabIndex = 5;
-            this.label13.Text = "ALARMA";
-            this.label13.Visible = false;
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox4.Image = global::FireSystemMonitor.Properties.Resources.DetectorWarning;
-            this.pictureBox4.Location = new System.Drawing.Point(272, 8);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(27, 25);
-            this.pictureBox4.TabIndex = 2;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Visible = false;
-            // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // AgregarDetector_btn
             // 
+            this.AgregarDetector_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AgregarDetector_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(72)))), ((int)(((byte)(84)))), ((int)(((byte)(96)))));
             this.AgregarDetector_btn.FlatAppearance.BorderSize = 0;
             this.AgregarDetector_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -746,12 +588,22 @@
             this.AgregarDetector_btn.Name = "AgregarDetector_btn";
             this.AgregarDetector_btn.Size = new System.Drawing.Size(117, 36);
             this.AgregarDetector_btn.TabIndex = 78;
-            this.AgregarDetector_btn.Text = "Añadir Detector";
+            this.AgregarDetector_btn.Text = "Añadir Dispositivo";
             this.AgregarDetector_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.AgregarDetector_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.AgregarDetector_btn.UseVisualStyleBackColor = false;
             this.AgregarDetector_btn.Visible = false;
             this.AgregarDetector_btn.Click += new System.EventHandler(this.AgregarDetector_btn_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.Controls.Add(this.AgregarDetector_btn);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 668);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(993, 42);
+            this.panel2.TabIndex = 77;
             // 
             // ConfigurarZonasForm
             // 
@@ -778,12 +630,6 @@
             this.workArea_panel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -826,20 +672,9 @@
         private System.Windows.Forms.Panel workArea_panel;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button AgregarDetector_btn;
     }
 }

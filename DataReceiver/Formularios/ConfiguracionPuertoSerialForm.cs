@@ -12,6 +12,7 @@ namespace DataReceiver.Formularios
 {
     public partial class ConfiguracionPuertoSerialForm : Form
     {
+        int activeWindow = Program.GnumberOfActiveWindows;
         int idEvento;
         Procedimientos P = new Procedimientos();
         public ConfiguracionPuertoSerialForm()
@@ -107,8 +108,24 @@ namespace DataReceiver.Formularios
 
         private void ConfiguracionPuertoSerialForm_Load(object sender, EventArgs e)
         {
+            label11.Text = label11.Text + " - #" + activeWindow;
+
             LlenarDtgPuertoSerial();
-            Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial;
+            if(activeWindow == 1)
+            {
+                Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial1;
+
+            }
+            else if (activeWindow == 2)
+            {
+                Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial2;
+
+            }
+            else
+            {
+                Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial3;
+
+            }
             ObtenerListadoPuertos();
         }
 
@@ -116,15 +133,51 @@ namespace DataReceiver.Formularios
         {
             if(serialPort_dtg.Rows.Count > 0)
             {
-                Properties.Settings.Default.ConfiguracionSerial = serialPort_dtg.CurrentRow.Cells[1].Value.ToString();
-                Properties.Settings.Default.Save();
-                Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial;
-                Program.gCOM = serialPort_dtg.CurrentRow.Cells[2].Value.ToString();
-                Program.gBaudRate = Convert.ToInt32(serialPort_dtg.CurrentRow.Cells[3].Value.ToString());
-                Program.gDataBits = serialPort_dtg.CurrentRow.Cells[4].Value.ToString();
-                Program.gParity= serialPort_dtg.CurrentRow.Cells[5].Value.ToString();
-                Program.gStopBit = serialPort_dtg.CurrentRow.Cells[6].Value.ToString();
-                Program.gNewLine = serialPort_dtg.CurrentRow.Cells[7].Value.ToString();
+                if(activeWindow == 1)
+                {
+                    Properties.Settings.Default.ConfiguracionSerial1 = serialPort_dtg.CurrentRow.Cells[1].Value.ToString();
+                    Properties.Settings.Default.Save();
+                    Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial1;
+
+                    Program.gCOM1 = serialPort_dtg.CurrentRow.Cells[2].Value.ToString();
+                    Program.gBaudRate1 = Convert.ToInt32(serialPort_dtg.CurrentRow.Cells[3].Value.ToString());
+                    Program.gDataBits1 = serialPort_dtg.CurrentRow.Cells[4].Value.ToString();
+                    Program.gParity1 = serialPort_dtg.CurrentRow.Cells[5].Value.ToString();
+                    Program.gStopBit1 = serialPort_dtg.CurrentRow.Cells[6].Value.ToString();
+                    Program.gNewLine1 = serialPort_dtg.CurrentRow.Cells[7].Value.ToString();
+                }
+                else if (activeWindow == 2)
+                {
+                    Properties.Settings.Default.ConfiguracionSerial2 = serialPort_dtg.CurrentRow.Cells[1].Value.ToString();
+                    Properties.Settings.Default.Save();
+                    Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial2;
+                    Program.gCOM2 = serialPort_dtg.CurrentRow.Cells[2].Value.ToString();
+                    Program.gBaudRate2 = Convert.ToInt32(serialPort_dtg.CurrentRow.Cells[3].Value.ToString());
+                    Program.gDataBits2 = serialPort_dtg.CurrentRow.Cells[4].Value.ToString();
+                    Program.gParity2 = serialPort_dtg.CurrentRow.Cells[5].Value.ToString();
+                    Program.gStopBit2 = serialPort_dtg.CurrentRow.Cells[6].Value.ToString();
+                    Program.gNewLine2 = serialPort_dtg.CurrentRow.Cells[7].Value.ToString();
+                }
+
+                else
+                {
+                    Properties.Settings.Default.ConfiguracionSerial3 = serialPort_dtg.CurrentRow.Cells[1].Value.ToString();
+                    Properties.Settings.Default.Save();
+                    Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial3;
+                    
+                    Program.gCOM3 = serialPort_dtg.CurrentRow.Cells[2].Value.ToString();
+                    Program.gBaudRate3 = Convert.ToInt32(serialPort_dtg.CurrentRow.Cells[3].Value.ToString());
+                    Program.gDataBits3 = serialPort_dtg.CurrentRow.Cells[4].Value.ToString();
+                    Program.gParity3 = serialPort_dtg.CurrentRow.Cells[5].Value.ToString();
+                    Program.gStopBit3 = serialPort_dtg.CurrentRow.Cells[6].Value.ToString();
+                    Program.gNewLine3 = serialPort_dtg.CurrentRow.Cells[7].Value.ToString();
+                    
+
+                    
+
+                }
+                MessageBox.Show("Cambio realizado");
+
             }
 
         }
@@ -153,7 +206,21 @@ namespace DataReceiver.Formularios
                
                 if(msj == "1")
                 {
-                    Properties.Settings.Default.ConfiguracionSerial = identificador_txt.Text;
+                    if(activeWindow == 1)
+                    {
+                        Properties.Settings.Default.ConfiguracionSerial1 = identificador_txt.Text;
+                    }
+                    else if(activeWindow == 2)
+                    {
+                        Properties.Settings.Default.ConfiguracionSerial2 = identificador_txt.Text;
+
+                    }
+                    else
+                    {
+                        Properties.Settings.Default.ConfiguracionSerial3 = identificador_txt.Text;
+                        
+                    }
+
                     Properties.Settings.Default.Save();
                     Config_lbl.Text = identificador_txt.Text;
 

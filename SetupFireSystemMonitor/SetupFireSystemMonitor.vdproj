@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:SetupFireSystemMonitor"
+"ProjectName" = "8:MultiserviciosFireMonitorSysInstaller"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -58,13 +58,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_7B5EBBA06DD44A9EAE2EE99762D61F49"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_355F97992926A96B3C64B8E14D6A0F8E"
+        "OwnerKey" = "8:_2C5FF6746F01A5EA0FCB61844465B7DC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -76,7 +70,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2C5FF6746F01A5EA0FCB61844465B7DC"
+        "OwnerKey" = "8:_355F97992926A96B3C64B8E14D6A0F8E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_7B5EBBA06DD44A9EAE2EE99762D61F49"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -97,6 +97,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -113,6 +121,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -149,11 +165,6 @@
             "AssemblyAsmDisplayName" = "8:Classes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_238C89ACA420D04AD16E573A668EB6BA"
-                    {
-                    "Name" = "8:Classes.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Classes.dll"
             "TargetName" = "8:"
@@ -180,11 +191,6 @@
             "AssemblyAsmDisplayName" = "8:Microsoft.VisualBasic.PowerPacks, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_2C4519AAD62C1B75417EB62DCA7090A8"
-                    {
-                    "Name" = "8:Microsoft.VisualBasic.PowerPacks.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Microsoft.VisualBasic.PowerPacks.dll"
             "TargetName" = "8:"
@@ -211,11 +217,6 @@
             "AssemblyAsmDisplayName" = "8:System.Net.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"
                 "ScatterAssemblies"
                 {
-                    "_2C5FF6746F01A5EA0FCB61844465B7DC"
-                    {
-                    "Name" = "8:System.Net.Http.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:System.Net.Http.dll"
             "TargetName" = "8:"
@@ -242,11 +243,6 @@
             "AssemblyAsmDisplayName" = "8:Control.Draggable, Version=1.0.5049.269, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_355F97992926A96B3C64B8E14D6A0F8E"
-                    {
-                    "Name" = "8:Control.Draggable.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Control.Draggable.dll"
             "TargetName" = "8:"
@@ -341,7 +337,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:Fire System Monitor"
+        "ProductName" = "8:Fire Monitor System"
         "ProductCode" = "8:{3B8B516C-F74A-4F52-A6C4-183039B8AC0B}"
         "PackageCode" = "8:{F781A07C-96D2-41DC-893A-6A2D29FD8648}"
         "UpgradeCode" = "8:{5A685734-A5C2-4176-975B-89F5140F1B85}"
@@ -354,7 +350,7 @@
         "Manufacturer" = "8:MULTISERVICIOS LEA"
         "ARPHELPTELEPHONE" = "8:809-319-8309"
         "ARPHELPLINK" = "8:www.multiservicioslea.com"
-        "Title" = "8:Fire System Monitor Installer"
+        "Title" = "8:Fire Monitor System Installer"
         "Subject" = "8:"
         "ARPCONTACT" = "8:MULTISERVICIOS LEA"
         "Keywords" = "8:"

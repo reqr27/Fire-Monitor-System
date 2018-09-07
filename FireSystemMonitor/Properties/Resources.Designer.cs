@@ -433,6 +433,26 @@ namespace FireSystemMonitor.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ModuloActivo {
+            get {
+                object obj = ResourceManager.GetObject("ModuloActivo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ModuloFalta {
+            get {
+                object obj = ResourceManager.GetObject("ModuloFalta", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap next_24 {
             get {
                 object obj = ResourceManager.GetObject("next-24", resourceCulture);
@@ -596,6 +616,26 @@ namespace FireSystemMonitor.Properties {
         internal static System.Drawing.Bitmap sinchronize_24 {
             get {
                 object obj = ResourceManager.GetObject("sinchronize-24", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap transLetraMamarilla {
+            get {
+                object obj = ResourceManager.GetObject("transLetraMamarilla", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap transLetraMverde {
+            get {
+                object obj = ResourceManager.GetObject("transLetraMverde", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -784,6 +784,14 @@ namespace Classes
             return dt = C.Listado("OBTENER_ESTADO_FACP", lst);
         }
 
+        public DataTable ObtenerEstadoEmailFacp()
+        {
+            DataTable dt = new DataTable();
+            List<clsParametros> lst = new List<clsParametros>();
+            lst.Add(new clsParametros("@idFacp", MidFacp));
+            return dt = C.Listado("OBTENER_ESTADO_EMAIL_FACP", lst);
+        }
+
 
         public string ActualizarEstadoDetector()
         {

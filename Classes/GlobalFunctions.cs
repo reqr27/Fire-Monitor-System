@@ -5,11 +5,22 @@ using System.Linq;
 using System.Management;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.ServiceProcess;
 namespace Classes
 {
+    
     public class GlobalFunctions
     {
+        public string Company = "ELECTRO SOLUCIONES FERNANDEZ CARDENA";
+        public string DevelopedBy = "Contacto: Román Fernández";
+        public string Tel = "Teléfono: 809-889-5379";
+        public string WebPage = "";
+
+        //public string Company = "MULTISERVICIOS LEA";
+        //public string DevelopedBy = "Desarrollado Por Multiservicios LEA";
+        //public string Tel = "Teléfono: 809-341-4429";
+        //public string WebPage = "www.multiservicioslea.com";
+
         public string ValidarCampoString(string[] valores)
         {
             string msj = "OK";
@@ -294,6 +305,50 @@ namespace Classes
             }
             return Result;
         }
+
+        public static void StartSQLService()
+        {
+            try
+            {
+                System.Diagnostics.Process process = new System.Diagnostics.Process();
+                process.StartInfo.FileName = "net start \"Sql Server (MSSQLSERVER)\"";
+                process.Start();
+            } catch(Exception ex)
+            {
+               
+            }
+        }
+
+        public string CheckServiceRunning(string service)
+        {
+           
+            ServiceController sc = new ServiceController(service);
+
+            switch (sc.Status)
+            {
+                case ServiceControllerStatus.Running:
+                    return "Running";
+                case ServiceControllerStatus.Stopped:
+                    try
+                    {
+                        sc.Start();
+                    }
+                    catch { }
+                   
+                    return "Stopped";
+                case ServiceControllerStatus.Paused:
+                    return "Paused";
+                case ServiceControllerStatus.StopPending:
+                    return "Stopping";
+                case ServiceControllerStatus.StartPending:
+                    return "Starting";
+                default:
+                    return "Status Changing";
+            }
+        }
+
+
+
     }
 
 }

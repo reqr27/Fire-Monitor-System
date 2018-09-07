@@ -14,11 +14,14 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Net.Mail;
 using System.Net;
+using System.IO;
+using System.Diagnostics;
 
 namespace DataReceiver
 {
     public partial class DataReceiver : Form
     {
+        int activeWindow = Program.GtotalFormsOpened;
         GlobalFunctions GF = new GlobalFunctions();
         string dataRead = "";
         int idFacpConfigurado;
@@ -27,6 +30,15 @@ namespace DataReceiver
         string NombreConfigPuertoSerial;
         int totalReads = 0;
         delegate void SetTextCallback(string text);
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
         public DataReceiver()
         {
             InitializeComponent();
@@ -38,7 +50,18 @@ namespace DataReceiver
         public void GetFACP()
         {
             DataTable dt = new DataTable();
-            idFacpConfigurado = Properties.Settings.Default.ID_FAPC;
+            if(activeWindow == 1)
+            {
+                idFacpConfigurado = Properties.Settings.Default.ID_FAPC1;
+            }
+            else if (activeWindow == 2)
+            {
+                idFacpConfigurado = Properties.Settings.Default.ID_FAPC2;
+            }
+            else
+            {
+                idFacpConfigurado = Properties.Settings.Default.ID_FAPC3;
+            }
             P.ID_FACP = idFacpConfigurado;
             dt = P.ObtenerNombreFacp();
             if(dt.Rows.Count > 0)
@@ -62,87 +85,261 @@ namespace DataReceiver
 
         public void ConnectSerialPort()
         {
-           
-            Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial;
-            if (serialPort1.IsOpen)
+            if(activeWindow == 1)
             {
-                estatus_txt.Text = "Online";
-                P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
-                string msj = P.ActualizarFechaOnlineFacp();
+                Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial1;
+                if (serialPort1.IsOpen)
+                {
+                    estatus_txt.Text = "Online";
+                    P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
+                    string msj = P.ActualizarFechaOnlineFacp();
 
-            }
-            else
-            {
-                
-                serialPort1.DtrEnable = true;
-                serialPort1.ReadBufferSize = 1048576;
-                serialPort1.BaudRate = Program.gBaudRate;
-                serialPort1.PortName = Program.gCOM;
-                if(Program.gParity == "None")
-                {
-                    serialPort1.Parity = System.IO.Ports.Parity.None;
-                }
-                else if (Program.gParity == "Even")
-                {
-                    serialPort1.Parity = System.IO.Ports.Parity.Even;
-                }
-
-                else // odd
-                {
-                    serialPort1.Parity = System.IO.Ports.Parity.Odd;
-                }
-                if(Program.gDataBits == "7")
-                {
-                    serialPort1.DataBits = 7;
                 }
                 else
                 {
-                    serialPort1.DataBits = 8;
-                }
 
-                if (Program.gStopBit == "None")
-                {
-                    serialPort1.StopBits = System.IO.Ports.StopBits.None;
-                }
-                else if (Program.gStopBit == "1")
-                {
-                    serialPort1.StopBits = System.IO.Ports.StopBits.One;
-
-                }
-
-                else if (Program.gStopBit == "1.5")
-                {
-                    serialPort1.StopBits = System.IO.Ports.StopBits.OnePointFive;
-
-                }
-
-                else
-                {
-                    serialPort1.StopBits = System.IO.Ports.StopBits.Two;
-                }
-                
-                serialPort1.NewLine = Program.gNewLine;
-
-                try
-                {
-                    serialPort1.Open();
-                    if (serialPort1.IsOpen)
+                    serialPort1.DtrEnable = true;
+                    serialPort1.ReadBufferSize = 1048576;
+                    serialPort1.BaudRate = Program.gBaudRate1;
+                    serialPort1.PortName = Program.gCOM1;
+                    if (Program.gParity1 == "None")
                     {
-                       estatus_txt.Text = "Online";
-                       P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
-                       string msj = P.ActualizarFechaOnlineFacp();
+                        serialPort1.Parity = System.IO.Ports.Parity.None;
+                    }
+                    else if (Program.gParity1 == "Even")
+                    {
+                        serialPort1.Parity = System.IO.Ports.Parity.Even;
+                    }
+
+                    else // odd
+                    {
+                        serialPort1.Parity = System.IO.Ports.Parity.Odd;
+                    }
+                    if (Program.gDataBits1 == "7")
+                    {
+                        serialPort1.DataBits = 7;
                     }
                     else
+                    {
+                        serialPort1.DataBits = 8;
+                    }
+
+                    if (Program.gStopBit1 == "None")
+                    {
+                        serialPort1.StopBits = System.IO.Ports.StopBits.None;
+                    }
+                    else if (Program.gStopBit1 == "1")
+                    {
+                        serialPort1.StopBits = System.IO.Ports.StopBits.One;
+
+                    }
+
+                    else if (Program.gStopBit1 == "1.5")
+                    {
+                        serialPort1.StopBits = System.IO.Ports.StopBits.OnePointFive;
+
+                    }
+
+                    else
+                    {
+                        serialPort1.StopBits = System.IO.Ports.StopBits.Two;
+                    }
+
+                    serialPort1.NewLine = Program.gNewLine1;
+
+                    try
+                    {
+                        serialPort1.Open();
+                        if (serialPort1.IsOpen)
+                        {
+                            estatus_txt.Text = "Online";
+                            P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
+                            string msj = P.ActualizarFechaOnlineFacp();
+                        }
+                        else
+                        {
+                            estatus_txt.Text = "Offline";
+                        }
+                    }
+
+                    catch (Exception ex)
                     {
                         estatus_txt.Text = "Offline";
                     }
                 }
+            }
 
-                catch (Exception ex)
+            else if (activeWindow == 2)
+            {
+                Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial2;
+                if (serialPort1.IsOpen)
                 {
-                    estatus_txt.Text = "Offline";
+                    estatus_txt.Text = "Online";
+                    P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
+                    string msj = P.ActualizarFechaOnlineFacp();
+
+                }
+                else
+                {
+
+                    serialPort1.DtrEnable = true;
+                    serialPort1.ReadBufferSize = 1048576;
+                    serialPort1.BaudRate = Program.gBaudRate2;
+                    serialPort1.PortName = Program.gCOM2;
+                    if (Program.gParity1 == "None")
+                    {
+                        serialPort1.Parity = System.IO.Ports.Parity.None;
+                    }
+                    else if (Program.gParity2 == "Even")
+                    {
+                        serialPort1.Parity = System.IO.Ports.Parity.Even;
+                    }
+
+                    else // odd
+                    {
+                        serialPort1.Parity = System.IO.Ports.Parity.Odd;
+                    }
+                    if (Program.gDataBits2 == "7")
+                    {
+                        serialPort1.DataBits = 7;
+                    }
+                    else
+                    {
+                        serialPort1.DataBits = 8;
+                    }
+
+                    if (Program.gStopBit2 == "None")
+                    {
+                        serialPort1.StopBits = System.IO.Ports.StopBits.None;
+                    }
+                    else if (Program.gStopBit2 == "1")
+                    {
+                        serialPort1.StopBits = System.IO.Ports.StopBits.One;
+
+                    }
+
+                    else if (Program.gStopBit2 == "1.5")
+                    {
+                        serialPort1.StopBits = System.IO.Ports.StopBits.OnePointFive;
+
+                    }
+
+                    else
+                    {
+                        serialPort1.StopBits = System.IO.Ports.StopBits.Two;
+                    }
+
+                    serialPort1.NewLine = Program.gNewLine2;
+
+                    try
+                    {
+                        serialPort1.Open();
+                        if (serialPort1.IsOpen)
+                        {
+                            estatus_txt.Text = "Online";
+                            P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
+                            string msj = P.ActualizarFechaOnlineFacp();
+                        }
+                        else
+                        {
+                            estatus_txt.Text = "Offline";
+                        }
+                    }
+
+                    catch (Exception ex)
+                    {
+                        estatus_txt.Text = "Offline";
+                    }
                 }
             }
+
+            else
+            {
+                Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial3;
+                if (serialPort1.IsOpen)
+                {
+                    estatus_txt.Text = "Online";
+                    P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
+                    string msj = P.ActualizarFechaOnlineFacp();
+
+                }
+                else
+                {
+
+                    serialPort1.DtrEnable = true;
+                    serialPort1.ReadBufferSize = 1048576;
+                    serialPort1.BaudRate = Program.gBaudRate3;
+                    serialPort1.PortName = Program.gCOM3;
+                    if (Program.gParity1 == "None")
+                    {
+                        serialPort1.Parity = System.IO.Ports.Parity.None;
+                    }
+                    else if (Program.gParity3 == "Even")
+                    {
+                        serialPort1.Parity = System.IO.Ports.Parity.Even;
+                    }
+
+                    else // odd
+                    {
+                        serialPort1.Parity = System.IO.Ports.Parity.Odd;
+                    }
+                    if (Program.gDataBits3 == "7")
+                    {
+                        serialPort1.DataBits = 7;
+                    }
+                    else
+                    {
+                        serialPort1.DataBits = 8;
+                    }
+
+                    if (Program.gStopBit3 == "None")
+                    {
+                        serialPort1.StopBits = System.IO.Ports.StopBits.None;
+                    }
+                    else if (Program.gStopBit3 == "1")
+                    {
+                        serialPort1.StopBits = System.IO.Ports.StopBits.One;
+
+                    }
+
+                    else if (Program.gStopBit3 == "1.5")
+                    {
+                        serialPort1.StopBits = System.IO.Ports.StopBits.OnePointFive;
+
+                    }
+
+                    else
+                    {
+                        serialPort1.StopBits = System.IO.Ports.StopBits.Two;
+                    }
+
+                    serialPort1.NewLine = Program.gNewLine3;
+
+                    try
+                    {
+                        serialPort1.Open();
+                        if (serialPort1.IsOpen)
+                        {
+                            estatus_txt.Text = "Online";
+                            P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
+                            string msj = P.ActualizarFechaOnlineFacp();
+                        }
+                        else
+                        {
+                            estatus_txt.Text = "Offline";
+                        }
+                    }
+
+                    catch (Exception ex)
+                    {
+                        estatus_txt.Text = "Offline";
+                    }
+                }
+            }
+
+
+
+
         }
 
         public void SetText(string text)
@@ -174,19 +371,51 @@ namespace DataReceiver
             DataTable dt = new DataTable();
             P.Nombre = NombreConfigPuertoSerial;
             dt = P.ObtenerConfiguracionesSerialEspecifica();
-            if(dt.Rows.Count > 0)
+            if (dt.Rows.Count > 0)
             {
-                Properties.Settings.Default.ConfiguracionSerial = dt.Rows[0][0].ToString();
-                Properties.Settings.Default.Save();
 
-                NombreConfigPuertoSerial = Properties.Settings.Default.ConfiguracionSerial;
-                Program.gCOM = dt.Rows[0][1].ToString();
-                Program.gBaudRate = Convert.ToInt32(dt.Rows[0][2].ToString());
-                Program.gDataBits = dt.Rows[0][3].ToString();
-                Program.gParity = dt.Rows[0][4].ToString();
-                Program.gStopBit = dt.Rows[0][5].ToString();
-                Program.gNewLine = dt.Rows[0][6].ToString();
-               //Program.gFacp =  dt.Rows[0][7].ToString();
+
+                if (activeWindow == 1)
+                {
+                    Properties.Settings.Default.ConfiguracionSerial1 = dt.Rows[0][0].ToString();
+                    Properties.Settings.Default.Save();
+
+                    NombreConfigPuertoSerial = Properties.Settings.Default.ConfiguracionSerial1;
+                    Program.gCOM1 = dt.Rows[0][1].ToString();
+                    Program.gBaudRate1 = Convert.ToInt32(dt.Rows[0][2].ToString());
+                    Program.gDataBits1 = dt.Rows[0][3].ToString();
+                    Program.gParity1 = dt.Rows[0][4].ToString();
+                    Program.gStopBit1 = dt.Rows[0][5].ToString();
+                    Program.gNewLine1 = dt.Rows[0][6].ToString();
+                }
+                else if (activeWindow == 2)
+                {
+                    Properties.Settings.Default.ConfiguracionSerial2 = dt.Rows[0][0].ToString();
+                    Properties.Settings.Default.Save();
+
+                    NombreConfigPuertoSerial = Properties.Settings.Default.ConfiguracionSerial2;
+                    Program.gCOM2 = dt.Rows[0][1].ToString();
+                    Program.gBaudRate2 = Convert.ToInt32(dt.Rows[0][2].ToString());
+                    Program.gDataBits2 = dt.Rows[0][3].ToString();
+                    Program.gParity2 = dt.Rows[0][4].ToString();
+                    Program.gStopBit2 = dt.Rows[0][5].ToString();
+                    Program.gNewLine2 = dt.Rows[0][6].ToString();
+                }
+                else
+                {
+                    Properties.Settings.Default.ConfiguracionSerial3 = dt.Rows[0][0].ToString();
+                    Properties.Settings.Default.Save();
+
+                    NombreConfigPuertoSerial = Properties.Settings.Default.ConfiguracionSerial3;
+                    Program.gCOM3 = dt.Rows[0][1].ToString();
+                    Program.gBaudRate3 = Convert.ToInt32(dt.Rows[0][2].ToString());
+                    Program.gDataBits3 = dt.Rows[0][3].ToString();
+                    Program.gParity3 = dt.Rows[0][4].ToString();
+                    Program.gStopBit3 = dt.Rows[0][5].ToString();
+                    Program.gNewLine3 = dt.Rows[0][6].ToString();
+                }
+
+                //Program.gFacp =  dt.Rows[0][7].ToString();
             }
         }
 
@@ -532,6 +761,7 @@ namespace DataReceiver
                     }
 
                     message.Subject = titulo;
+                    message.IsBodyHtml  = true;
                     message.Body = body;
                     if(sendMailConfirmation != "OK")
                     {
@@ -540,6 +770,326 @@ namespace DataReceiver
                     //Console.WriteLine(body);
                     
                     
+                    //MessageBox.Show("The mail was sent successfully!");
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show("Error " + ex.Message);
+                }
+            }
+
+
+
+        }
+
+        public void SendHtmlMail(string titulo)
+        {
+            int puerto = 0;
+            string host = "";
+            string emailRemitente = "";
+            string pass = "";
+            int idFacp = Convert.ToInt32(facp_cb.SelectedValue);
+            DataTable dt = new DataTable();
+            DataTable dtEmails = new DataTable();
+            dtEmails = P.ObtenerEmails();
+            dt = P.ObtenerConfigRemitenteEmail();
+            if (dt.Rows.Count > 0 && dtEmails.Rows.Count > 0)
+            {
+                puerto = Convert.ToInt32(dt.Rows[0][1].ToString());
+                host = dt.Rows[0][2].ToString();
+                emailRemitente = dt.Rows[0][3].ToString();
+                pass = dt.Rows[0][4].ToString();
+
+
+                try
+                {
+
+
+                    MailMessage message = new MailMessage();
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Port = puerto;
+                    smtp.Host = host;
+                    smtp.EnableSsl = true;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential(emailRemitente, pass);
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                    message.From = new MailAddress(emailRemitente);
+
+                    for (int i = 0; i < dtEmails.Rows.Count; i++)
+                    {
+                        string ema = dtEmails.Rows[i][2].ToString();
+                        message.To.Add(new MailAddress(dtEmails.Rows[i][2].ToString()));
+                    }
+                    string sendMailConfirmation = "";
+                    string body = "";
+                    P.ID_FACP = idFacp;
+                    //body = "< style >table, th, td {border: 1px solid black; border - collapse: collapse;}</ style >";
+                    DataTable dtestadoFacp = new DataTable();
+                    dtestadoFacp = P.ObtenerEstadoEmailFacp();
+                    if (dtestadoFacp.Rows.Count > 0)
+                    {
+                        sendMailConfirmation = dtestadoFacp.Rows[0][0].ToString();
+                        body += "<h1 style=color:blue;> <u>INFORME PANEL:  " + facp_cb.Text + "<u></h1><br>" +
+                            "<h3 style=color:blue;>ESTADOS GENERALES</h3><br>" +
+                             "<table  border=1; style=width:100%; align=center > " +
+                                "<tr >" +
+                                    "<th style=color:orange; align=center><h4>ESTADOS</h4></th>" +
+                                "</tr>";
+                        string[] estadosArray = dtestadoFacp.Rows[0][0].ToString().Trim().Split('\r');
+                        for (int y = 0; y < estadosArray.Length; y++)
+                        {
+                            body += "<tr>" +
+                                        "<td>" + estadosArray[y].ToString() +
+                                        "</td>" +
+                                    "</tr>";
+                        }
+                               
+                         body+= "</table> <br><br>" +
+
+
+                            " <h3 style=color:blue;> <u>ESTADOS DISPOSITIVOS <u></h3><br>";
+                    }
+                    else
+                    {
+
+                        body += "<h3 style=color:blue;> <u>MENSAJE GENERAL PANEL: " + facp_cb.Text + "<u></h3><br>" +
+                             "<table style=width:100%;> " +
+                                "<tr >" +
+                                    "<th style=color:orange; align=center>ESTADOS</th>" +
+                                "</tr>" +
+                                "<tr>" +
+                                    "<td>" + "OK" +
+                                    "</td>" +
+                                "</tr>" +
+                             "</table> <br><br>" +
+
+
+                            " <h3 style=color:blue;> <u>ESTADOS DISPOSITIVOS<u></h3><br>";
+                        sendMailConfirmation = "OK";
+                    }
+
+                    body += "<table border=1; style=width:100%; align:center>" +
+                                  "<tr>" +
+                                    "<th style=color:orange> NOMBRE" +
+                                    "</th>" +
+                                    "<th style=color:orange> IDENTIFICADOR" +
+                                    "</th>" +
+                                    "<th style=color:orange> ESTADO" +
+                                    "</th>" +
+                                     "<th style=color:orange> TIPO" +
+                                    "</th>" +
+                                    "<th style=color:orange> CATEGORIA" +
+                                    "</th>" +
+                                  "</tr>";
+
+                    DataTable dtEstadosDetectores = new DataTable();
+                    P.ID_FACP = idFacp;
+                    dtEstadosDetectores = P.ObtenerDataDetectoresEnviarEmail();
+                    for (int i = 0; i < dtEstadosDetectores.Rows.Count; i++)
+                    {
+                        string color = "black";
+                        string stat = dtEstadosDetectores.Rows[i][4].ToString();
+                        if (stat == "HEAT" || stat == "MONITOR" || stat == "SMOKE" || stat == "PULL STATION")
+                        {
+                            color = "red";
+                        }
+                        else if (stat != "OK")
+                        {
+                            color = "#f1c40f";
+                        }
+                        sendMailConfirmation += dtEstadosDetectores.Rows[i][4].ToString();
+                        body += "<tr>" +
+                                    "<td align=center>" + dtEstadosDetectores.Rows[i][2].ToString()+
+                                    "</td>" +
+                                     "<td align=center>" + dtEstadosDetectores.Rows[i][3].ToString() +
+                                    "</td>" +
+                                    "<td align=center>" + "<p style=color:" + color + " align=center>" + dtEstadosDetectores.Rows[i][4].ToString() + "</p>" +
+                                    "</td>" +
+                                     "<td align=center>" + dtEstadosDetectores.Rows[i][5].ToString() +
+                                    "</td>" +
+                                      "<td align=center>" + dtEstadosDetectores.Rows[i][6].ToString() +
+                                    "</td>" +
+
+                                "</tr>";
+                        
+                         }
+                    body += "</table>";
+                    message.Subject = titulo;
+                    message.IsBodyHtml = true;
+                    message.Body = body;
+                    if (sendMailConfirmation != "OK")
+                    {
+                        smtp.Send(message);
+                    }
+                    //Console.WriteLine(body);
+
+
+                    //MessageBox.Show("The mail was sent successfully!");
+                }
+                catch (Exception ex)
+                {
+                    //MessageBox.Show("Error " + ex.Message);
+                }
+            }
+
+
+
+        }
+
+        public void SendDailyHtmlMail(string titulo)
+        {
+            int puerto = 0;
+            string host = "";
+            string emailRemitente = "";
+            string pass = "";
+            int idFacp = Convert.ToInt32(facp_cb.SelectedValue);
+            DataTable dt = new DataTable();
+            DataTable dtEmails = new DataTable();
+            dtEmails = P.ObtenerEmails();
+            dt = P.ObtenerConfigRemitenteEmail();
+            if (dt.Rows.Count > 0 && dtEmails.Rows.Count > 0)
+            {
+                puerto = Convert.ToInt32(dt.Rows[0][1].ToString());
+                host = dt.Rows[0][2].ToString();
+                emailRemitente = dt.Rows[0][3].ToString();
+                pass = dt.Rows[0][4].ToString();
+
+
+                try
+                {
+
+
+                    MailMessage message = new MailMessage();
+                    SmtpClient smtp = new SmtpClient();
+                    smtp.Port = puerto;
+                    smtp.Host = host;
+                    smtp.EnableSsl = true;
+                    smtp.UseDefaultCredentials = false;
+                    smtp.Credentials = new NetworkCredential(emailRemitente, pass);
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                    message.From = new MailAddress(emailRemitente);
+
+                    for (int i = 0; i < dtEmails.Rows.Count; i++)
+                    {
+                        string ema = dtEmails.Rows[i][2].ToString();
+                        message.To.Add(new MailAddress(dtEmails.Rows[i][2].ToString()));
+                    }
+                    string body = "";
+                    DataTable dtFacp = new DataTable();
+                    dtFacp = P.ObtenerFacp();
+                    string sendMailConfirmation = "";
+                    for (int x = 0; x < dtFacp.Rows.Count; x++)
+                    {
+                        
+                        
+                        P.ID_FACP = Convert.ToInt32(dtFacp.Rows[x][0].ToString());
+                        
+                        DataTable dtestadoFacp = new DataTable();
+                        dtestadoFacp = P.ObtenerEstadoEmailFacp();
+                        if (dtestadoFacp.Rows.Count > 0)
+                        {
+                            sendMailConfirmation = dtestadoFacp.Rows[0][0].ToString();
+                            body += "<h1 style=color:blue;> <u>INFORME PANEL:  " + dtFacp.Rows[x][1].ToString() + "<u></h1><br>" +
+                                "<h3 style=color:blue;>ESTADOS GENERALES</h3><br>" +
+                                 "<table  border=1; style=width:100%; align=center > " +
+                                    "<tr >" +
+                                        "<th style=color:orange; align=center><h4>ESTADOS</h4></th>" +
+                                    "</tr>";
+                            string[] estadosArray = dtestadoFacp.Rows[0][0].ToString().Trim().Split('\r');
+                            for (int y = 0; y < estadosArray.Length; y++)
+                            {
+                                body += "<tr>" +
+                                            "<td>" + estadosArray[y].ToString() +
+                                            "</td>" +
+                                        "</tr>";
+                            }
+
+                            body += "</table> <br><br>" +
+
+
+                               " <h3 style=color:blue;> <u>ESTADOS DISPOSITIVOS <u></h3><br>";
+                        }
+                        else
+                        {
+
+                            body += "<h3 style=color:blue;> <u>MENSAJE GENERAL PANEL: " + dtFacp.Rows[x][1].ToString() + "<u></h3><br>" +
+                                 "<table style=width:100%;> " +
+                                    "<tr >" +
+                                        "<th style=color:orange; align=center>ESTADOS</th>" +
+                                    "</tr>" +
+                                    "<tr>" +
+                                        "<td>" + "OK" +
+                                        "</td>" +
+                                    "</tr>" +
+                                 "</table> <br><br>" +
+
+
+                                " <h3 style=color:blue;> <u>ESTADOS DISPOSITIVOS<u></h3><br>";
+                            sendMailConfirmation = "OK";
+                        }
+
+                        body += "<table border=1; style=width:100%; align:center>" +
+                                  "<tr>" +
+                                    "<th style=color:orange> NOMBRE" +
+                                    "</th>" +
+                                    "<th style=color:orange> IDENTIFICADOR" +
+                                    "</th>" +
+                                    "<th style=color:orange> ESTADO" +
+                                    "</th>" +
+                                     "<th style=color:orange> TIPO" +
+                                    "</th>" +
+                                    "<th style=color:orange> CATEGORIA" +
+                                    "</th>" +
+                                  "</tr>";
+
+                        DataTable dtEstadosDetectores = new DataTable();
+                        P.ID_FACP = Convert.ToInt32(dtFacp.Rows[x][0].ToString());
+                        dtEstadosDetectores = P.ObtenerDataDetectoresEnviarEmail();
+                        for (int i = 0; i < dtEstadosDetectores.Rows.Count; i++)
+                        {
+                            string color = "black";
+                            string stat = dtEstadosDetectores.Rows[i][4].ToString();
+                            if ( stat == "HEAT" || stat == "MONITOR" || stat == "SMOKE"|| stat == "PULL STATION")
+                            {
+                                color = "red";
+                            }
+                            else if(stat != "OK")
+                            {
+                                color = "#f1c40f";
+                            }
+                            sendMailConfirmation += dtEstadosDetectores.Rows[i][4].ToString();
+                            body += "<tr>" +
+                                   "<td align=center>" + dtEstadosDetectores.Rows[i][2].ToString() +
+                                   "</td>" +
+                                    "<td align=center>" + dtEstadosDetectores.Rows[i][3].ToString() +
+                                   "</td>" +
+                                   "<td align=center>" + "<p style=color:" + color + " align=center>" + dtEstadosDetectores.Rows[i][4].ToString() + "</p>" +
+                                   "</td>" +
+                                    "<td align=center>" + dtEstadosDetectores.Rows[i][5].ToString() +
+                                   "</td>" +
+                                     "<td align=center>" + dtEstadosDetectores.Rows[i][6].ToString() +
+                                   "</td>" +
+
+                               "</tr>";
+
+                        }
+                        body += "</table><br><br>";
+                        
+                    }
+                   
+                   
+                    if (sendMailConfirmation != "OK")
+                    {
+                        message.Subject = titulo;
+                        message.IsBodyHtml = true;
+                        message.Body = body;
+                        smtp.Send(message);
+                    }
+                    //Console.WriteLine(body);
+
+
                     //MessageBox.Show("The mail was sent successfully!");
                 }
                 catch (Exception ex)
@@ -567,7 +1117,7 @@ namespace DataReceiver
                 {
                     if(DateNow.TimeOfDay >= dateConfig.TimeOfDay  )
                     {
-                        SendMail(facp_cb.Text + " CORREO DIARIO");
+                        SendDailyHtmlMail("CORREO DIARIO");
                         string msj = P.ActualizarFechaCorreoDiario();
                     }
                 }
@@ -655,13 +1205,14 @@ namespace DataReceiver
 
                 P.HDD_SERIAL = GF.serial();
                 P.SOFTWARE = Program.Gsoftware;
-                int puerto =Convert.ToInt32(P.ObtenerTotalPuertos());
+                int puerto = Convert.ToInt32(P.ObtenerTotalPuertos());
                 if(puerto == 3)
                 {
                     msjActivado_lbl.Visible = false;
                     ControlsState(true);
                     activar_btn.Visible = false;
                 }
+                
                 else
                 {
                   
@@ -669,6 +1220,7 @@ namespace DataReceiver
                     activar_btn.Text = "Upgrade";
                     activar_btn.Image = null;
                     activar_btn.Image = Properties.Resources.arrow_177_48;
+                    msjActivado_lbl.Visible = false;
                 }
                
                 result = true;
@@ -686,7 +1238,6 @@ namespace DataReceiver
             return result;
 
         }
-
 
         public int ObtenerDiasActivo()
         {
@@ -714,13 +1265,68 @@ namespace DataReceiver
             //msjActivado_lbl.Visible = !activado;
         }
 
+
+        public void SelectSavedConfigName()
+        {
+            if (activeWindow == 1)
+            {
+                NombreConfigPuertoSerial = Properties.Settings.Default.ConfiguracionSerial1;
+            }
+            else if(activeWindow == 2)
+            {
+                NombreConfigPuertoSerial = Properties.Settings.Default.ConfiguracionSerial2;
+            }
+            else
+            {
+                NombreConfigPuertoSerial = Properties.Settings.Default.ConfiguracionSerial3;
+
+            }
+        }
+
+        public void OpenNextDataReader()
+        {
+            int puerto = Convert.ToInt32(P.ObtenerTotalPuertos());
+
+            if(Program.GtotalFormsOpened <= 3)
+            {
+                if (puerto >= Program.GtotalFormsOpened)
+                {
+
+                    DataReceiver form = new DataReceiver();
+
+                    form.Show();
+                }
+            }
+            
+        }
+       
+
+        public void SetConfigDescriptionLabel()
+        {
+            if(activeWindow == 1)
+            {
+                configDescription_lbl.Text = "(" +Program.gCOM1+ ", "+ Program.gBaudRate1 + ", "+ Program.gStopBit1 +", "+ Program.gParity1+ ", "+ Program.gNewLine1 +")";
+
+            }
+
+            else if (activeWindow == 2)
+            {
+                configDescription_lbl.Text = "(" + Program.gCOM2 + ", " + Program.gBaudRate2 + ", " + Program.gStopBit2 + ", " + Program.gParity2 + ", " + Program.gNewLine2 + ")";
+
+            }
+            else
+            {
+                configDescription_lbl.Text = "(" + Program.gCOM3 + ", " + Program.gBaudRate3 + ", " + Program.gStopBit3 + ", " + Program.gParity3 + ", " + Program.gNewLine3 + ")";
+
+            }
+        }
         #endregion
 
 
         private void DataReceiver_Load(object sender, EventArgs e)
         {
-        
-            NombreConfigPuertoSerial = Properties.Settings.Default.ConfiguracionSerial;
+            label11.Text = label11.Text + " - #" + activeWindow;
+            SelectSavedConfigName();
             ObtenerConfiguracionEspecifica();
             if (CheckIfSoftwareActivated())
             {
@@ -735,8 +1341,26 @@ namespace DataReceiver
             
             Config_lbl.Text = NombreConfigPuertoSerial;
             LLenarFacpCB();
+            GetFACP();
+            //SendHtmlMail("CORREO");
+            //SendDailyHtmlMail("CORREO DIARIO");
             timer1.Start();
             checkSoftware_timer.Start();
+            SetConfigDescriptionLabel();
+            if(Program.GtotalFormsOpened == 2)
+            {
+                panel3.BackColor = Color.FromArgb(192, 57, 43);
+                
+            }
+            if(Program.GtotalFormsOpened == 3)
+            {
+                panel3.BackColor = Color.FromArgb(9, 174, 96);
+
+            }
+            Program.GtotalFormsOpened++;
+            OpenNextDataReader();
+           
+           
         }
 
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
@@ -773,10 +1397,10 @@ namespace DataReceiver
 
         private void Config_btn_Click(object sender, EventArgs e)
         {
-
+            Program.GnumberOfActiveWindows = activeWindow;
             Program.Gventana = "SerialConfig";
-            SuperUserLoginForm form1 = new SuperUserLoginForm();
-            form1.ShowDialog();
+            //SuperUserLoginForm form1 = new SuperUserLoginForm();
+            //form1.ShowDialog();
             if(Program.Gventana == "SerialConfig")
             {
                 try
@@ -794,6 +1418,23 @@ namespace DataReceiver
 
                 ConfiguracionPuertoSerialForm form = new ConfiguracionPuertoSerialForm();
                 form.ShowDialog();
+                
+                if (activeWindow == 1)
+                {
+                    Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial1;
+                   
+                }
+                else if (activeWindow == 2)
+                {
+                    Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial2;
+                }
+                else
+                {
+                    Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial3;
+                }
+                NombreConfigPuertoSerial = Config_lbl.Text;
+                ObtenerConfiguracionEspecifica();
+                SetConfigDescriptionLabel();
                 ConnectSerialPort();
                 timer1.Start();
             }
@@ -819,8 +1460,21 @@ namespace DataReceiver
         {
             if(facp_cb.SelectedIndex != -1)
             {
-                Properties.Settings.Default.ID_FAPC = Convert.ToInt32(facp_cb.SelectedValue);
+                if (activeWindow == 1)
+                {
+                    Properties.Settings.Default.ID_FAPC1 = Convert.ToInt32(facp_cb.SelectedValue);
+                }
+                else if (activeWindow == 2)
+                {
+                    Properties.Settings.Default.ID_FAPC2 = Convert.ToInt32(facp_cb.SelectedValue);
+                }
+                else
+                {
+                    Properties.Settings.Default.ID_FAPC3 = Convert.ToInt32(facp_cb.SelectedValue);
+                }
+
                 Properties.Settings.Default.Save();
+
             }
         }
 
@@ -839,7 +1493,7 @@ namespace DataReceiver
         private void Email_timer_Tick(object sender, EventArgs e)
         {
             
-            SendMail(facp_cb.Text + " WARNINGS/ALARMS");
+            SendHtmlMail(facp_cb.Text + " WARNINGS/ALARMS");
             Email_timer.Stop();
         }
 
@@ -852,7 +1506,9 @@ namespace DataReceiver
 
         private void info_btn_Click(object sender, EventArgs e)
         {
-            InfoForm form = new InfoForm();
+
+
+            Form form = new InfoForm();
             form.ShowDialog();
         }
 
@@ -861,6 +1517,15 @@ namespace DataReceiver
             checkSoftware_timer.Stop();
             CheckIfSoftwareActivated();
             checkSoftware_timer.Start();
+        }
+
+        private void panel3_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
         }
     }
 

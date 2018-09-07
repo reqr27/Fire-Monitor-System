@@ -191,6 +191,7 @@
             this.figura_cb.Items.AddRange(new object[] {
             "Círculo",
             "Letra P",
+            "Letra M",
             "Cuadro"});
             this.figura_cb.Location = new System.Drawing.Point(139, 228);
             this.figura_cb.Name = "figura_cb";

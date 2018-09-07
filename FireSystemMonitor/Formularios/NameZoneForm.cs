@@ -91,12 +91,13 @@ namespace FireSystemMonitor
         {
             P.InsertarDispositivos_yTipos();
             LLenarDispositivoCB();
-            LLenarTipoDispositivoCB();
+            
             figura_cb.SelectedIndex = 0;
             textBox1.Text = nombre.Trim();
             textBox2.Text = tamaño.Trim();
             identificador_txt.Text = identificador.Trim();
             dispositivo_cb.Text = dispositivo;
+            LLenarTipoDispositivoCB();
             tipoDispositivo_cb.Text = tipoDispositivo;
             figura_cb.Text = figura;
 

@@ -155,8 +155,8 @@ namespace DataReceiver
                 string msj = P.ActivarSoftware();
                 if (msj == "1")
                 {
-                    MessageBox.Show("Software Activado", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    MessageBox.Show("Software Activado.\nAl presionar 'OK' aplicación se cerrará. Vuelva y ábrala para que los cambios tengan efecto" , "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Application.Exit();
                 }
 
                 else

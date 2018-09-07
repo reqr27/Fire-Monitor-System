@@ -41,16 +41,17 @@
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.ProcessDataTimer = new System.Windows.Forms.Timer(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
+            this.info_btn = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.Email_timer = new System.Windows.Forms.Timer(this.components);
             this.msjActivado_lbl = new System.Windows.Forms.Label();
-            this.info_btn = new System.Windows.Forms.Button();
             this.activar_btn = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
             this.limpiarEstados_btn = new System.Windows.Forms.Button();
             this.Config_btn = new System.Windows.Forms.Button();
             this.checkSoftware_timer = new System.Windows.Forms.Timer(this.components);
+            this.configDescription_lbl = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -156,33 +157,7 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(704, 35);
             this.panel3.TabIndex = 99;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Bookman Old Style", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.label11.Location = new System.Drawing.Point(3, 6);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(262, 24);
-            this.label11.TabIndex = 26;
-            this.label11.Text = "FACP DATA RECEIVER";
-            // 
-            // Email_timer
-            // 
-            this.Email_timer.Interval = 3000;
-            this.Email_timer.Tick += new System.EventHandler(this.Email_timer_Tick);
-            // 
-            // msjActivado_lbl
-            // 
-            this.msjActivado_lbl.AutoSize = true;
-            this.msjActivado_lbl.Font = new System.Drawing.Font("Bookman Old Style", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.msjActivado_lbl.ForeColor = System.Drawing.Color.Red;
-            this.msjActivado_lbl.Location = new System.Drawing.Point(9, 444);
-            this.msjActivado_lbl.Name = "msjActivado_lbl";
-            this.msjActivado_lbl.Size = new System.Drawing.Size(402, 24);
-            this.msjActivado_lbl.TabIndex = 100;
-            this.msjActivado_lbl.Text = "SOFTWARE NO HA SIDO ACTIVADO";
+            this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             // 
             // info_btn
             // 
@@ -202,27 +177,6 @@
             this.info_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.info_btn.UseVisualStyleBackColor = false;
             this.info_btn.Click += new System.EventHandler(this.info_btn_Click);
-            // 
-            // activar_btn
-            // 
-            this.activar_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.activar_btn.BackColor = System.Drawing.Color.Transparent;
-            this.activar_btn.FlatAppearance.BorderSize = 0;
-            this.activar_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.activar_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(140)))));
-            this.activar_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.activar_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.activar_btn.ForeColor = System.Drawing.SystemColors.Control;
-            this.activar_btn.Image = global::DataReceiver.Properties.Resources.key_2_48;
-            this.activar_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.activar_btn.Location = new System.Drawing.Point(435, 53);
-            this.activar_btn.Name = "activar_btn";
-            this.activar_btn.Size = new System.Drawing.Size(121, 83);
-            this.activar_btn.TabIndex = 101;
-            this.activar_btn.Text = "Activar";
-            this.activar_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.activar_btn.UseVisualStyleBackColor = false;
-            this.activar_btn.Click += new System.EventHandler(this.activar_btn_Click);
             // 
             // button3
             // 
@@ -251,6 +205,54 @@
             this.button2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Visible = false;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Bookman Old Style", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.label11.Location = new System.Drawing.Point(3, 6);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(262, 24);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "FACP DATA RECEIVER";
+            // 
+            // Email_timer
+            // 
+            this.Email_timer.Interval = 3000;
+            this.Email_timer.Tick += new System.EventHandler(this.Email_timer_Tick);
+            // 
+            // msjActivado_lbl
+            // 
+            this.msjActivado_lbl.AutoSize = true;
+            this.msjActivado_lbl.Font = new System.Drawing.Font("Bookman Old Style", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.msjActivado_lbl.ForeColor = System.Drawing.Color.Red;
+            this.msjActivado_lbl.Location = new System.Drawing.Point(9, 444);
+            this.msjActivado_lbl.Name = "msjActivado_lbl";
+            this.msjActivado_lbl.Size = new System.Drawing.Size(402, 24);
+            this.msjActivado_lbl.TabIndex = 100;
+            this.msjActivado_lbl.Text = "SOFTWARE NO HA SIDO ACTIVADO";
+            // 
+            // activar_btn
+            // 
+            this.activar_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.activar_btn.BackColor = System.Drawing.Color.Transparent;
+            this.activar_btn.FlatAppearance.BorderSize = 0;
+            this.activar_btn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.activar_btn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(116)))), ((int)(((byte)(125)))), ((int)(((byte)(140)))));
+            this.activar_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.activar_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.activar_btn.ForeColor = System.Drawing.SystemColors.Control;
+            this.activar_btn.Image = global::DataReceiver.Properties.Resources.key_2_48;
+            this.activar_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.activar_btn.Location = new System.Drawing.Point(435, 53);
+            this.activar_btn.Name = "activar_btn";
+            this.activar_btn.Size = new System.Drawing.Size(121, 83);
+            this.activar_btn.TabIndex = 101;
+            this.activar_btn.Text = "Activar";
+            this.activar_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.activar_btn.UseVisualStyleBackColor = false;
+            this.activar_btn.Click += new System.EventHandler(this.activar_btn_Click);
             // 
             // limpiarEstados_btn
             // 
@@ -291,12 +293,24 @@
             this.checkSoftware_timer.Interval = 60000;
             this.checkSoftware_timer.Tick += new System.EventHandler(this.checkSoftware_timer_Tick);
             // 
+            // configDescription_lbl
+            // 
+            this.configDescription_lbl.AutoSize = true;
+            this.configDescription_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.configDescription_lbl.ForeColor = System.Drawing.SystemColors.Control;
+            this.configDescription_lbl.Location = new System.Drawing.Point(188, 120);
+            this.configDescription_lbl.Name = "configDescription_lbl";
+            this.configDescription_lbl.Size = new System.Drawing.Size(29, 12);
+            this.configDescription_lbl.TabIndex = 102;
+            this.configDescription_lbl.Text = "label4";
+            // 
             // DataReceiver
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(53)))), ((int)(((byte)(66)))));
             this.ClientSize = new System.Drawing.Size(704, 515);
+            this.Controls.Add(this.configDescription_lbl);
             this.Controls.Add(this.activar_btn);
             this.Controls.Add(this.msjActivado_lbl);
             this.Controls.Add(this.panel3);
@@ -344,6 +358,7 @@
         private System.Windows.Forms.Button activar_btn;
         private System.Windows.Forms.Button info_btn;
         private System.Windows.Forms.Timer checkSoftware_timer;
+        private System.Windows.Forms.Label configDescription_lbl;
     }
 }
 

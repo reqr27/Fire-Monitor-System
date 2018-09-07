@@ -13,7 +13,9 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FacpDataReceiverInstaller",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerialKeyGenerator", "SerialKeyGenerator\SerialKeyGenerator.csproj", "{F927529D-B5BB-4206-B7E1-5648309C4A23}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupFireSystemMonitor", "SetupFireSystemMonitor\SetupFireSystemMonitor.vdproj", "{59C7F0EB-CBBA-4DB1-911E-FB3A4FF41341}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MultiserviciosFireMonitorSysInstaller", "SetupFireSystemMonitor\SetupFireSystemMonitor.vdproj", "{59C7F0EB-CBBA-4DB1-911E-FB3A4FF41341}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "ElectroSolucionesFireMonitorSysInstaller", "ElectroSolucionesFireMonitorSysInstaller\ElectroSolucionesFireMonitorSysInstaller.vdproj", "{F40A3653-3365-42B8-9F56-BED793B23EC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -65,6 +67,10 @@ Global
 		{59C7F0EB-CBBA-4DB1-911E-FB3A4FF41341}.Debug|x86.ActiveCfg = Debug
 		{59C7F0EB-CBBA-4DB1-911E-FB3A4FF41341}.Release|Any CPU.ActiveCfg = Release
 		{59C7F0EB-CBBA-4DB1-911E-FB3A4FF41341}.Release|x86.ActiveCfg = Release
+		{F40A3653-3365-42B8-9F56-BED793B23EC5}.Debug|Any CPU.ActiveCfg = Debug
+		{F40A3653-3365-42B8-9F56-BED793B23EC5}.Debug|x86.ActiveCfg = Debug
+		{F40A3653-3365-42B8-9F56-BED793B23EC5}.Release|Any CPU.ActiveCfg = Release
+		{F40A3653-3365-42B8-9F56-BED793B23EC5}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,11 +2,26 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DataReceiver.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="ConfiguracionSerial" Type="System.String" Scope="User">
+    <Setting Name="ConfiguracionSerial1" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="ID_FAPC" Type="System.Int32" Scope="User">
+    <Setting Name="ID_FAPC1" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ID_FAPC2" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ID_FAPC3" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ConfiguracionSerial2" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ConfiguracionSerial3" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SQLService" Type="System.String" Scope="User">
+      <Value Profile="(Default)">MSSQLSERVER</Value>
     </Setting>
   </Settings>
 </SettingsFile>

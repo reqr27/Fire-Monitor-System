@@ -34,6 +34,10 @@ namespace DataReceiver
 
         private void InfoForm_Load(object sender, EventArgs e)
         {
+
+            label3.Text = GF.DevelopedBy;
+            label6.Text = GF.Tel;
+            linkLabel1.Text = GF.WebPage;
             string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
             P.HDD_SERIAL = GF.serial();
             P.SOFTWARE = Program.Gsoftware;
@@ -61,7 +65,7 @@ namespace DataReceiver
                 }
                 else
                 {
-                    software_lbl.Text = "FIRE SYSTEM MONITOR - Version: " + version;
+                    software_lbl.Text = "FIRE MONITOR SYSTEM - Version: " + version;
                     licencia_lbl.Text = dt.Rows[0][0].ToString();
                     fActivado_txt.Text = (Convert.ToDateTime(dt.Rows[0][1].ToString())).ToString("dd/MM/yyyy");
                     if (dt.Rows[0][0].ToString() == "Trial")
