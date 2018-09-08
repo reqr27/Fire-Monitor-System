@@ -412,6 +412,7 @@
             this.evac_lbl.TabIndex = 78;
             this.evac_lbl.Text = "EVACUACION";
             this.evac_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.evac_lbl.Visible = false;
             // 
             // Evac_Timer
             // 

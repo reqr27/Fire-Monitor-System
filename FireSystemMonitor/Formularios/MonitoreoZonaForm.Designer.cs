@@ -43,6 +43,7 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.TimerLeerStatusDetector = new System.Windows.Forms.Timer(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lastFacpStatus_lbl = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -60,7 +61,6 @@
             this.evac_lbl = new System.Windows.Forms.Label();
             this.Evac_timer = new System.Windows.Forms.Timer(this.components);
             this.Evac_Worker = new System.ComponentModel.BackgroundWorker();
-            this.lastFacpStatus_lbl = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -230,6 +230,15 @@
             this.panel2.Size = new System.Drawing.Size(1146, 42);
             this.panel2.TabIndex = 76;
             // 
+            // lastFacpStatus_lbl
+            // 
+            this.lastFacpStatus_lbl.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lastFacpStatus_lbl.Location = new System.Drawing.Point(459, 19);
+            this.lastFacpStatus_lbl.Name = "lastFacpStatus_lbl";
+            this.lastFacpStatus_lbl.ReadOnly = true;
+            this.lastFacpStatus_lbl.Size = new System.Drawing.Size(372, 20);
+            this.lastFacpStatus_lbl.TabIndex = 89;
+            // 
             // label6
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -392,6 +401,7 @@
             this.evac_lbl.TabIndex = 77;
             this.evac_lbl.Text = "EVACUACION";
             this.evac_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.evac_lbl.Visible = false;
             // 
             // Evac_timer
             // 
@@ -402,15 +412,6 @@
             // 
             this.Evac_Worker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.Evac_Worker_DoWork);
             this.Evac_Worker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.Evac_Worker_RunWorkerCompleted);
-            // 
-            // lastFacpStatus_lbl
-            // 
-            this.lastFacpStatus_lbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lastFacpStatus_lbl.Location = new System.Drawing.Point(459, 19);
-            this.lastFacpStatus_lbl.Name = "lastFacpStatus_lbl";
-            this.lastFacpStatus_lbl.ReadOnly = true;
-            this.lastFacpStatus_lbl.Size = new System.Drawing.Size(372, 20);
-            this.lastFacpStatus_lbl.TabIndex = 89;
             // 
             // panel1
             // 

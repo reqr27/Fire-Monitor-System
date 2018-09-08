@@ -1399,9 +1399,9 @@ namespace DataReceiver
         {
             Program.GnumberOfActiveWindows = activeWindow;
             Program.Gventana = "SerialConfig";
-            //SuperUserLoginForm form1 = new SuperUserLoginForm();
-            //form1.ShowDialog();
-            if(Program.Gventana == "SerialConfig")
+            SuperUserLoginForm form1 = new SuperUserLoginForm();
+            form1.ShowDialog();
+            if (Program.Gventana == "SerialConfig")
             {
                 try
                 {

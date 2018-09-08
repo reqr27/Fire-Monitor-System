@@ -29,11 +29,13 @@ namespace FireSystemMonitor.Formularios
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-
+        System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"C:\Users\reqr27\Downloads\School_Fire_Alarm-Cullen_Card-202875844.wav");
+      
         Procedimientos P = new Procedimientos();
         public MainScreenForm()
         {
             InitializeComponent();
+           
         }
 
         #region Funciones
@@ -510,7 +512,9 @@ namespace FireSystemMonitor.Formularios
                     {
                         if (Convert.ToBoolean(dt.Rows[0][0].ToString()))
                         {
+                            player.Play();
                             evac_lbl.Visible = true;
+                            
                             if (!Evac)
                             {
                                 Evac_Timer.Start();
@@ -519,6 +523,7 @@ namespace FireSystemMonitor.Formularios
                         }
                         else
                         {
+                            player.Stop();
                             evac_lbl.Visible = false;
                             Evac = false;
                             Evac_Timer.Stop();
@@ -735,8 +740,8 @@ namespace FireSystemMonitor.Formularios
             try
             {
                 Program.Gventana = "Settings";
-                //SuperUserLoginForm form = new SuperUserLoginForm();
-                //form.ShowDialog();
+                SuperUserLoginForm form = new SuperUserLoginForm();
+                form.ShowDialog();
 
                 if (Program.Gventana == "Settings")
                 {
