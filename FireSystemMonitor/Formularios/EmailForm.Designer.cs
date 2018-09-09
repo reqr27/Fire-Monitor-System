@@ -130,9 +130,9 @@
             this.label4.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(12, 96);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 14);
+            this.label4.Size = new System.Drawing.Size(46, 14);
             this.label4.TabIndex = 78;
-            this.label4.Text = "Nombre:";
+            this.label4.Text = "Name:";
             // 
             // warning_chbox
             // 
@@ -198,11 +198,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(106, 68);
+            this.label1.Location = new System.Drawing.Point(116, 70);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(150, 14);
+            this.label1.Size = new System.Drawing.Size(101, 14);
             this.label1.TabIndex = 84;
-            this.label1.Text = "Agregar Destinatarios";
+            this.label1.Text = "Add Recipents";
             // 
             // label3
             // 
@@ -210,9 +210,9 @@
             this.label3.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(448, 70);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(173, 14);
+            this.label3.Size = new System.Drawing.Size(149, 14);
             this.label3.TabIndex = 85;
-            this.label3.Text = "Configuración Remitente";
+            this.label3.Text = "Sender Configuration";
             // 
             // emailRemitente_txt
             // 
@@ -258,9 +258,9 @@
             this.label7.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(385, 121);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(55, 14);
+            this.label7.Size = new System.Drawing.Size(39, 14);
             this.label7.TabIndex = 90;
-            this.label7.Text = "Puerto:";
+            this.label7.Text = "Port:";
             // 
             // numericUpDown1
             // 
@@ -282,11 +282,11 @@
             // pass_txt
             // 
             this.pass_txt.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pass_txt.Location = new System.Drawing.Point(451, 269);
+            this.pass_txt.Location = new System.Drawing.Point(463, 269);
             this.pass_txt.MaxLength = 100;
             this.pass_txt.Name = "pass_txt";
             this.pass_txt.PasswordChar = '*';
-            this.pass_txt.Size = new System.Drawing.Size(212, 22);
+            this.pass_txt.Size = new System.Drawing.Size(200, 22);
             this.pass_txt.TabIndex = 92;
             // 
             // label8
@@ -295,9 +295,9 @@
             this.label8.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(385, 272);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(47, 14);
+            this.label8.Size = new System.Drawing.Size(72, 14);
             this.label8.TabIndex = 93;
-            this.label8.Text = "Clave:";
+            this.label8.Text = "Password:";
             // 
             // button1
             // 
@@ -344,9 +344,9 @@
             this.label9.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(385, 322);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(100, 14);
+            this.label9.Size = new System.Drawing.Size(87, 14);
             this.label9.TabIndex = 97;
-            this.label9.Text = "Correo Diario:";
+            this.label9.Text = "Daily Email:";
             // 
             // panel3
             // 
@@ -396,9 +396,9 @@
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
             this.label11.Location = new System.Drawing.Point(3, 6);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(322, 24);
+            this.label11.Size = new System.Drawing.Size(263, 24);
             this.label11.TabIndex = 26;
-            this.label11.Text = "CONFIGURACION CORREOS";
+            this.label11.Text = "MAIL CONFIGURATION";
             // 
             // EmailForm
             // 
@@ -435,7 +435,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "EmailForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "CONFIGURAR CORREOS";
+            this.Text = "MAIL CONFIGURATION";
             this.Load += new System.EventHandler(this.EmailForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.email_dtg)).EndInit();

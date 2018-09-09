@@ -12,13 +12,13 @@ namespace Classes
     public class GlobalFunctions
     {
         public string Company = "ELECTRO SOLUCIONES FERNANDEZ CARDENA";
-        public string DevelopedBy = "Contacto: Román Fernández";
-        public string Tel = "Teléfono: 809-889-5379";
+        public string DevelopedBy = "Contact: Román Fernández";
+        public string Tel = "Phone: 809-889-5379";
         public string WebPage = "";
 
         //public string Company = "MULTISERVICIOS LEA";
-        //public string DevelopedBy = "Desarrollado Por Multiservicios LEA";
-        //public string Tel = "Teléfono: 809-341-4429";
+        //public string DevelopedBy = "Developed by Multiservicios LEA";
+        //public string Tel = "Phone: 809-341-4429";
         //public string WebPage = "www.multiservicioslea.com";
 
         public string ValidarCampoString(string[] valores)

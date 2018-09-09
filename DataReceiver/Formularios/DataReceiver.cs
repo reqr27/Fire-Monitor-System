@@ -26,7 +26,7 @@ namespace DataReceiver
         string dataRead = "";
         int idFacpConfigurado;
         List<String> EstatusArray = new List<String>();
-        Procedimientos P = new Procedimientos();
+        //Procedimientos P = new Procedimientos();
         string NombreConfigPuertoSerial;
         int totalReads = 0;
         delegate void SetTextCallback(string text);
@@ -62,6 +62,7 @@ namespace DataReceiver
             {
                 idFacpConfigurado = Properties.Settings.Default.ID_FAPC3;
             }
+            Procedimientos P = new Procedimientos();
             P.ID_FACP = idFacpConfigurado;
             dt = P.ObtenerNombreFacp();
             if(dt.Rows.Count > 0)
@@ -72,6 +73,7 @@ namespace DataReceiver
 
         public void LLenarFacpCB()
         {
+            Procedimientos P = new Procedimientos();
             facp_cb.DataSource = null;
             DataTable dt = new DataTable();
             dt = P.ObtenerFacp();
@@ -90,6 +92,7 @@ namespace DataReceiver
                 Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial1;
                 if (serialPort1.IsOpen)
                 {
+                    Procedimientos P = new Procedimientos();
                     estatus_txt.Text = "Online";
                     P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
                     string msj = P.ActualizarFechaOnlineFacp();
@@ -152,6 +155,7 @@ namespace DataReceiver
                         serialPort1.Open();
                         if (serialPort1.IsOpen)
                         {
+                            Procedimientos P = new Procedimientos();
                             estatus_txt.Text = "Online";
                             P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
                             string msj = P.ActualizarFechaOnlineFacp();
@@ -174,6 +178,7 @@ namespace DataReceiver
                 Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial2;
                 if (serialPort1.IsOpen)
                 {
+                    Procedimientos P = new Procedimientos();
                     estatus_txt.Text = "Online";
                     P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
                     string msj = P.ActualizarFechaOnlineFacp();
@@ -236,6 +241,7 @@ namespace DataReceiver
                         serialPort1.Open();
                         if (serialPort1.IsOpen)
                         {
+                            Procedimientos P = new Procedimientos();
                             estatus_txt.Text = "Online";
                             P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
                             string msj = P.ActualizarFechaOnlineFacp();
@@ -258,6 +264,7 @@ namespace DataReceiver
                 Config_lbl.Text = Properties.Settings.Default.ConfiguracionSerial3;
                 if (serialPort1.IsOpen)
                 {
+                    Procedimientos P = new Procedimientos();
                     estatus_txt.Text = "Online";
                     P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
                     string msj = P.ActualizarFechaOnlineFacp();
@@ -320,6 +327,7 @@ namespace DataReceiver
                         serialPort1.Open();
                         if (serialPort1.IsOpen)
                         {
+                            Procedimientos P = new Procedimientos();
                             estatus_txt.Text = "Online";
                             P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
                             string msj = P.ActualizarFechaOnlineFacp();
@@ -368,6 +376,7 @@ namespace DataReceiver
 
         public void ObtenerConfiguracionEspecifica()
         {
+            Procedimientos P = new Procedimientos();
             DataTable dt = new DataTable();
             P.Nombre = NombreConfigPuertoSerial;
             dt = P.ObtenerConfiguracionesSerialEspecifica();
@@ -441,6 +450,7 @@ namespace DataReceiver
 
         public void UpdateStatusOfDetectoresDb(string text)
         {
+            Procedimientos P = new Procedimientos();
             if (text.StartsWith("ALARM") || text.StartsWith("TROUBL"))
             {
                 Email_timer.Stop();
@@ -452,6 +462,7 @@ namespace DataReceiver
             
             if (text.Contains("RESET  IN SYSTEM"))
             {
+               
 
                 P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
                 string msj = P.ResetEstadoTodosDetectoresFacpEspecifico();
@@ -460,7 +471,8 @@ namespace DataReceiver
 
             else if (text.Contains("EVAC   IN SYSTEM")) // evacuar 
             {
-                
+               
+
                 P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
                 string msj = P.ActualizarEstatusEvacuacion();
             }
@@ -689,6 +701,7 @@ namespace DataReceiver
 
         public void InsertarLogFacp(string estado)
         {
+            Procedimientos P = new Procedimientos();
             P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
             P.EstadoFacp = estado;
 
@@ -697,6 +710,7 @@ namespace DataReceiver
 
         public void SendMail(string titulo)
         {
+            Procedimientos P = new Procedimientos();
             int puerto = 0;
             string host = "";
             string emailRemitente = "";
@@ -743,11 +757,11 @@ namespace DataReceiver
                     if(dtestadoFacp.Rows.Count > 0)
                     {
                         sendMailConfirmation = dtestadoFacp.Rows[0][0].ToString();
-                       body  = "MENSAJE GENERAL PANEL:"+ Environment.NewLine + Environment.NewLine + dtestadoFacp.Rows[0][0].ToString() + Environment.NewLine + Environment.NewLine + "ESTADOS DETECTORES/MOODULOS" + Environment.NewLine + Environment.NewLine;
+                       body  = "PANEL GENERAL MESSAGES:"+ Environment.NewLine + Environment.NewLine + dtestadoFacp.Rows[0][0].ToString() + Environment.NewLine + Environment.NewLine + "ESTADOS DETECTORES/MOODULOS" + Environment.NewLine + Environment.NewLine;
                     }
                     else
                     {
-                        body = "MENSAJE GENERAL PANEL:" + Environment.NewLine + Environment.NewLine + "OK" + Environment.NewLine + Environment.NewLine + "ESTADOS DETECTORES/MODULOS" + Environment.NewLine + Environment.NewLine;
+                        body = "PANEL GENERAL MESSAGES:" + Environment.NewLine + Environment.NewLine + "OK" + Environment.NewLine + Environment.NewLine + "ESTADOS DETECTORES/MODULOS" + Environment.NewLine + Environment.NewLine;
                         sendMailConfirmation = "OK";
                     }
 
@@ -757,7 +771,7 @@ namespace DataReceiver
                     for (int i = 0; i < dtEstadosDetectores.Rows.Count; i++)
                     {
                         sendMailConfirmation += dtEstadosDetectores.Rows[i][4].ToString();
-                        body += "* Nombre: " + dtEstadosDetectores.Rows[i][2].ToString() + "   Identificador: " + dtEstadosDetectores.Rows[i][3].ToString() + "   ESTADO: " + dtEstadosDetectores.Rows[i][4].ToString() + Environment.NewLine;
+                        body += "* NAME: " + dtEstadosDetectores.Rows[i][2].ToString() + "   IDENTIFIER: " + dtEstadosDetectores.Rows[i][3].ToString() + "   STATUS: " + dtEstadosDetectores.Rows[i][4].ToString() + Environment.NewLine;
                     }
 
                     message.Subject = titulo;
@@ -784,6 +798,7 @@ namespace DataReceiver
 
         public void SendHtmlMail(string titulo)
         {
+            Procedimientos P = new Procedimientos();
             int puerto = 0;
             string host = "";
             string emailRemitente = "";
@@ -830,11 +845,11 @@ namespace DataReceiver
                     if (dtestadoFacp.Rows.Count > 0)
                     {
                         sendMailConfirmation = dtestadoFacp.Rows[0][0].ToString();
-                        body += "<h1 style=color:blue;> <u>INFORME PANEL:  " + facp_cb.Text + "<u></h1><br>" +
-                            "<h3 style=color:blue;>ESTADOS GENERALES</h3><br>" +
+                        body += "<h1 style=color:blue;> <u>INFORM PANEL:  " + facp_cb.Text + "<u></h1><br>" +
+                            "<h3 style=color:blue;>GENERAL MESSAGES</h3><br>" +
                              "<table  border=1; style=width:100%; align=center > " +
                                 "<tr >" +
-                                    "<th style=color:orange; align=center><h4>ESTADOS</h4></th>" +
+                                    "<th style=color:orange; align=center><h4>STATUS</h4></th>" +
                                 "</tr>";
                         string[] estadosArray = dtestadoFacp.Rows[0][0].ToString().Trim().Split('\r');
                         for (int y = 0; y < estadosArray.Length; y++)
@@ -848,16 +863,17 @@ namespace DataReceiver
                          body+= "</table> <br><br>" +
 
 
-                            " <h3 style=color:blue;> <u>ESTADOS DISPOSITIVOS <u></h3><br>";
+                            " <h3 style=color:blue;> <u>DEVICES STATUS<u></h3><br>";
                     }
                     else
                     {
 
-                        body += "<h3 style=color:blue;> <u>MENSAJE GENERAL PANEL: " + facp_cb.Text + "<u></h3><br>" +
-                             "<table style=width:100%;> " +
-                                "<tr >" +
-                                    "<th style=color:orange; align=center>ESTADOS</th>" +
-                                "</tr>" +
+                        body += "<h1 style=color:blue;> <u>INFORM PANEL:  " + facp_cb.Text + "<u></h1><br>" +
+                             "<h3 style=color:blue;>GENERAL MESSAGES</h3><br>" +
+                              "<table  border=1; style=width:100%; align=center > " +
+                                 "<tr >" +
+                                     "<th style=color:orange; align=center><h4>STATUS</h4></th>" +
+                                 "</tr>" +
                                 "<tr>" +
                                     "<td>" + "OK" +
                                     "</td>" +
@@ -865,21 +881,21 @@ namespace DataReceiver
                              "</table> <br><br>" +
 
 
-                            " <h3 style=color:blue;> <u>ESTADOS DISPOSITIVOS<u></h3><br>";
+                            " <h3 style=color:blue;> <u>DEVICE STATUS<u></h3><br>";
                         sendMailConfirmation = "OK";
                     }
 
                     body += "<table border=1; style=width:100%; align:center>" +
                                   "<tr>" +
-                                    "<th style=color:orange> NOMBRE" +
+                                    "<th style=color:orange> NAME" +
                                     "</th>" +
-                                    "<th style=color:orange> IDENTIFICADOR" +
+                                    "<th style=color:orange> IDENTIFIER" +
                                     "</th>" +
-                                    "<th style=color:orange> ESTADO" +
+                                    "<th style=color:orange> STATUS" +
                                     "</th>" +
-                                     "<th style=color:orange> TIPO" +
+                                     "<th style=color:orange> TYPE" +
                                     "</th>" +
-                                    "<th style=color:orange> CATEGORIA" +
+                                    "<th style=color:orange> CATEGORY" +
                                     "</th>" +
                                   "</tr>";
 
@@ -946,6 +962,7 @@ namespace DataReceiver
             int idFacp = Convert.ToInt32(facp_cb.SelectedValue);
             DataTable dt = new DataTable();
             DataTable dtEmails = new DataTable();
+            Procedimientos P = new Procedimientos();
             dtEmails = P.ObtenerEmails();
             dt = P.ObtenerConfigRemitenteEmail();
             if (dt.Rows.Count > 0 && dtEmails.Rows.Count > 0)
@@ -991,11 +1008,11 @@ namespace DataReceiver
                         if (dtestadoFacp.Rows.Count > 0)
                         {
                             sendMailConfirmation = dtestadoFacp.Rows[0][0].ToString();
-                            body += "<h1 style=color:blue;> <u>INFORME PANEL:  " + dtFacp.Rows[x][1].ToString() + "<u></h1><br>" +
-                                "<h3 style=color:blue;>ESTADOS GENERALES</h3><br>" +
+                            body += "<h1 style=color:blue;> <u>INFORM PANEL:  " + dtFacp.Rows[x][1].ToString() + "<u></h1><br>" +
+                                "<h3 style=color:blue;>GENERAL MESSAGES</h3><br>" +
                                  "<table  border=1; style=width:100%; align=center > " +
                                     "<tr >" +
-                                        "<th style=color:orange; align=center><h4>ESTADOS</h4></th>" +
+                                        "<th style=color:orange; align=center><h4>STATUS</h4></th>" +
                                     "</tr>";
                             string[] estadosArray = dtestadoFacp.Rows[0][0].ToString().Trim().Split('\r');
                             for (int y = 0; y < estadosArray.Length; y++)
@@ -1009,15 +1026,16 @@ namespace DataReceiver
                             body += "</table> <br><br>" +
 
 
-                               " <h3 style=color:blue;> <u>ESTADOS DISPOSITIVOS <u></h3><br>";
+                               " <h3 style=color:blue;> <u>DEVICE STATUS <u></h3><br>";
                         }
                         else
                         {
 
-                            body += "<h3 style=color:blue;> <u>MENSAJE GENERAL PANEL: " + dtFacp.Rows[x][1].ToString() + "<u></h3><br>" +
-                                 "<table style=width:100%;> " +
+                            body += "<h1 style=color:blue;> <u>INFORM PANEL:  " + dtFacp.Rows[x][1].ToString() + "<u></h1><br>" +
+                                "<h3 style=color:blue;>GENERAL MESSAGES</h3><br>" +
+                                 "<table  border=1; style=width:100%; align=center > " +
                                     "<tr >" +
-                                        "<th style=color:orange; align=center>ESTADOS</th>" +
+                                        "<th style=color:orange; align=center><h4>STATUS</h4></th>" +
                                     "</tr>" +
                                     "<tr>" +
                                         "<td>" + "OK" +
@@ -1026,21 +1044,21 @@ namespace DataReceiver
                                  "</table> <br><br>" +
 
 
-                                " <h3 style=color:blue;> <u>ESTADOS DISPOSITIVOS<u></h3><br>";
+                                " <h3 style=color:blue;> <u>DEVICE STATUS<u></h3><br>";
                             sendMailConfirmation = "OK";
                         }
 
                         body += "<table border=1; style=width:100%; align:center>" +
                                   "<tr>" +
-                                    "<th style=color:orange> NOMBRE" +
+                                    "<th style=color:orange> NAME" +
                                     "</th>" +
-                                    "<th style=color:orange> IDENTIFICADOR" +
+                                    "<th style=color:orange> IDENTIFIER" +
                                     "</th>" +
-                                    "<th style=color:orange> ESTADO" +
+                                    "<th style=color:orange> STATUS" +
                                     "</th>" +
-                                     "<th style=color:orange> TIPO" +
+                                     "<th style=color:orange> TYPE" +
                                     "</th>" +
-                                    "<th style=color:orange> CATEGORIA" +
+                                    "<th style=color:orange> CATEGORY" +
                                     "</th>" +
                                   "</tr>";
 
@@ -1108,6 +1126,7 @@ namespace DataReceiver
             DateTime lastDailyEmail;
             DateTime DateNow = DateTime.Now;
             DataTable dt = new DataTable();
+            Procedimientos P = new Procedimientos();
             dt = P.ObtenerConfigRemitenteEmail();
             if (dt.Rows.Count > 0)
             {
@@ -1117,7 +1136,7 @@ namespace DataReceiver
                 {
                     if(DateNow.TimeOfDay >= dateConfig.TimeOfDay  )
                     {
-                        SendDailyHtmlMail("CORREO DIARIO");
+                        SendDailyHtmlMail("DAILY EMAIL");
                         string msj = P.ActualizarFechaCorreoDiario();
                     }
                 }
@@ -1170,6 +1189,7 @@ namespace DataReceiver
 
         public bool CheckIfSoftwareActivated()
         {
+            Procedimientos P = new Procedimientos();
             bool result = false;
             P.HDD_SERIAL = GF.serial();
             P.SOFTWARE = Program.Gsoftware;
@@ -1181,14 +1201,14 @@ namespace DataReceiver
                 int dias = ObtenerDiasActivo();
                 if (dias == 0)
                 {
-                    msjActivado_lbl.Text = "VERSION DE PRUEBA HA FINALIZADO";
+                    msjActivado_lbl.Text = "TRIAL VERSION HAS FINISHED";
                     ControlsState(false);
                     Program.Gactivado = false;
 
                 }
                 else
                 {
-                    msjActivado_lbl.Text = "VERSION DE PRUEBA - DIAS RESTANTES : " + dias;
+                    msjActivado_lbl.Text = "TRIAL VERSION - DAYS LEFT : " + dias;
                     ControlsState(true);
                     result = true;
                     Program.Gactivado = true;
@@ -1230,7 +1250,7 @@ namespace DataReceiver
 
             {
                 ControlsState(false);
-                msjActivado_lbl.Text = "SOFTWARE NO HA SIDO ACTIVADO";
+                msjActivado_lbl.Text = "SOFTWARE HAS NOT BEEN ACTIVATED";
                 result = false;
                 Program.Gactivado = false;
             }
@@ -1241,6 +1261,7 @@ namespace DataReceiver
 
         public int ObtenerDiasActivo()
         {
+            Procedimientos P = new Procedimientos();
             int dias = 0;
             DataTable dt = new DataTable();
             P.HDD_SERIAL = GF.serial();
@@ -1285,6 +1306,9 @@ namespace DataReceiver
 
         public void OpenNextDataReader()
         {
+            Procedimientos P = new Procedimientos();
+            P.HDD_SERIAL = GF.serial();
+            P.SOFTWARE = Program.Gsoftware;
             int puerto = Convert.ToInt32(P.ObtenerTotalPuertos());
 
             if(Program.GtotalFormsOpened <= 3)
@@ -1399,8 +1423,8 @@ namespace DataReceiver
         {
             Program.GnumberOfActiveWindows = activeWindow;
             Program.Gventana = "SerialConfig";
-            SuperUserLoginForm form1 = new SuperUserLoginForm();
-            form1.ShowDialog();
+            //SuperUserLoginForm form1 = new SuperUserLoginForm();
+            //form1.ShowDialog();
             if (Program.Gventana == "SerialConfig")
             {
                 try
@@ -1526,6 +1550,12 @@ namespace DataReceiver
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        private void facp_cb_DropDown(object sender, EventArgs e)
+        {
+            LLenarFacpCB();
+            GetFACP();
         }
     }
 

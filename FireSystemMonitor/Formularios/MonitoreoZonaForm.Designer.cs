@@ -144,40 +144,40 @@
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(399, 15);
+            this.label5.Location = new System.Drawing.Point(362, 15);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 13);
+            this.label5.Size = new System.Drawing.Size(59, 13);
             this.label5.TabIndex = 7;
-            this.label5.Text = "FALTA";
+            this.label5.Text = "MISSING";
             // 
             // label4
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(266, 15);
+            this.label4.Location = new System.Drawing.Point(257, 15);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(94, 13);
+            this.label4.Size = new System.Drawing.Size(67, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "ADVERTENCIA";
+            this.label4.Text = "WARNING";
             // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(170, 15);
+            this.label3.Location = new System.Drawing.Point(161, 15);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "ALARMA";
+            this.label3.Text = "ALARM";
             // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(107, 15);
+            this.label2.Location = new System.Drawing.Point(98, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(24, 13);
             this.label2.TabIndex = 4;
@@ -190,9 +190,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(3, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(68, 13);
+            this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 75;
-            this.label1.Text = "LEYENDA:";
+            this.label1.Text = "LEGEND:";
             // 
             // toolTip1
             // 
@@ -233,10 +233,10 @@
             // lastFacpStatus_lbl
             // 
             this.lastFacpStatus_lbl.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lastFacpStatus_lbl.Location = new System.Drawing.Point(459, 19);
+            this.lastFacpStatus_lbl.Location = new System.Drawing.Point(439, 19);
             this.lastFacpStatus_lbl.Name = "lastFacpStatus_lbl";
             this.lastFacpStatus_lbl.ReadOnly = true;
-            this.lastFacpStatus_lbl.Size = new System.Drawing.Size(372, 20);
+            this.lastFacpStatus_lbl.Size = new System.Drawing.Size(388, 20);
             this.lastFacpStatus_lbl.TabIndex = 89;
             // 
             // label6
@@ -244,7 +244,7 @@
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(458, 4);
+            this.label6.Location = new System.Drawing.Point(433, 4);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(112, 13);
             this.label6.TabIndex = 83;
@@ -334,7 +334,7 @@
             // 
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox2.Image = global::FireSystemMonitor.Properties.Resources.DetectorOK;
-            this.pictureBox2.Location = new System.Drawing.Point(77, 9);
+            this.pictureBox2.Location = new System.Drawing.Point(68, 9);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(27, 25);
             this.pictureBox2.TabIndex = 0;
@@ -344,7 +344,7 @@
             // 
             this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox5.Image = global::FireSystemMonitor.Properties.Resources.DetectorFalta;
-            this.pictureBox5.Location = new System.Drawing.Point(366, 9);
+            this.pictureBox5.Location = new System.Drawing.Point(329, 9);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(27, 25);
             this.pictureBox5.TabIndex = 3;
@@ -354,7 +354,7 @@
             // 
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox3.Image = global::FireSystemMonitor.Properties.Resources.DetectorFuego;
-            this.pictureBox3.Location = new System.Drawing.Point(140, 9);
+            this.pictureBox3.Location = new System.Drawing.Point(131, 9);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(27, 25);
             this.pictureBox3.TabIndex = 1;
@@ -364,7 +364,7 @@
             // 
             this.pictureBox4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.pictureBox4.Image = global::FireSystemMonitor.Properties.Resources.DetectorWarning;
-            this.pictureBox4.Location = new System.Drawing.Point(236, 9);
+            this.pictureBox4.Location = new System.Drawing.Point(227, 9);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(27, 25);
             this.pictureBox4.TabIndex = 2;
@@ -399,7 +399,7 @@
             this.evac_lbl.Name = "evac_lbl";
             this.evac_lbl.Size = new System.Drawing.Size(1146, 134);
             this.evac_lbl.TabIndex = 77;
-            this.evac_lbl.Text = "EVACUACION";
+            this.evac_lbl.Text = "EVACUATE";
             this.evac_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.evac_lbl.Visible = false;
             // 

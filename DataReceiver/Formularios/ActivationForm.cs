@@ -155,19 +155,19 @@ namespace DataReceiver
                 string msj = P.ActivarSoftware();
                 if (msj == "1")
                 {
-                    MessageBox.Show("Software Activado.\nAl presionar 'OK' aplicación se cerrará. Vuelva y ábrala para que los cambios tengan efecto" , "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Software is activated.\nPressing 'OK' will close the software. Open app again to make the changes." , "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Application.Exit();
                 }
 
                 else
                 {
-                    MessageBox.Show("Software no pudo ser activado, intente nuevamente más tarde", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Software was not activated, try again later.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
             else
             {
-                MessageBox.Show("Código incorrecto", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Code is incorrect!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

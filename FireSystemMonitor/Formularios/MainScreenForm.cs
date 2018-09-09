@@ -31,7 +31,7 @@ namespace FireSystemMonitor.Formularios
         public static extern bool ReleaseCapture();
         System.Media.SoundPlayer player = new System.Media.SoundPlayer(@"C:\Users\reqr27\Downloads\School_Fire_Alarm-Cullen_Card-202875844.wav");
       
-        Procedimientos P = new Procedimientos();
+        //Procedimientos P = new Procedimientos();
         public MainScreenForm()
         {
             InitializeComponent();
@@ -46,6 +46,7 @@ namespace FireSystemMonitor.Formularios
             {
                 this.Invoke((MethodInvoker)delegate
                 {
+                    Procedimientos P = new Procedimientos();
                     P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
                     string msj = P.ObtenerEstadoOnlineFacp();
                     if (msj == "1")
@@ -88,6 +89,8 @@ namespace FireSystemMonitor.Formularios
                     List<string> namesList = new List<string>(namesArray.Length);
                     namesList.AddRange(namesArray);
                     int idZona = Convert.ToInt32(namesList[0].ToString());
+                    Procedimientos P = new Procedimientos();
+
                     P.IdZona = idZona;
                     dt = P.ObtenerEstadoZonas();
                     string msj = dt.Rows[0][0].ToString();
@@ -125,7 +128,7 @@ namespace FireSystemMonitor.Formularios
                             //control.Controls.Add(p);
 
                             lbl.ForeColor = Color.Red;
-                            lbl.Text = msj;
+                            lbl.Text = "ALARM";
                             lbl.Tag = "Dyn";
 
                             lbl.Font = new Font("Arial", 18, FontStyle.Bold);
@@ -145,7 +148,7 @@ namespace FireSystemMonitor.Formularios
 
                         this.Invoke((MethodInvoker)delegate
                         {
-                            toolTip1.SetToolTip(lbl, "ALARMA");
+                            toolTip1.SetToolTip(lbl, "ALARM");
                         });
 
 
@@ -169,7 +172,7 @@ namespace FireSystemMonitor.Formularios
                             }
                             catch (Exception ex) { }
                             lbl.ForeColor = Color.FromArgb(241, 196, 15);
-                            lbl.Text = msj;
+                            lbl.Text = "WARNING";
                             lbl.Tag = "Dyn";
 
                             lbl.Font = new Font("Arial", 18, FontStyle.Bold);
@@ -262,6 +265,8 @@ namespace FireSystemMonitor.Formularios
             {
                 facp_cb.DataSource = null;
                 DataTable dt = new DataTable();
+                Procedimientos P = new Procedimientos();
+
                 dt = P.ObtenerFacp();
                 facp_cb.DataSource = dt;
                 facp_cb.DisplayMember = "NOMBRE";
@@ -283,6 +288,8 @@ namespace FireSystemMonitor.Formularios
             {
                 Program.GestadoFacp = "";
                 DataTable dt = new DataTable();
+                Procedimientos P = new Procedimientos();
+
                 P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
                 dt = P.ObtenerEstadoFacp();
                 for (int i = 0; i < dt.Rows.Count; i++)
@@ -307,6 +314,8 @@ namespace FireSystemMonitor.Formularios
                         int sizex = 195;
                         int sizey = 195;
                         DataTable dt = new DataTable();
+                        Procedimientos P = new Procedimientos();
+
                         P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
                         Program.GidFacp = Convert.ToInt32(facp_cb.SelectedValue);
                         dt = P.ObtenerZonasHabilitadas();
@@ -350,7 +359,7 @@ namespace FireSystemMonitor.Formularios
                             }
                             catch (Exception ex)
                             {
-                                Console.WriteLine("MAIN SCREEN OBTENER ZONAS HABILITADAS");
+                                //Console.WriteLine("MAIN SCREEN OBTENER ZONAS HABILITADAS");
                                 RefrescarTimer.Start();
                                 EstadoZona_timer.Start();
 
@@ -471,6 +480,8 @@ namespace FireSystemMonitor.Formularios
             try
             {
                 DataTable dt = new DataTable();
+                Procedimientos P = new Procedimientos();
+
                 P.ID_FACP =  Convert.ToInt32(facp_cb.SelectedValue);
                 dt = P.ObtenerUltimoEstadoFacp();
                 if (dt.Rows.Count > 0)
@@ -489,7 +500,7 @@ namespace FireSystemMonitor.Formularios
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        lastFacpStatus_lbl.Text = "No se pudo obtener último estado Facp";
+                        lastFacpStatus_lbl.Text = "Could not load last status";
 
                     });
                 }
@@ -506,6 +517,8 @@ namespace FireSystemMonitor.Formularios
                 {
 
                     DataTable dt = new DataTable();
+                    Procedimientos P = new Procedimientos();
+
                     P.ID_FACP = Convert.ToInt32(facp_cb.SelectedValue);
                     dt = P.ObtenerEstadoEvacuacionFacp();
                     if (dt.Rows.Count > 0)
@@ -559,6 +572,8 @@ namespace FireSystemMonitor.Formularios
         {
             try
             {
+                Procedimientos P = new Procedimientos();
+
                 P.HDD_SERIAL = GF.serial();
                 P.SOFTWARE = Program.Gsoftware;
                 string msj = P.CheckIfSoftwareActivated();
@@ -569,14 +584,14 @@ namespace FireSystemMonitor.Formularios
                     int dias = ObtenerDiasActivo();
                     if (dias == 0)
                     {
-                        msjActivado_lbl.Text = "VERSION DE PRUEBA HA FINALIZADO";
+                        msjActivado_lbl.Text = "TRIAL VERSION FINISHED";
                         ControlsState(false);
                         CerrarForms();
 
                     }
                     else
                     {
-                        msjActivado_lbl.Text = "VERSION DE PRUEBA - DIAS RESTANTES : " + dias;
+                        msjActivado_lbl.Text = "TRIAL VERSION - DAYS LEFT : " + dias;
                         ControlsState(true);
                         activar_btn.Text = "Upgrade";
                         activar_btn.Image = null;
@@ -596,7 +611,7 @@ namespace FireSystemMonitor.Formularios
 
                 {
                     ControlsState(false);
-                    msjActivado_lbl.Text = "SOFTWARE NO HA SIDO ACTIVADO";
+                    msjActivado_lbl.Text = "SOFTWARE NOT ACTIVATED";
                 }
             }
             catch (ArgumentNullException ex)
@@ -611,7 +626,8 @@ namespace FireSystemMonitor.Formularios
             int dias = 0;
             try
             {
-               
+                Procedimientos P = new Procedimientos();
+
                 DataTable dt = new DataTable();
                 P.HDD_SERIAL = GF.serial();
                 P.SOFTWARE = Program.Gsoftware;
@@ -659,7 +675,7 @@ namespace FireSystemMonitor.Formularios
                 string[] namesArray = tag.Split('*');
                 List<string> namesList = new List<string>(namesArray.Length);
                 namesList.AddRange(namesArray);
-                toolTip1.SetToolTip((sender as PictureBox), "FACP: " + namesList[3] + "\nZona: " + namesList[1] + "\nDescripción: " + namesList[2]);
+                toolTip1.SetToolTip((sender as PictureBox), "FACP: " + namesList[3] + "\nZone: " + namesList[1] + "\nDescription: " + namesList[2]);
                 toolTip1.InitialDelay = 100;
             }
             catch (ArgumentNullException ex)
@@ -685,12 +701,6 @@ namespace FireSystemMonitor.Formularios
                 form.Show();
             }
             catch (Exception eX) { MessageBox.Show(eX.Message); }
-
-            
-            
-            
-            
-
 
         }
 
@@ -740,8 +750,8 @@ namespace FireSystemMonitor.Formularios
             try
             {
                 Program.Gventana = "Settings";
-                SuperUserLoginForm form = new SuperUserLoginForm();
-                form.ShowDialog();
+                //SuperUserLoginForm form = new SuperUserLoginForm();
+                //form.ShowDialog();
 
                 if (Program.Gventana == "Settings")
                 {
@@ -905,12 +915,20 @@ namespace FireSystemMonitor.Formularios
         {
             try
             {
-                RemoveAllControlsFromFlowPanel();
-                ObtenerZonasHabilitadas();
-                ObtenerUltimoEstadoFacp();
-                CheckIfSoftwareActivated();
+                try
+                {
+                    RemoveAllControlsFromFlowPanel();
+                    ObtenerZonasHabilitadas();
+                    ObtenerUltimoEstadoFacp();
+                    CheckIfSoftwareActivated();
+                }
+                catch (ArgumentNullException) { }
             }
-            catch (ArgumentNullException) { }
+            catch
+            {
+
+            }
+            
             
         }
 
@@ -928,12 +946,20 @@ namespace FireSystemMonitor.Formularios
         {
             try
             {
-                UpdateZonaEstatus();
-                ObtenerUltimoEstadoFacp();
-                ObtenerEstadoEvacuacionFacp();
-                getIfModuleOnline();
+                try
+                {
+                    UpdateZonaEstatus();
+                    ObtenerUltimoEstadoFacp();
+                    ObtenerEstadoEvacuacionFacp();
+                    getIfModuleOnline();
+                }
+                catch (ArgumentNullException) { }
             }
-            catch (ArgumentNullException) { }
+            catch
+            {
+
+            }
+            
             
         }
 
@@ -963,11 +989,19 @@ namespace FireSystemMonitor.Formularios
 
         private void Evac_Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Evac_Timer.Stop();
-            this.Invoke((MethodInvoker)delegate
+            try
             {
-                evac_lbl.Visible = !evac_lbl.Visible;
-            });
+                Evac_Timer.Stop();
+                this.Invoke((MethodInvoker)delegate
+                {
+                    evac_lbl.Visible = !evac_lbl.Visible;
+                });
+            }
+            catch
+            {
+
+            }
+            
                 
         }
 

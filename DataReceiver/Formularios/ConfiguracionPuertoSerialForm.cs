@@ -176,7 +176,7 @@ namespace DataReceiver.Formularios
                     
 
                 }
-                MessageBox.Show("Cambio realizado");
+                MessageBox.Show("Change Done!");
 
             }
 
@@ -224,7 +224,7 @@ namespace DataReceiver.Formularios
                     Properties.Settings.Default.Save();
                     Config_lbl.Text = identificador_txt.Text;
 
-                    MessageBox.Show("Configuración guardada!");
+                    MessageBox.Show("Configuration was saved!");
                     LlenarDtgPuertoSerial();
                     ResetCampos();
                     
@@ -232,14 +232,14 @@ namespace DataReceiver.Formularios
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo realizar esta Acción!");
+                    MessageBox.Show("Configuration was not saved, try again!");
                     ResetCampos();
                 }
             }
 
             else
             {
-                MessageBox.Show("Todos los campos son necesarios");
+                MessageBox.Show("All fields are required!");
             }
         }
 

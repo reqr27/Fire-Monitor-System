@@ -61,7 +61,7 @@ namespace FireSystemMonitor.Formularios
             string result = "";
             if(nombre_txt.Text.Trim() == "")
             {
-                result += "Nombre es necesario\n";
+                result += "Name is necessary\n";
                 
             }
             if(email_txt.Text.Trim() != "")
@@ -71,18 +71,18 @@ namespace FireSystemMonitor.Formularios
                     var addr = new System.Net.Mail.MailAddress(email_txt.Text);
                     if (addr.Address != email_txt.Text)
                     {
-                        result += "Email inválido";
+                        result += "Invalid Email";
                     }
                 }
                 catch (Exception)
                 {
-                    result += "Email inválido";
+                    result += "Invalid Email";
                 }
                 
             }
             else
             {
-                result += "Email inválido";
+                result += "Invalid Email";
             }
             
 
@@ -96,7 +96,7 @@ namespace FireSystemMonitor.Formularios
             string result = "";
             if (host_txt.Text.Trim() == "")
             {
-                result += "Host es necesario\n";
+                result += "Host is necessary\n";
 
             }
             if(emailRemitente_txt.Text != "")
@@ -106,23 +106,23 @@ namespace FireSystemMonitor.Formularios
                     var addr = new System.Net.Mail.MailAddress(emailRemitente_txt.Text);
                     if (addr.Address != emailRemitente_txt.Text)
                     {
-                        result += "Email inválido";
+                        result += "Invalid Email";
                     }
                 }
                 catch (Exception)
                 {
-                    result += "Email inválido";
+                    result += "Invalid Email";
                 }
             }
             else
             {
-                result += "Email inválido\n";
+                result += "Invalid Email\n";
             }
             
 
             if (pass_txt.Text.Trim() == "")
             {
-                result += "Password es necesario";
+                result += "Password is necessary";
             }
 
 
@@ -142,7 +142,7 @@ namespace FireSystemMonitor.Formularios
                 string msj = P.RegistrarEmail();
                 if(msj != "1")
                 {
-                    MessageBox.Show("No se pudo realizar esta acción");
+                    MessageBox.Show("Could not save email, try again later.");
                 }
                 else
                 {
@@ -168,11 +168,11 @@ namespace FireSystemMonitor.Formularios
                 string msj = P.RegistrarConfigRemitente();
                 if (msj != "1")
                 {
-                    MessageBox.Show("No se pudo realizar esta acción");
+                    MessageBox.Show("Could not save sender configuration!");
                 }
                 else
                 {
-                    MessageBox.Show("Configuración Guardada");
+                    MessageBox.Show("Configuration saved.");
                 }
             }
             else
@@ -183,14 +183,14 @@ namespace FireSystemMonitor.Formularios
 
         public void BorrarEmail()
         {
-            DialogResult dialogResult = MessageBox.Show("Está seguro que desea eliminar este email?", "Borrar Email", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this email?", "Delete Email", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 P.Id = Convert.ToInt32(email_dtg.CurrentRow.Cells[0].Value.ToString());
                 string msj = P.BorrarEmail();
                 if (msj != "1")
                 {
-                    MessageBox.Show("No se pudo eliminar email");
+                    MessageBox.Show("Email could not be deleted, try again later.");
                 }
                 else
                 {

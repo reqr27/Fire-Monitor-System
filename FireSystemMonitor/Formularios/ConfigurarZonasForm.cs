@@ -268,13 +268,13 @@ namespace FireSystemMonitor.Formularios
             pictureBox1.Image = Properties.Resources.add_image_256;
             EliminarTodosDetectores("TODOS");
             editarZona_btn.BackColor = Color.FromArgb(72, 84, 96);
-            editarZona_btn.Text = "Editar";
+            editarZona_btn.Text = "Edit Map";
             
             verZona_btn.BackColor = Color.FromArgb(72, 84, 96);
-            verZona_btn.Text = "Ver";
-            AgregarZona_lbl.Text = "AGREGAR ZONAS";
+            verZona_btn.Text = "See Map";
+            AgregarZona_lbl.Text = "ADD ZONES";
 
-            agregarZonas_btn.Text = "Guardar";
+            agregarZonas_btn.Text = "Save";
             agregarZonas_btn.BackColor = Color.FromArgb(11, 232, 129);
 
             AgregarDetector_btn.Visible = false;
@@ -310,12 +310,12 @@ namespace FireSystemMonitor.Formularios
                 }
                 else
                 {
-                    MessageBox.Show("!No pudo actualizarse correctamente nada");
+                    MessageBox.Show("Error updating Zone!");
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar imágen");
+                MessageBox.Show("Please select Map image");
             }
         }
 
@@ -347,12 +347,12 @@ namespace FireSystemMonitor.Formularios
 
             if (msjActualizar.Trim() == "" && msjGuardar.Trim() == "")
             {
-                MessageBox.Show("Cambios Realizados Exitosamente!");
+                MessageBox.Show("Changes Done!");
             }
             else
             {
-                MessageBox.Show("No se pudieron Actualizar los siguientes Detectores: " + msjActualizar +
-                    "\n \n" + "No se Pudieron guardan los siguientes Detectores: " + msjGuardar);
+                MessageBox.Show("The following devices could not be updated: " + msjActualizar +
+                    "\n \n" + "The following devices could no be saved: " + msjGuardar);
             }
             Detectores_Guardar_Y_Actualizar.Clear();
 
@@ -528,12 +528,12 @@ namespace FireSystemMonitor.Formularios
                 }
                 else
                 {
-                    MessageBox.Show("!No pudo actualizarse correctamente nada");
+                    MessageBox.Show("Error saving changes, try later.");
                 }
             }
             else
             {
-                MessageBox.Show("Debe seleccionar imágen y llenar campos 'Nombre' y 'Descripción'");
+                MessageBox.Show("You must select a Map and fill fields 'Facp', 'Zone Name' and 'Description'");
             }
         }
 
@@ -545,11 +545,11 @@ namespace FireSystemMonitor.Formularios
             if (msj != "0")
             {
                 p.Dispose();
-                MessageBox.Show("Eliminado Correctamente!");
+                MessageBox.Show("Deleted!");
             }
             else
             {
-                MessageBox.Show("Error Eliminando Detector!");
+                MessageBox.Show("Could not delete device!");
             }
         }
 
@@ -567,12 +567,12 @@ namespace FireSystemMonitor.Formularios
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo agregar Fire Alarm Control Panel(FACP)");
+                    MessageBox.Show("Could not add Fire Alarm Control Panel(FACP)");
                 }
             }
             else
             {
-                MessageBox.Show("Nombre FACP es necesario");
+                MessageBox.Show("FACP name is necessary");
             }
         }
 
@@ -593,12 +593,12 @@ namespace FireSystemMonitor.Formularios
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo agregar Fire Alarm Control Panel(FACP)");
+                    MessageBox.Show("Could not add Fire Alarm Control Panel(FACP)");
                 }
                 NombreFacp_txt.Text = "";
                 facp_dtg.Enabled = true;
                 AgregarFacp_btn.Image = Properties.Resources.save_32;
-                AgregarFacp_btn.Text = "Agregar FACP";
+                AgregarFacp_btn.Text = "Add FACP";
                 AgregarFacp_btn.BackColor = Color.FromArgb(72, 84, 96);
 
             }
@@ -606,20 +606,20 @@ namespace FireSystemMonitor.Formularios
 
             else
             {
-                MessageBox.Show("Nombre FACP es necesario");
+                MessageBox.Show("FACP name is necessary");
             }
         }
 
         public void BorrarFACP()
         {
-            DialogResult dialogResult = MessageBox.Show("Está seguro que desea eliminar este panel de control?\n Nota: Esta acción Elimina las zonas asociadas a este FACP.", "Borrar FACP", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to delete this FACP?\n Note:This action deletes all zones associated with this panel.", "Delete FACP", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 P.ID_FACP = Convert.ToInt32(facp_dtg.CurrentRow.Cells[0].Value.ToString());
                 string msj = P.BorrarFACP();
                 if (msj != "1")
                 {
-                    MessageBox.Show("No se pudo eliminar FACP");
+                    MessageBox.Show("FACP could not be deleted!");
                 }
                 else
                 {
@@ -649,7 +649,7 @@ namespace FireSystemMonitor.Formularios
             string[] namesArray = tag.Split('*');
             List<string> namesList = new List<string>(namesArray.Length);
             namesList.AddRange(namesArray);
-            toolTip1.SetToolTip((sender as PictureBox), "Nombre: " + namesList[4] + "\nIdentificador: " + namesList[2] + "\nTipo: " + namesList[5] + "\nCategoría: " + namesList[6]);
+            toolTip1.SetToolTip((sender as PictureBox), "Name: " + namesList[4] + "\nIdentifier: " + namesList[2] + "\nType: " + namesList[5] + "\nCategory: " + namesList[6]);
         }
 
         private void Panel_DoubleClick(object sender, EventArgs e)
@@ -786,7 +786,7 @@ namespace FireSystemMonitor.Formularios
                     //pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
                     //pictureBox1.SendToBack();
 
-                    if (agregarZonas_btn.Text == "Guardar")
+                    if (agregarZonas_btn.Text == "Save")
                     {
                         AgregarDetector_btn.Visible = true;
                     }
@@ -814,18 +814,18 @@ namespace FireSystemMonitor.Formularios
                 if (Program.Gfigura == "Letra P") 
                 {
                     GenerarDetectorZona(200, 5, "NEW", Program.SizeInPX, Program.TagName, true, 0, Properties.Resources.transLetraPverde,
-                        Program.Identificador, Program.Gdispositivo, Program.Gdispositivo, Program.Gfigura);
+                        Program.Identificador, Program.Gdispositivo, Program.GtipoDispositivo, Program.Gfigura);
 
                 }
                 else if (Program.Gfigura == "Letra M")
                 {
                     GenerarDetectorZona(200, 5, "NEW", Program.SizeInPX, Program.TagName, true, 0, Properties.Resources.transLetraMverde,
-                       Program.Identificador, Program.Gdispositivo, Program.Gdispositivo, Program.Gfigura);
+                       Program.Identificador, Program.Gdispositivo, Program.GtipoDispositivo, Program.Gfigura);
                 }
                 else
                 {
                     GenerarDetectorZona(200, 5, "NEW", Program.SizeInPX, Program.TagName, true, 0, Properties.Resources.cuadroVerde,
-                        Program.Identificador, Program.Gdispositivo, Program.Gdispositivo, Program.Gfigura);
+                        Program.Identificador, Program.Gdispositivo, Program.GtipoDispositivo, Program.Gfigura);
                 }
 
             }
@@ -838,7 +838,7 @@ namespace FireSystemMonitor.Formularios
 
         private void AgregarFacp_btn_Click(object sender, EventArgs e)
         {
-            if (AgregarFacp_btn.Text == "Agregar FACP")
+            if (AgregarFacp_btn.Text == "Add FACP")
             {
                 RegistrarFacp();
             }
@@ -864,7 +864,7 @@ namespace FireSystemMonitor.Formularios
 
         private void facp_dtg_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            AgregarFacp_btn.Text = "Actualizar";
+            AgregarFacp_btn.Text = "Update";
             AgregarFacp_btn.BackColor = Color.FromArgb(255, 168, 1);
             facp_dtg.Enabled = false;
             NombreFacp_txt.Text = facp_dtg.CurrentRow.Cells[1].Value.ToString();
@@ -872,7 +872,7 @@ namespace FireSystemMonitor.Formularios
 
         private void verZona_btn_Click(object sender, EventArgs e)
         {
-            if (verZona_btn.Text == "Ver")
+            if (verZona_btn.Text == "See Map")
             {
                 CambiarEstadoControles(false, nombre_txt);
                 CambiarEstadoControles(false, descripcion_txt);
@@ -888,9 +888,9 @@ namespace FireSystemMonitor.Formularios
 
 
 
-                AgregarZona_lbl.Text = "VER ZONAS";
+                AgregarZona_lbl.Text = "SEE ZONE";
                 verZona_btn.BackColor = Color.Red;
-                verZona_btn.Text = "Cancelar Ver";
+                verZona_btn.Text = "Cancel see Map";
 
                 idEvento = Convert.ToInt32(zonas_dtg.CurrentRow.Cells[0].Value.ToString());
                 nombre_txt.Text = (zonas_dtg.CurrentRow.Cells[1].Value.ToString());
@@ -906,8 +906,8 @@ namespace FireSystemMonitor.Formularios
                 pictureBox1.Image = Properties.Resources.add_image_256;
                 EliminarTodosDetectores("TODOS");
                 verZona_btn.BackColor = Color.FromArgb(72, 84, 96);
-                verZona_btn.Text = "Ver";
-                AgregarZona_lbl.Text = "AGREGAR ZONAS";
+                verZona_btn.Text = "See Map";
+                AgregarZona_lbl.Text = "ADD ZONES";
                 CambiarEstadoControles(true, nombre_txt);
                 CambiarEstadoControles(true, descripcion_txt);
                 CambiarEstadoControles(true, estadoZona_chbox);
@@ -931,13 +931,13 @@ namespace FireSystemMonitor.Formularios
 
         private void editarZona_btn_Click(object sender, EventArgs e)
         {
-            if (editarZona_btn.Text == "Editar")
+            if (editarZona_btn.Text == "Edit Map")
             {
-                agregarZonas_btn.Text = "Actualizar";
+                agregarZonas_btn.Text = "Update";
                 agregarZonas_btn.BackColor = Color.FromArgb(255, 168, 1);
-                AgregarZona_lbl.Text = "EDITAR ZONAS";
+                AgregarZona_lbl.Text = "EDIT ZONES";
                 editarZona_btn.BackColor = Color.Red;
-                editarZona_btn.Text = "Cancelar Editar";
+                editarZona_btn.Text = "Cancel edit";
                 AgregarDetector_btn.Visible = true;
                 CambiarEstadoControles(false, Cancelar_btn);
                 CambiarEstadoControles(false, NombreFacp_txt);
@@ -960,10 +960,10 @@ namespace FireSystemMonitor.Formularios
                 pictureBox1.Image = Properties.Resources.add_image_256;
                 EliminarTodosDetectores("TODOS");
                 editarZona_btn.BackColor = Color.FromArgb(72, 84, 96);
-                editarZona_btn.Text = "Editar";
-                AgregarZona_lbl.Text = "AGREGAR ZONAS";
+                editarZona_btn.Text = "EDIT MAP";
+                AgregarZona_lbl.Text = "ADD ZONES";
 
-                agregarZonas_btn.Text = "Guardar";
+                agregarZonas_btn.Text = "Save";
                 agregarZonas_btn.BackColor = Color.FromArgb(11, 232, 129);
 
 
@@ -993,7 +993,7 @@ namespace FireSystemMonitor.Formularios
 
         private void agregarZonas_btn_Click(object sender, EventArgs e)
         {
-            if (agregarZonas_btn.Text == "Actualizar")
+            if (agregarZonas_btn.Text == "Update")
             {
                 ActualizarZonas();
                 //LlenarDtgZonas();
@@ -1022,6 +1022,15 @@ namespace FireSystemMonitor.Formularios
         private void button1_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void EliminarFacp_btn_Click(object sender, EventArgs e)
+        {
+            if (facp_dtg.Rows.Count > 0)
+            {
+                BorrarFACP();
+            }
+
         }
     }
 }

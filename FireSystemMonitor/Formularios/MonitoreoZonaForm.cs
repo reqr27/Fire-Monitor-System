@@ -44,7 +44,7 @@ namespace FireSystemMonitor.Classes
         
         List<Int32> zonasIdList = new List<int>();
         List<String> zonasNombresList = new List<string>();    
-        Procedimientos P = new Procedimientos();
+        //Procedimientos P = new Procedimientos();
         List<PictureBox> ListaDetectores = new List<PictureBox>();
 
 
@@ -58,6 +58,7 @@ namespace FireSystemMonitor.Classes
             }
             catch { numericUpDown1.Value = numericUpDown1.Minimum; Properties.Settings.Default.SlideShowTime = Convert.ToInt32(numericUpDown1.Value); Properties.Settings.Default.Save(); }
             SlideShowTimer.Interval = Convert.ToInt32(Properties.Settings.Default.SlideShowTime) * 1000;
+            Procedimientos P = new Procedimientos();
             P.ID_FACP = IdFacpToShow;
             DataTable dt = new DataTable();
             dt = P.ObtenerZonasHabilitadas();
@@ -115,6 +116,7 @@ namespace FireSystemMonitor.Classes
                 panel1.Controls.Add(pic);
                 
                 DataTable dt = new DataTable();
+                Procedimientos P = new Procedimientos();
                 P.Id = idZona;
                 dt = P.ObtenerImagenesZonas();
 
@@ -156,6 +158,7 @@ namespace FireSystemMonitor.Classes
         {
             try
             {
+                Procedimientos P = new Procedimientos();
                 P.IdZona = idZona;
                 DataTable dt = new DataTable();
                 dt = P.ObtenerDetectoresZonas();
@@ -285,12 +288,13 @@ namespace FireSystemMonitor.Classes
                 foreach (var pb in ListaDetectores)
                 {
 
-                    string Estado = "No se pudo encontrar";
+                    string Estado = "Could not be found";
                     //string Descripcion = "";
                     string tag = pb.Tag.ToString();
                     string[] namesArray = tag.Split('*');
                     List<string> namesList = new List<string>(namesArray.Length);
                     namesList.AddRange(namesArray);
+                    Procedimientos P = new Procedimientos();
                     P.IdZona = idZonaSlide;
                     P.IdDetector = Convert.ToInt32(namesList[1]);
                     P.Identificador = namesList[2];
@@ -649,6 +653,7 @@ namespace FireSystemMonitor.Classes
             try
             {
                 DataTable dt = new DataTable();
+                Procedimientos P = new Procedimientos();
                 P.ID_FACP = IdFacpToShow;
                 dt = P.ObtenerUltimoEstadoFacp();
                 if(dt.Rows.Count > 0)
@@ -667,7 +672,7 @@ namespace FireSystemMonitor.Classes
                 {
                     this.Invoke((MethodInvoker)delegate
                     {
-                        lastFacpStatus_lbl.Text = "No se pudo obtener último estado Facp";
+                        lastFacpStatus_lbl.Text = "Could not load last status";
 
                     });
                 }
@@ -684,6 +689,7 @@ namespace FireSystemMonitor.Classes
                 {
 
                     DataTable dt = new DataTable();
+                    Procedimientos P = new Procedimientos();
                     P.ID_FACP = IdFacpToShow;
                     dt = P.ObtenerEstadoEvacuacionFacp();
                     if (dt.Rows.Count > 0)
@@ -728,12 +734,13 @@ namespace FireSystemMonitor.Classes
 
             try
             {
-                string Estado = "No se pudo obtener estado";
+                string Estado = "Status could not be found";
                 string tag = (sender as PictureBox).Tag.ToString(); // format --> tipo*id*identificador*tamaño*nombre
                 string Descripcion = "";
                 string[] namesArray = tag.Split('*');
                 List<string> namesList = new List<string>(namesArray.Length);
                 namesList.AddRange(namesArray);
+                Procedimientos P = new Procedimientos();
                 P.IdZona = zonasIdList[indexSlideShow];
                 P.IdDetector = Convert.ToInt32(namesList[1]);
                 P.Identificador = namesList[2];
@@ -746,7 +753,7 @@ namespace FireSystemMonitor.Classes
                     Descripcion = dt.Rows[0][1].ToString();
                 }
 
-                toolTip1.SetToolTip((sender as PictureBox), "Nombre: " + namesList[4] + "\nIdentificador: " + namesList[2] + "\nTipo: " + namesList[5] + "\nCategoría: " + namesList[6] + "\nEstado: " + Estado);// + "\nDescripción Estado: " + Descripcion);
+                toolTip1.SetToolTip((sender as PictureBox), "Name: " + namesList[4] + "\nIdentifier: " + namesList[2] + "\nType: " + namesList[5] + "\nCategory: " + namesList[6] + "\nStatus: " + Estado);// + "\nDescripción Estado: " + Descripcion);
 
             }
             catch(ArgumentNullException ex)
@@ -828,18 +835,21 @@ namespace FireSystemMonitor.Classes
 
         private void border_timer_Tick(object sender, EventArgs e)
         {
+
             try
             {
-                border_timer.Stop();
-                if (!BorderColorWorker.IsBusy)
+                try
                 {
-                    BorderColorWorker.RunWorkerAsync();
+                    border_timer.Stop();
+                    if (!BorderColorWorker.IsBusy)
+                    {
+                        BorderColorWorker.RunWorkerAsync();
+                    }
                 }
+                catch (ArgumentNullException ex) { }
             }
-            catch (ArgumentNullException ex)
-            {
-                
-            }
+            catch{}
+            
            
             
         }
@@ -851,14 +861,20 @@ namespace FireSystemMonitor.Classes
 
         private void LeerStatusWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-           try
+            try
             {
-                CargarDetectores(zonasIdList[indexSlideShow]);
-            }
-            catch (ArgumentNullException ex)
-            {
+                try
+                {
+                    CargarDetectores(zonasIdList[indexSlideShow]);
+                }
+                catch (ArgumentNullException ex)
+                {
+
+                }
 
             }
+            catch { }
+           
             
             
                  
@@ -868,9 +884,16 @@ namespace FireSystemMonitor.Classes
         {
             try
             {
-                CambiarColorBorde();
+
+                try
+                {
+                    CambiarColorBorde();
+                }
+                catch (ArgumentNullException ex) { }
             }
-            catch (ArgumentNullException ex) { }
+
+            catch { }
+            
             
             
         }
@@ -950,11 +973,16 @@ namespace FireSystemMonitor.Classes
 
         private void Evac_Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            Evac_timer.Stop();
-            this.Invoke((MethodInvoker)delegate
+            try
             {
-                evac_lbl.Visible = !evac_lbl.Visible;
-            });
+                Evac_timer.Stop();
+                this.Invoke((MethodInvoker)delegate
+                {
+                    evac_lbl.Visible = !evac_lbl.Visible;
+                });
+            }
+            catch { }
+            
         }
 
         private void Evac_Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

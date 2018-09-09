@@ -61,9 +61,9 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(243, 25);
+            this.label1.Size = new System.Drawing.Size(280, 25);
             this.label1.TabIndex = 34;
-            this.label1.Text = "ACTIVAR SOFTWARE";
+            this.label1.Text = "SOFTWARE ACTIVATION";
             // 
             // button2
             // 
@@ -86,9 +86,9 @@
             this.label10.Font = new System.Drawing.Font("Bookman Old Style", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(14, 76);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(110, 15);
+            this.label10.Size = new System.Drawing.Size(98, 15);
             this.label10.TabIndex = 46;
-            this.label10.Text = "Código Activación:";
+            this.label10.Text = "Activation Code:";
             // 
             // label2
             // 
@@ -159,7 +159,7 @@
             this.activar_btn.Name = "activar_btn";
             this.activar_btn.Size = new System.Drawing.Size(75, 49);
             this.activar_btn.TabIndex = 54;
-            this.activar_btn.Text = "Activar";
+            this.activar_btn.Text = "Activate";
             this.activar_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.activar_btn.UseVisualStyleBackColor = true;
             this.activar_btn.Click += new System.EventHandler(this.activar_btn_Click);
@@ -184,7 +184,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ActivationForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Activar Software";
+            this.Text = "SOFTWARE ACTIVATION";
             this.Load += new System.EventHandler(this.ActivationForm_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ActivationForm_KeyDown);
             this.panel1.ResumeLayout(false);

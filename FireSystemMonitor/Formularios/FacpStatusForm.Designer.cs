@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FacpStatusForm));
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
             this.refresh_btn = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,17 +59,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(660, 44);
             this.panel3.TabIndex = 50;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Bookman Old Style", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.label11.Location = new System.Drawing.Point(11, 9);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(266, 24);
-            this.label11.TabIndex = 26;
-            this.label11.Text = "FACP ESTADO ACTUAL";
             // 
             // refresh_btn
             // 
@@ -112,6 +101,17 @@
             this.button2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Bookman Old Style", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.label11.Location = new System.Drawing.Point(11, 9);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(284, 24);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "FACP CURRENT STATUS";
             // 
             // FacpStatusForm
             // 

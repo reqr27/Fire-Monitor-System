@@ -100,9 +100,9 @@
             this.msjActivado_lbl.ForeColor = System.Drawing.Color.Red;
             this.msjActivado_lbl.Location = new System.Drawing.Point(311, 8);
             this.msjActivado_lbl.Name = "msjActivado_lbl";
-            this.msjActivado_lbl.Size = new System.Drawing.Size(402, 24);
+            this.msjActivado_lbl.Size = new System.Drawing.Size(450, 24);
             this.msjActivado_lbl.TabIndex = 35;
-            this.msjActivado_lbl.Text = "SOFTWARE NO HA SIDO ACTIVADO";
+            this.msjActivado_lbl.Text = "SOFTWARE HAS NOT BEEN ACTIVATED";
             // 
             // panel1
             // 
@@ -143,9 +143,9 @@
             this.label6.ForeColor = System.Drawing.SystemColors.Control;
             this.label6.Location = new System.Drawing.Point(3, 59);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(113, 14);
+            this.label6.Size = new System.Drawing.Size(92, 14);
             this.label6.TabIndex = 87;
-            this.label6.Text = "ULTIMO ESTADO:";
+            this.label6.Text = "LAST STATUS:";
             // 
             // info_btn
             // 
@@ -175,9 +175,9 @@
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(3, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 16);
+            this.label1.Size = new System.Drawing.Size(138, 16);
             this.label1.TabIndex = 84;
-            this.label1.Text = "Conexión:";
+            this.label1.Text = "Connection status:";
             // 
             // activar_btn
             // 
@@ -195,7 +195,7 @@
             this.activar_btn.Name = "activar_btn";
             this.activar_btn.Size = new System.Drawing.Size(102, 79);
             this.activar_btn.TabIndex = 83;
-            this.activar_btn.Text = "Activar";
+            this.activar_btn.Text = "Activate";
             this.activar_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.activar_btn.UseVisualStyleBackColor = false;
             this.activar_btn.Click += new System.EventHandler(this.activar_btn_Click);
@@ -216,7 +216,7 @@
             this.historial_btn.Name = "historial_btn";
             this.historial_btn.Size = new System.Drawing.Size(102, 79);
             this.historial_btn.TabIndex = 82;
-            this.historial_btn.Text = "Historial";
+            this.historial_btn.Text = "Event History";
             this.historial_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.historial_btn.UseVisualStyleBackColor = false;
             this.historial_btn.Click += new System.EventHandler(this.historial_btn_Click);
@@ -226,7 +226,7 @@
             this.onlineStatus_lbl.AutoSize = true;
             this.onlineStatus_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.onlineStatus_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.onlineStatus_lbl.Location = new System.Drawing.Point(83, 2);
+            this.onlineStatus_lbl.Location = new System.Drawing.Point(139, 3);
             this.onlineStatus_lbl.Name = "onlineStatus_lbl";
             this.onlineStatus_lbl.Size = new System.Drawing.Size(45, 16);
             this.onlineStatus_lbl.TabIndex = 81;
@@ -238,10 +238,10 @@
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
             this.linkLabel1.Location = new System.Drawing.Point(271, 34);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(94, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(104, 13);
             this.linkLabel1.TabIndex = 80;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Ver Estados FACP";
+            this.linkLabel1.Text = "FACP Current Status";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label3
@@ -259,9 +259,9 @@
             // 
             this.facp_cb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.facp_cb.FormattingEnabled = true;
-            this.facp_cb.Location = new System.Drawing.Point(86, 30);
+            this.facp_cb.Location = new System.Drawing.Point(54, 30);
             this.facp_cb.Name = "facp_cb";
-            this.facp_cb.Size = new System.Drawing.Size(181, 21);
+            this.facp_cb.Size = new System.Drawing.Size(213, 21);
             this.facp_cb.TabIndex = 78;
             this.facp_cb.DropDown += new System.EventHandler(this.facp_cb_DropDown);
             this.facp_cb.SelectionChangeCommitted += new System.EventHandler(this.facp_cb_SelectionChangeCommitted);
@@ -282,7 +282,7 @@
             this.Refresh_btn.Name = "Refresh_btn";
             this.Refresh_btn.Size = new System.Drawing.Size(102, 79);
             this.Refresh_btn.TabIndex = 2;
-            this.Refresh_btn.Text = "Actualizar";
+            this.Refresh_btn.Text = "Update";
             this.Refresh_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Refresh_btn.UseVisualStyleBackColor = false;
             this.Refresh_btn.Click += new System.EventHandler(this.Refresh_btn_Click);
@@ -324,7 +324,7 @@
             this.ConfigMail_btn.Name = "ConfigMail_btn";
             this.ConfigMail_btn.Size = new System.Drawing.Size(102, 79);
             this.ConfigMail_btn.TabIndex = 0;
-            this.ConfigMail_btn.Text = "Config. Email";
+            this.ConfigMail_btn.Text = "Email Configuration";
             this.ConfigMail_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.ConfigMail_btn.UseVisualStyleBackColor = false;
             this.ConfigMail_btn.Click += new System.EventHandler(this.ConfigMail_btn_Click);
@@ -410,7 +410,7 @@
             this.evac_lbl.Name = "evac_lbl";
             this.evac_lbl.Size = new System.Drawing.Size(1009, 134);
             this.evac_lbl.TabIndex = 78;
-            this.evac_lbl.Text = "EVACUACION";
+            this.evac_lbl.Text = "EVACUATE";
             this.evac_lbl.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.evac_lbl.Visible = false;
             // 

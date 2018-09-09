@@ -66,9 +66,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(14, 103);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Identificador:";
+            this.label1.Text = "Identifier:";
             // 
             // identificador_txt
             // 
@@ -92,9 +92,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(14, 126);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.Size = new System.Drawing.Size(34, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Puerto:";
+            this.label2.Text = "Port:";
             // 
             // label3
             // 
@@ -158,9 +158,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(14, 199);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 13);
+            this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Paridad:";
+            this.label5.Text = "Parity:";
             // 
             // paridad_cb
             // 
@@ -240,7 +240,7 @@
             this.guardar_btn.Name = "guardar_btn";
             this.guardar_btn.Size = new System.Drawing.Size(224, 44);
             this.guardar_btn.TabIndex = 65;
-            this.guardar_btn.Text = "Guardar y Usar Configuración";
+            this.guardar_btn.Text = "Save and Set Configuration";
             this.guardar_btn.UseVisualStyleBackColor = false;
             this.guardar_btn.Click += new System.EventHandler(this.guardar_btn_Click);
             // 
@@ -249,21 +249,21 @@
             this.UsarConfig_btn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(237)))), ((int)(((byte)(159)))));
             this.UsarConfig_btn.FlatAppearance.BorderSize = 0;
             this.UsarConfig_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.UsarConfig_btn.Location = new System.Drawing.Point(448, 318);
+            this.UsarConfig_btn.Location = new System.Drawing.Point(418, 318);
             this.UsarConfig_btn.Name = "UsarConfig_btn";
-            this.UsarConfig_btn.Size = new System.Drawing.Size(224, 44);
+            this.UsarConfig_btn.Size = new System.Drawing.Size(277, 44);
             this.UsarConfig_btn.TabIndex = 66;
-            this.UsarConfig_btn.Text = "Usar Configuración Seleccionada";
+            this.UsarConfig_btn.Text = "Set Configuration Selected as Default\r\n";
             this.UsarConfig_btn.UseVisualStyleBackColor = false;
             this.UsarConfig_btn.Click += new System.EventHandler(this.UsarConfig_btn_Click);
             // 
             // Config_lbl
             // 
             this.Config_lbl.AutoSize = true;
-            this.Config_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Config_lbl.Location = new System.Drawing.Point(147, 57);
+            this.Config_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Config_lbl.Location = new System.Drawing.Point(14, 68);
             this.Config_lbl.Name = "Config_lbl";
-            this.Config_lbl.Size = new System.Drawing.Size(41, 13);
+            this.Config_lbl.Size = new System.Drawing.Size(35, 13);
             this.Config_lbl.TabIndex = 68;
             this.Config_lbl.Text = "label3";
             // 
@@ -271,21 +271,21 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(14, 57);
+            this.label8.Location = new System.Drawing.Point(14, 49);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(129, 13);
+            this.label8.Size = new System.Drawing.Size(140, 13);
             this.label8.TabIndex = 67;
-            this.label8.Text = "Configuración Actual:";
+            this.label8.Text = "Selected Configuration:";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(659, 52);
+            this.label9.Location = new System.Drawing.Point(674, 52);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(99, 12);
+            this.label9.Size = new System.Drawing.Size(84, 12);
             this.label9.TabIndex = 75;
-            this.label9.Text = "Doble Click Para Editar";
+            this.label9.Text = "Double Click to edit";
             // 
             // panel3
             // 
@@ -334,9 +334,9 @@
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
             this.label11.Location = new System.Drawing.Point(3, 6);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(393, 24);
+            this.label11.Size = new System.Drawing.Size(361, 24);
             this.label11.TabIndex = 26;
-            this.label11.Text = "CONFIGURACION PUERTO SERIAL";
+            this.label11.Text = "SERIAL PORT CONFIGURATION";
             // 
             // shapeContainer1
             // 
@@ -364,9 +364,9 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(340, 44);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(203, 20);
+            this.label10.Size = new System.Drawing.Size(151, 20);
             this.label10.TabIndex = 102;
-            this.label10.Text = "Listado Configuraciones";
+            this.label10.Text = "Configuration List";
             // 
             // ConfiguracionPuertoSerialForm
             // 
@@ -402,7 +402,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfiguracionPuertoSerialForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "ConfiguracionPuertoSerialForm";
+            this.Text = "SERIAL PORT CONFIGURATION";
             this.Load += new System.EventHandler(this.ConfiguracionPuertoSerialForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.serialPort_dtg)).EndInit();
             this.panel3.ResumeLayout(false);

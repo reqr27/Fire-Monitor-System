@@ -38,9 +38,9 @@
             this.desde_dtp = new System.Windows.Forms.DateTimePicker();
             this.hasta_dtp = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.buscar_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.historial_dtg)).BeginInit();
             this.panel3.SuspendLayout();
@@ -96,9 +96,9 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Location = new System.Drawing.Point(9, 75);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 14);
+            this.label1.Size = new System.Drawing.Size(45, 14);
             this.label1.TabIndex = 82;
-            this.label1.Text = "Desde:";
+            this.label1.Text = "From:";
             // 
             // label2
             // 
@@ -107,9 +107,9 @@
             this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.Location = new System.Drawing.Point(9, 103);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 14);
+            this.label2.Size = new System.Drawing.Size(45, 14);
             this.label2.TabIndex = 84;
-            this.label2.Text = "Hasta:";
+            this.label2.Text = "Until:";
             // 
             // desde_dtp
             // 
@@ -142,17 +142,6 @@
             this.panel3.TabIndex = 99;
             this.panel3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel3_MouseDown);
             // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Bookman Old Style", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
-            this.label11.Location = new System.Drawing.Point(3, 6);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(287, 24);
-            this.label11.TabIndex = 26;
-            this.label11.Text = "HISTORIAL DE EVENTOS";
-            // 
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -180,6 +169,17 @@
             this.button2.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Bookman Old Style", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.label11.Location = new System.Drawing.Point(3, 6);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(196, 24);
+            this.label11.TabIndex = 26;
+            this.label11.Text = "EVENT HISTORY";
             // 
             // buscar_btn
             // 
@@ -212,7 +212,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HistorialForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Historial Eventos";
+            this.Text = "EVENT HISTORY";
             this.Load += new System.EventHandler(this.HistorialForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.historial_dtg)).EndInit();
             this.panel3.ResumeLayout(false);

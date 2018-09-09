@@ -31,13 +31,13 @@ namespace SerialKeyGenerator
 
         private void activar_btn_Click(object sender, EventArgs e)
         {
-            txt1.Text = "MULTISERVICIOS" + (Convert.ToInt16(DateTime.Now.Day) + Convert.ToInt16(DateTime.Now.Month) + Convert.ToInt16(DateTime.Now.Year)).ToString();
+            txt1.Text = "MULTISERVICIOS" + (Convert.ToInt16(DateTime.Now.Day) + Convert.ToInt16(DateTime.Now.Month) + Convert.ToInt16(DateTime.Now.Year)+ 100000).ToString();
         }
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-            {
+            { 
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }

@@ -83,9 +83,9 @@
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(9, 76);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(168, 19);
+            this.label2.Size = new System.Drawing.Size(148, 19);
             this.label2.TabIndex = 6;
-            this.label2.Text = "Estado Puerto Serial:";
+            this.label2.Text = "Serial Port Status:";
             // 
             // label1
             // 
@@ -94,16 +94,16 @@
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(9, 102);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(171, 19);
+            this.label1.Size = new System.Drawing.Size(186, 19);
             this.label1.TabIndex = 8;
-            this.label1.Text = "Configuración Actual:";
+            this.label1.Text = "Selected Configuration:";
             // 
             // Config_lbl
             // 
             this.Config_lbl.AutoSize = true;
             this.Config_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Config_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.Config_lbl.Location = new System.Drawing.Point(187, 104);
+            this.Config_lbl.Location = new System.Drawing.Point(195, 104);
             this.Config_lbl.Name = "Config_lbl";
             this.Config_lbl.Size = new System.Drawing.Size(45, 16);
             this.Config_lbl.TabIndex = 9;
@@ -134,6 +134,7 @@
             this.facp_cb.Name = "facp_cb";
             this.facp_cb.Size = new System.Drawing.Size(331, 24);
             this.facp_cb.TabIndex = 77;
+            this.facp_cb.DropDown += new System.EventHandler(this.facp_cb_DropDown);
             this.facp_cb.SelectionChangeCommitted += new System.EventHandler(this.facp_cb_SelectionChangeCommitted);
             // 
             // serialPort1
@@ -229,9 +230,9 @@
             this.msjActivado_lbl.ForeColor = System.Drawing.Color.Red;
             this.msjActivado_lbl.Location = new System.Drawing.Point(9, 444);
             this.msjActivado_lbl.Name = "msjActivado_lbl";
-            this.msjActivado_lbl.Size = new System.Drawing.Size(402, 24);
+            this.msjActivado_lbl.Size = new System.Drawing.Size(358, 24);
             this.msjActivado_lbl.TabIndex = 100;
-            this.msjActivado_lbl.Text = "SOFTWARE NO HA SIDO ACTIVADO";
+            this.msjActivado_lbl.Text = "SOFTWARE IS NOT ACTIVATED";
             // 
             // activar_btn
             // 
@@ -245,11 +246,11 @@
             this.activar_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.activar_btn.Image = global::DataReceiver.Properties.Resources.key_2_48;
             this.activar_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.activar_btn.Location = new System.Drawing.Point(435, 53);
+            this.activar_btn.Location = new System.Drawing.Point(435, 47);
             this.activar_btn.Name = "activar_btn";
-            this.activar_btn.Size = new System.Drawing.Size(121, 83);
+            this.activar_btn.Size = new System.Drawing.Size(121, 89);
             this.activar_btn.TabIndex = 101;
-            this.activar_btn.Text = "Activar";
+            this.activar_btn.Text = "Activate";
             this.activar_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.activar_btn.UseVisualStyleBackColor = false;
             this.activar_btn.Click += new System.EventHandler(this.activar_btn_Click);
@@ -266,7 +267,7 @@
             this.limpiarEstados_btn.Name = "limpiarEstados_btn";
             this.limpiarEstados_btn.Size = new System.Drawing.Size(127, 59);
             this.limpiarEstados_btn.TabIndex = 7;
-            this.limpiarEstados_btn.Text = "Limpiar Estados";
+            this.limpiarEstados_btn.Text = "Clear Screen";
             this.limpiarEstados_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.limpiarEstados_btn.UseVisualStyleBackColor = true;
             this.limpiarEstados_btn.Click += new System.EventHandler(this.limpiarEstados_btn_Click);
@@ -279,11 +280,11 @@
             this.Config_btn.ForeColor = System.Drawing.SystemColors.Control;
             this.Config_btn.Image = global::DataReceiver.Properties.Resources.settings_22_48;
             this.Config_btn.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.Config_btn.Location = new System.Drawing.Point(562, 52);
+            this.Config_btn.Location = new System.Drawing.Point(562, 47);
             this.Config_btn.Name = "Config_btn";
-            this.Config_btn.Size = new System.Drawing.Size(127, 84);
+            this.Config_btn.Size = new System.Drawing.Size(127, 89);
             this.Config_btn.TabIndex = 1;
-            this.Config_btn.Text = "Configurar Puerto";
+            this.Config_btn.Text = "Serial Port Configuration";
             this.Config_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Config_btn.UseVisualStyleBackColor = true;
             this.Config_btn.Click += new System.EventHandler(this.Config_btn_Click);
@@ -298,7 +299,7 @@
             this.configDescription_lbl.AutoSize = true;
             this.configDescription_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.configDescription_lbl.ForeColor = System.Drawing.SystemColors.Control;
-            this.configDescription_lbl.Location = new System.Drawing.Point(188, 120);
+            this.configDescription_lbl.Location = new System.Drawing.Point(197, 120);
             this.configDescription_lbl.Name = "configDescription_lbl";
             this.configDescription_lbl.Size = new System.Drawing.Size(29, 12);
             this.configDescription_lbl.TabIndex = 102;

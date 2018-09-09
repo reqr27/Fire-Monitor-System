@@ -155,19 +155,19 @@ namespace FireSystemMonitor
                 string msj = P.ActivarSoftware();
                 if (msj == "1")
                 {
-                    MessageBox.Show("Software Activado", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Software has been activated!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     this.Close();
                 }
 
                 else
                 {
-                    MessageBox.Show("Software no pudo ser activado, intente nuevamente más tarde", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Software was not activated, try again later.", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
             }
             else
             {
-                MessageBox.Show("Código incorrecto", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Code is incorrect!", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

@@ -101,7 +101,7 @@
             this.salir_btn.Name = "salir_btn";
             this.salir_btn.Size = new System.Drawing.Size(72, 63);
             this.salir_btn.TabIndex = 13;
-            this.salir_btn.Text = "SALIR";
+            this.salir_btn.Text = "EXIT";
             this.salir_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.salir_btn.UseVisualStyleBackColor = false;
             this.salir_btn.Click += new System.EventHandler(this.salir_btn_Click);
@@ -121,7 +121,7 @@
             this.entrar_btn.Name = "entrar_btn";
             this.entrar_btn.Size = new System.Drawing.Size(72, 63);
             this.entrar_btn.TabIndex = 12;
-            this.entrar_btn.Text = "ENTRAR";
+            this.entrar_btn.Text = "LOG IN";
             this.entrar_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.entrar_btn.UseVisualStyleBackColor = false;
             this.entrar_btn.Click += new System.EventHandler(this.entrar_btn_Click);

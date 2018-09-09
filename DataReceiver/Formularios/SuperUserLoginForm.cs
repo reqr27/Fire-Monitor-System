@@ -47,7 +47,7 @@ namespace DataReceiver
            
             else
             {
-                MessageBox.Show("Acceso negado", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Access denied", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

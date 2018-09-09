@@ -68,11 +68,11 @@
             this.lineShape1 = new Microsoft.VisualBasic.PowerPacks.LineShape();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.workArea_panel = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.AgregarDetector_btn = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.AgregarDetector_btn = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -148,9 +148,9 @@
             this.NombreZona_lbl.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
             this.NombreZona_lbl.Location = new System.Drawing.Point(3, 3);
             this.NombreZona_lbl.Name = "NombreZona_lbl";
-            this.NombreZona_lbl.Size = new System.Drawing.Size(223, 22);
+            this.NombreZona_lbl.Size = new System.Drawing.Size(244, 22);
             this.NombreZona_lbl.TabIndex = 26;
-            this.NombreZona_lbl.Text = "CONFIGURAR ZONAS";
+            this.NombreZona_lbl.Text = "ZONE CONFIGURATION";
             // 
             // tabControl1
             // 
@@ -171,7 +171,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(999, 716);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "DETALLES";
+            this.tabPage1.Text = "DETAILS";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // leftAreaPanel
@@ -238,7 +238,7 @@
             this.Cancelar_btn.Name = "Cancelar_btn";
             this.Cancelar_btn.Size = new System.Drawing.Size(117, 77);
             this.Cancelar_btn.TabIndex = 86;
-            this.Cancelar_btn.Text = "Cancelar";
+            this.Cancelar_btn.Text = "Cancel";
             this.Cancelar_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.Cancelar_btn.UseVisualStyleBackColor = false;
             this.Cancelar_btn.Click += new System.EventHandler(this.Cancelar_btn_Click);
@@ -267,9 +267,9 @@
             this.estadoZona_chbox.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.estadoZona_chbox.Location = new System.Drawing.Point(52, 521);
             this.estadoZona_chbox.Name = "estadoZona_chbox";
-            this.estadoZona_chbox.Size = new System.Drawing.Size(84, 18);
+            this.estadoZona_chbox.Size = new System.Drawing.Size(70, 18);
             this.estadoZona_chbox.TabIndex = 84;
-            this.estadoZona_chbox.Text = "Habilitar";
+            this.estadoZona_chbox.Text = "Enable";
             this.estadoZona_chbox.UseVisualStyleBackColor = true;
             // 
             // descripcion_txt
@@ -295,9 +295,9 @@
             this.label2.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(50, 490);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(90, 14);
+            this.label2.Size = new System.Drawing.Size(89, 14);
             this.label2.TabIndex = 81;
-            this.label2.Text = "Descripción:";
+            this.label2.Text = "Description:";
             // 
             // agregarZonas_btn
             // 
@@ -311,7 +311,7 @@
             this.agregarZonas_btn.Name = "agregarZonas_btn";
             this.agregarZonas_btn.Size = new System.Drawing.Size(117, 77);
             this.agregarZonas_btn.TabIndex = 83;
-            this.agregarZonas_btn.Text = "Guardar";
+            this.agregarZonas_btn.Text = "Save";
             this.agregarZonas_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.agregarZonas_btn.UseVisualStyleBackColor = false;
             this.agregarZonas_btn.Click += new System.EventHandler(this.agregarZonas_btn_Click);
@@ -322,9 +322,9 @@
             this.label4.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(50, 465);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 14);
+            this.label4.Size = new System.Drawing.Size(82, 14);
             this.label4.TabIndex = 82;
-            this.label4.Text = "Nombre:";
+            this.label4.Text = "Zone name:";
             // 
             // AgregarZona_lbl
             // 
@@ -332,9 +332,9 @@
             this.AgregarZona_lbl.Font = new System.Drawing.Font("Britannic Bold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AgregarZona_lbl.Location = new System.Drawing.Point(39, 378);
             this.AgregarZona_lbl.Name = "AgregarZona_lbl";
-            this.AgregarZona_lbl.Size = new System.Drawing.Size(187, 27);
+            this.AgregarZona_lbl.Size = new System.Drawing.Size(133, 27);
             this.AgregarZona_lbl.TabIndex = 78;
-            this.AgregarZona_lbl.Text = "AGREGAR ZONAS";
+            this.AgregarZona_lbl.Text = "ADD ZONES";
             // 
             // EliminarFacp_btn
             // 
@@ -348,9 +348,10 @@
             this.EliminarFacp_btn.Name = "EliminarFacp_btn";
             this.EliminarFacp_btn.Size = new System.Drawing.Size(130, 61);
             this.EliminarFacp_btn.TabIndex = 76;
-            this.EliminarFacp_btn.Text = "Eliminar FACP";
+            this.EliminarFacp_btn.Text = "Delete FACP";
             this.EliminarFacp_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.EliminarFacp_btn.UseVisualStyleBackColor = false;
+            this.EliminarFacp_btn.Click += new System.EventHandler(this.EliminarFacp_btn_Click);
             // 
             // facp_lbl
             // 
@@ -367,9 +368,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(216, 208);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(99, 12);
+            this.label6.Size = new System.Drawing.Size(85, 12);
             this.label6.TabIndex = 74;
-            this.label6.Text = "Doble Click Para Editar";
+            this.label6.Text = "Double Click to Edit";
             // 
             // AgregarFacp_btn
             // 
@@ -383,7 +384,7 @@
             this.AgregarFacp_btn.Name = "AgregarFacp_btn";
             this.AgregarFacp_btn.Size = new System.Drawing.Size(130, 61);
             this.AgregarFacp_btn.TabIndex = 73;
-            this.AgregarFacp_btn.Text = "Agregar FACP";
+            this.AgregarFacp_btn.Text = "Add FACP";
             this.AgregarFacp_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.AgregarFacp_btn.UseVisualStyleBackColor = false;
             this.AgregarFacp_btn.Click += new System.EventHandler(this.AgregarFacp_btn_Click);
@@ -402,9 +403,9 @@
             this.label5.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(49, 219);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(60, 14);
+            this.label5.Size = new System.Drawing.Size(46, 14);
             this.label5.TabIndex = 72;
-            this.label5.Text = "Nombre:";
+            this.label5.Text = "Name:";
             // 
             // facp_dtg
             // 
@@ -453,7 +454,7 @@
             this.editarZona_btn.Name = "editarZona_btn";
             this.editarZona_btn.Size = new System.Drawing.Size(130, 61);
             this.editarZona_btn.TabIndex = 65;
-            this.editarZona_btn.Text = "Editar";
+            this.editarZona_btn.Text = "Edit Map";
             this.editarZona_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.editarZona_btn.UseVisualStyleBackColor = false;
             this.editarZona_btn.Click += new System.EventHandler(this.editarZona_btn_Click);
@@ -493,7 +494,7 @@
             this.verZona_btn.Name = "verZona_btn";
             this.verZona_btn.Size = new System.Drawing.Size(130, 61);
             this.verZona_btn.TabIndex = 62;
-            this.verZona_btn.Text = "Ver";
+            this.verZona_btn.Text = "See Map";
             this.verZona_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.verZona_btn.UseVisualStyleBackColor = false;
             this.verZona_btn.Click += new System.EventHandler(this.verZona_btn_Click);
@@ -506,7 +507,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(81, 27);
             this.label9.TabIndex = 61;
-            this.label9.Text = "ZONAS";
+            this.label9.Text = "ZONES";
             // 
             // shapeContainer1
             // 
@@ -546,7 +547,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(999, 716);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "PLANO";
+            this.tabPage2.Text = "MAP";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // workArea_panel
@@ -559,10 +560,6 @@
             this.workArea_panel.Size = new System.Drawing.Size(993, 710);
             this.workArea_panel.TabIndex = 52;
             // 
-            // openFileDialog1
-            // 
-            this.openFileDialog1.FileName = "openFileDialog1";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Gray;
@@ -574,6 +571,16 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 78;
             this.pictureBox1.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.LightGray;
+            this.panel2.Controls.Add(this.AgregarDetector_btn);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 668);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(993, 42);
+            this.panel2.TabIndex = 77;
             // 
             // AgregarDetector_btn
             // 
@@ -588,22 +595,15 @@
             this.AgregarDetector_btn.Name = "AgregarDetector_btn";
             this.AgregarDetector_btn.Size = new System.Drawing.Size(117, 36);
             this.AgregarDetector_btn.TabIndex = 78;
-            this.AgregarDetector_btn.Text = "Añadir Dispositivo";
-            this.AgregarDetector_btn.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.AgregarDetector_btn.Text = "Add Device";
             this.AgregarDetector_btn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.AgregarDetector_btn.UseVisualStyleBackColor = false;
             this.AgregarDetector_btn.Visible = false;
             this.AgregarDetector_btn.Click += new System.EventHandler(this.AgregarDetector_btn_Click);
             // 
-            // panel2
+            // openFileDialog1
             // 
-            this.panel2.BackColor = System.Drawing.Color.LightGray;
-            this.panel2.Controls.Add(this.AgregarDetector_btn);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(0, 668);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(993, 42);
-            this.panel2.TabIndex = 77;
+            this.openFileDialog1.FileName = "openFileDialog1";
             // 
             // ConfigurarZonasForm
             // 
@@ -615,7 +615,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfigurarZonasForm";
-            this.Text = "CONFIGURAR ZONAS";
+            this.Text = "ZONE CONFIGURATION";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.ConfigurarZonasForm_Load);
             this.panel3.ResumeLayout(false);

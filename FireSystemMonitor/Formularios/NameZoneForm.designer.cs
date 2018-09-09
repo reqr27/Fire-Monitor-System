@@ -53,9 +53,9 @@
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(12, 76);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 20);
+            this.label1.Size = new System.Drawing.Size(60, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Nombre:";
+            this.label1.Text = "Name:";
             // 
             // textBox1
             // 
@@ -72,9 +72,9 @@
             this.label2.ForeColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(12, 141);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 20);
+            this.label2.Size = new System.Drawing.Size(79, 20);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Tamaño(px):";
+            this.label2.Text = "Size(px):";
             // 
             // textBox2
             // 
@@ -87,13 +87,13 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Bookman Old Style", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Bookman Old Style", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.Control;
-            this.label3.Location = new System.Drawing.Point(12, 9);
+            this.label3.Location = new System.Drawing.Point(12, 18);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(412, 32);
+            this.label3.Size = new System.Drawing.Size(402, 22);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Configurar Detector/Modulo";
+            this.label3.Text = "DETECTOR/MODULE CONFIGURATION";
             // 
             // button2
             // 
@@ -106,7 +106,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(196, 43);
             this.button2.TabIndex = 5;
-            this.button2.Text = "CANCELAR";
+            this.button2.Text = "CANCEL";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -125,9 +125,9 @@
             this.label4.ForeColor = System.Drawing.SystemColors.Control;
             this.label4.Location = new System.Drawing.Point(12, 108);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(115, 20);
+            this.label4.Size = new System.Drawing.Size(86, 20);
             this.label4.TabIndex = 7;
-            this.label4.Text = "Identificador:";
+            this.label4.Text = "Identifier:";
             // 
             // label5
             // 
@@ -136,9 +136,9 @@
             this.label5.ForeColor = System.Drawing.SystemColors.Control;
             this.label5.Location = new System.Drawing.Point(12, 172);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 20);
+            this.label5.Size = new System.Drawing.Size(52, 20);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Tipo:";
+            this.label5.Text = "Type:";
             // 
             // label6
             // 
@@ -147,9 +147,9 @@
             this.label6.ForeColor = System.Drawing.SystemColors.Control;
             this.label6.Location = new System.Drawing.Point(14, 201);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(92, 20);
+            this.label6.Size = new System.Drawing.Size(86, 20);
             this.label6.TabIndex = 9;
-            this.label6.Text = "Categoría:";
+            this.label6.Text = "Category:";
             // 
             // label7
             // 
@@ -160,7 +160,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(65, 20);
             this.label7.TabIndex = 10;
-            this.label7.Text = "Figura:";
+            this.label7.Text = "Figure:";
             // 
             // dispositivo_cb
             // 
@@ -209,7 +209,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(196, 43);
             this.button1.TabIndex = 4;
-            this.button1.Text = "ACEPTAR";
+            this.button1.Text = "ADD";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -237,7 +237,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NameZoneForm";
-            this.Text = "NameZoneForm";
+            this.Text = "DETECTOR/MODULE CONFIGURATION";
             this.Load += new System.EventHandler(this.NameZoneForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

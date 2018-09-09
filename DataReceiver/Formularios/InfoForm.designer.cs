@@ -33,6 +33,9 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.software_lbl = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.licencia_lbl = new System.Windows.Forms.Label();
@@ -40,9 +43,6 @@
             this.fActivado_txt = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.fVencimiento_txt = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -79,9 +79,9 @@
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
             this.label11.Location = new System.Drawing.Point(3, 6);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(172, 24);
+            this.label11.Size = new System.Drawing.Size(171, 24);
             this.label11.TabIndex = 26;
-            this.label11.Text = "INFORMACION";
+            this.label11.Text = "INFORMATION";
             // 
             // label4
             // 
@@ -89,9 +89,9 @@
             this.label4.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(12, 55);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 14);
+            this.label4.Size = new System.Drawing.Size(68, 14);
             this.label4.TabIndex = 100;
-            this.label4.Text = "Nombre:";
+            this.label4.Text = "Software:";
             // 
             // panel1
             // 
@@ -104,72 +104,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(376, 89);
             this.panel1.TabIndex = 101;
-            // 
-            // software_lbl
-            // 
-            this.software_lbl.AutoSize = true;
-            this.software_lbl.Location = new System.Drawing.Point(89, 56);
-            this.software_lbl.Name = "software_lbl";
-            this.software_lbl.Size = new System.Drawing.Size(35, 13);
-            this.software_lbl.TabIndex = 102;
-            this.software_lbl.Text = "label1";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 80);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(66, 14);
-            this.label1.TabIndex = 103;
-            this.label1.Text = "Licencia:";
-            // 
-            // licencia_lbl
-            // 
-            this.licencia_lbl.AutoSize = true;
-            this.licencia_lbl.Location = new System.Drawing.Point(89, 81);
-            this.licencia_lbl.Name = "licencia_lbl";
-            this.licencia_lbl.Size = new System.Drawing.Size(35, 13);
-            this.licencia_lbl.TabIndex = 104;
-            this.licencia_lbl.Text = "label1";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(12, 106);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(123, 14);
-            this.label2.TabIndex = 105;
-            this.label2.Text = "Fecha Activación:";
-            // 
-            // fActivado_txt
-            // 
-            this.fActivado_txt.AutoSize = true;
-            this.fActivado_txt.Location = new System.Drawing.Point(154, 107);
-            this.fActivado_txt.Name = "fActivado_txt";
-            this.fActivado_txt.Size = new System.Drawing.Size(35, 13);
-            this.fActivado_txt.TabIndex = 106;
-            this.fActivado_txt.Text = "label1";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(12, 133);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(136, 14);
-            this.label5.TabIndex = 107;
-            this.label5.Text = "Fecha Vencimiento:";
-            // 
-            // fVencimiento_txt
-            // 
-            this.fVencimiento_txt.AutoSize = true;
-            this.fVencimiento_txt.Location = new System.Drawing.Point(154, 134);
-            this.fVencimiento_txt.Name = "fVencimiento_txt";
-            this.fVencimiento_txt.Size = new System.Drawing.Size(35, 13);
-            this.fVencimiento_txt.TabIndex = 108;
-            this.fVencimiento_txt.Text = "label1";
             // 
             // linkLabel1
             // 
@@ -204,6 +138,72 @@
             this.label3.TabIndex = 111;
             this.label3.Text = "Desarrollado por Multiservicios LEA";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // software_lbl
+            // 
+            this.software_lbl.AutoSize = true;
+            this.software_lbl.Location = new System.Drawing.Point(89, 56);
+            this.software_lbl.Name = "software_lbl";
+            this.software_lbl.Size = new System.Drawing.Size(35, 13);
+            this.software_lbl.TabIndex = 102;
+            this.software_lbl.Text = "label1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 80);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 14);
+            this.label1.TabIndex = 103;
+            this.label1.Text = "License Type:";
+            // 
+            // licencia_lbl
+            // 
+            this.licencia_lbl.AutoSize = true;
+            this.licencia_lbl.Location = new System.Drawing.Point(113, 80);
+            this.licencia_lbl.Name = "licencia_lbl";
+            this.licencia_lbl.Size = new System.Drawing.Size(35, 13);
+            this.licencia_lbl.TabIndex = 104;
+            this.licencia_lbl.Text = "label1";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(12, 106);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(108, 14);
+            this.label2.TabIndex = 105;
+            this.label2.Text = "Date Activated:";
+            // 
+            // fActivado_txt
+            // 
+            this.fActivado_txt.AutoSize = true;
+            this.fActivado_txt.Location = new System.Drawing.Point(126, 106);
+            this.fActivado_txt.Name = "fActivado_txt";
+            this.fActivado_txt.Size = new System.Drawing.Size(35, 13);
+            this.fActivado_txt.TabIndex = 106;
+            this.fActivado_txt.Text = "label1";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Bookman Old Style", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(12, 133);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(102, 14);
+            this.label5.TabIndex = 107;
+            this.label5.Text = "Expiring Date:";
+            // 
+            // fVencimiento_txt
+            // 
+            this.fVencimiento_txt.AutoSize = true;
+            this.fVencimiento_txt.Location = new System.Drawing.Point(126, 134);
+            this.fVencimiento_txt.Name = "fVencimiento_txt";
+            this.fVencimiento_txt.Size = new System.Drawing.Size(35, 13);
+            this.fVencimiento_txt.TabIndex = 108;
+            this.fVencimiento_txt.Text = "label1";
             // 
             // InfoForm
             // 
